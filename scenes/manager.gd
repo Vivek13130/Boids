@@ -5,10 +5,10 @@ const GRID_CELL_SIZE = 100
 const BOID_COLOR = Color(1.0, 0.0, 0.0)
 
 #some constants for the boids 
-const COHESION = 0.1 # ranges between 0 to 1
-const ALIGNMENT = 0.5 # ranges between 0 to 1
+const COHESION = 3 # ranges between 0 to n
+const ALIGNMENT = 0.8 # ranges between 0 to 1
 const SEPERATION_DISTANCE = 200 # min stable distance between any two boids
-const SEPERATION_SENSITIVITY = 3 # how aggressively boids react to the seperation
+const SEPERATION_SENSITIVITY = 100 # how aggressively boids react to the seperation
 const NOISE = 0
 
 const FLOCKING_UPDATE_LATENCY = 10 # every x frames , new flocking will be applied
