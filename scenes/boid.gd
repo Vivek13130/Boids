@@ -33,14 +33,13 @@ func _ready() -> void:
 func _process(_delta: float) -> void:
 	counter += 1
 	
-	#var boid_position = global_position
+	#var boid_position = to_local(global_position)
 	#trail.add_point(boid_position)
 	#
 	#if trail.get_point_count() > 50:
 		#trail.remove_point(0)
-		
+		#
 #	function call for boids :
-	check_for_edges()
 	update_boid_grid_position()
 	
 	
@@ -52,6 +51,7 @@ func _process(_delta: float) -> void:
 			acceleration = acceleration.normalized() * manager.MAX_ACCELERATION
 	
 	
+	check_for_edges()
 	velocity += acceleration 
 	acceleration = Vector2.ZERO
 	
@@ -65,27 +65,36 @@ func _process(_delta: float) -> void:
 	move_and_slide()
 
 
-func check_for_edges() -> void :
+func check_for_edges() -> void:
 	var curr_pos = global_position
 	screen_size = get_viewport().size
 	
-	if(curr_pos.x < margin_on_edges):
-		velocity.x +=  counter_outside_x
-		counter_outside_x += 0.5
-	elif(curr_pos.x > screen_size.x - margin_on_edges):
-		velocity.x -=   counter_outside_x
-		counter_outside_x += 0.5
-	else:
-		counter_outside_x = 0
+	# Define the distance from edges to start applying force
+	var edge_threshold = manager.MARGIN_ON_EDGES  
+	# Define the repulsion force factor
+	var edge_force_strength = manager.EDGE_FORCE_STRENGTH 
 	
-	if(curr_pos.y < margin_on_edges):
-		velocity.y +=  counter_outside_y
-		counter_outside_y += 0.5
-	elif(curr_pos.y > screen_size.y - margin_on_edges):
-		velocity.y -=  counter_outside_y
-		counter_outside_y += 0.5
-	else:
-		counter_outside_y += 0
+	# Apply a smooth force to keep boids inside the screen
+	if curr_pos.x < edge_threshold:
+		var dist = edge_threshold - curr_pos.x
+		velocity.x += dist * edge_force_strength
+	elif curr_pos.x > screen_size.x - edge_threshold:
+		var dist = curr_pos.x - (screen_size.x - edge_threshold)
+		velocity.x -= dist * edge_force_strength
+	
+	if curr_pos.y < edge_threshold:
+		var dist = edge_threshold - curr_pos.y
+		velocity.y += dist * edge_force_strength
+	elif curr_pos.y > screen_size.y - edge_threshold:
+		var dist = curr_pos.y - (screen_size.y - edge_threshold)
+		velocity.y -= dist * edge_force_strength
+	
+	# Reapply velocity caps
+	if velocity.length() < manager.MIN_SPEED:
+		velocity = velocity.normalized() * manager.MIN_SPEED
+	elif velocity.length() > manager.MAX_SPEED:
+		velocity = velocity.normalized() * manager.MAX_SPEED
+
 
 
 func update_boid_grid_position() -> void :

@@ -3,6 +3,7 @@ extends Node
 #other const : 
 const GRID_CELL_SIZE = 100
 const MARGIN_ON_EDGES = 100
+const EDGE_FORCE_STRENGTH = 0.25
 
 #some default values for the boids 
 const DEFAULT_COHESION = 3 # ranges between 0 to n

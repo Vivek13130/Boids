@@ -1,10 +1,24 @@
-[gd_scene load_steps=2 format=3 uid="uid://boqkqso8lgws7"]
+[gd_scene load_steps=4 format=3 uid="uid://boqkqso8lgws7"]
 
 [ext_resource type="Script" path="res://scenes/test.gd" id="1_jnkfd"]
+[ext_resource type="Texture2D" uid="uid://cu7ahn2w3ma3y" path="res://assets/eye_logo.png" id="2_fu2hy"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_o64py"]
+radius = 71.0
 
 [node name="test" type="Node2D"]
 script = ExtResource("1_jnkfd")
 
-[node name="trail" type="Line2D" parent="."]
+[node name="CharacterBody2D" type="CharacterBody2D" parent="."]
+
+[node name="trail" type="Line2D" parent="CharacterBody2D"]
 default_color = Color(0, 1, 1, 1)
 joint_mode = 2
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="CharacterBody2D"]
+shape = SubResource("CircleShape2D_o64py")
+disabled = true
+
+[node name="EyeLogo" type="Sprite2D" parent="CharacterBody2D"]
+position = Vector2(13, 12)
+texture = ExtResource("2_fu2hy")

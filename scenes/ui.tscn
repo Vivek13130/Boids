@@ -440,7 +440,6 @@ offset_top = 0.00876999
 offset_bottom = 0.0112801
 grow_horizontal = 2
 grow_vertical = 0
-max_value = 200.0
 
 [node name="checks and text_info" type="Panel" parent="."]
 modulate = Color(0, 0.886275, 0.52549, 1)
@@ -501,7 +500,6 @@ offset_left = -0.0560007
 offset_top = 0.0079999
 offset_right = 0.00699615
 offset_bottom = -0.0220032
-button_pressed = true
 text = "Trails"
 
 [node name="colors_check" type="CheckButton" parent="checks and text_info"]
@@ -521,13 +519,13 @@ text = "Colors"
 layout_mode = 1
 anchors_preset = -1
 anchor_left = 0.567
-anchor_top = 0.618
+anchor_top = 0.636
 anchor_right = 0.788
-anchor_bottom = 0.908
-offset_left = 0.022995
-offset_top = 0.0200195
+anchor_bottom = 0.926
+offset_left = 0.0230103
+offset_top = 0.0400772
 offset_right = -0.0280151
-offset_bottom = -0.0369797
+offset_bottom = -0.016922
 text = "Reset"
 
 [node name="randomize_button" type="Button" parent="checks and text_info"]
@@ -544,7 +542,6 @@ offset_bottom = 0.0250092
 text = "Randomize"
 
 [node name="hide_ui" type="CheckButton" parent="."]
-modulate = Color(0.902855, 0.902855, 7.70092e-07, 1)
 layout_mode = 1
 anchors_preset = -1
 anchor_left = 0.96
