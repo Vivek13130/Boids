@@ -24,9 +24,9 @@ color = Color(0, 0, 0, 1)
 [node name="white_bg_for_ui" type="ColorRect" parent="."]
 layout_mode = 1
 anchors_preset = -1
-anchor_right = 0.245
+anchor_right = 0.201
 anchor_bottom = 1.0
-offset_right = -0.23999
+offset_right = -0.552002
 grow_horizontal = 2
 grow_vertical = 2
 
@@ -34,9 +34,9 @@ grow_vertical = 2
 custom_minimum_size = Vector2(150, 500)
 layout_mode = 1
 anchors_preset = -1
-anchor_right = 0.246
+anchor_right = 0.201
 anchor_bottom = 0.833
-offset_right = -0.391998
+offset_right = -0.552002
 offset_bottom = 0.215942
 
 [node name="alignment" type="Panel" parent="sliders"]
@@ -238,7 +238,7 @@ offset_top = 0.00876999
 offset_bottom = 0.0112801
 grow_horizontal = 2
 grow_vertical = 0
-max_value = 1000.0
+max_value = 500.0
 
 [node name="max speed" type="Panel" parent="sliders"]
 modulate = Color(0, 0.886275, 0.52549, 1)
@@ -271,7 +271,7 @@ offset_top = 0.00876999
 offset_bottom = 0.0112801
 grow_horizontal = 2
 grow_vertical = 0
-max_value = 1000.0
+max_value = 500.0
 
 [node name="max acc" type="Panel" parent="sliders"]
 modulate = Color(0, 0.886275, 0.52549, 1)
@@ -304,7 +304,7 @@ offset_top = 0.00876999
 offset_bottom = 0.0112801
 grow_horizontal = 2
 grow_vertical = 0
-max_value = 2000.0
+max_value = 1000.0
 
 [node name="fov" type="Panel" parent="sliders"]
 modulate = Color(0, 0.886275, 0.52549, 1)
@@ -371,6 +371,8 @@ offset_bottom = 0.0112801
 grow_horizontal = 2
 grow_vertical = 0
 max_value = 30.0
+editable = false
+scrollable = false
 
 [node name="detection radius" type="Panel" parent="sliders"]
 modulate = Color(0, 0.886275, 0.52549, 1)
@@ -446,10 +448,10 @@ custom_minimum_size = Vector2(150, 100)
 layout_mode = 1
 anchors_preset = -1
 anchor_top = 0.832
-anchor_right = 0.246
+anchor_right = 0.201
 anchor_bottom = 1.002
 offset_top = -0.135986
-offset_right = -0.391998
+offset_right = -0.552002
 offset_bottom = -0.296082
 
 [node name="Panel" type="Panel" parent="checks and text_info"]
@@ -465,27 +467,27 @@ grow_vertical = 2
 [node name="fps" type="Label" parent="checks and text_info"]
 layout_mode = 1
 anchors_preset = -1
-anchor_left = 0.435
-anchor_top = 0.084
-anchor_right = 0.696
-anchor_bottom = 0.299
-offset_left = -0.105011
-offset_top = 0.0119991
-offset_right = 0.0319824
-offset_bottom = 0.00699806
+anchor_left = 0.584
+anchor_top = 0.091
+anchor_right = 0.844
+anchor_bottom = 0.3
+offset_left = 0.095993
+offset_top = -0.0100145
+offset_right = 0.0359955
+offset_bottom = -1.52588e-05
 text = "FPS: "
 
 [node name="boid_count" type="Label" parent="checks and text_info"]
 layout_mode = 1
 anchors_preset = -1
-anchor_left = 0.428
-anchor_top = 0.346
-anchor_right = 0.735
-anchor_bottom = 0.561
-offset_left = -0.124008
-offset_top = -0.0220032
-offset_right = -0.00500488
-offset_bottom = -0.0270042
+anchor_left = 0.58
+anchor_top = 0.345
+anchor_right = 0.888
+anchor_bottom = 0.56
+offset_left = 0.019989
+offset_top = 0.0499687
+offset_right = -0.0920105
+offset_bottom = 0.0449791
 text = "Boids: "
 
 [node name="trails_check" type="CheckButton" parent="checks and text_info"]
@@ -499,6 +501,7 @@ offset_left = -0.0560007
 offset_top = 0.0079999
 offset_right = 0.00699615
 offset_bottom = -0.0220032
+button_pressed = true
 text = "Trails"
 
 [node name="colors_check" type="CheckButton" parent="checks and text_info"]
@@ -517,14 +520,14 @@ text = "Colors"
 [node name="reset_button" type="Button" parent="checks and text_info"]
 layout_mode = 1
 anchors_preset = -1
-anchor_left = 0.435
-anchor_top = 0.654
-anchor_right = 0.615
-anchor_bottom = 0.935
-offset_left = -0.105011
-offset_top = -0.978004
-offset_right = -0.0449982
-offset_bottom = -0.0450058
+anchor_left = 0.567
+anchor_top = 0.618
+anchor_right = 0.788
+anchor_bottom = 0.908
+offset_left = 0.022995
+offset_top = 0.0200195
+offset_right = -0.0280151
+offset_bottom = -0.0369797
 text = "Reset"
 
 [node name="randomize_button" type="Button" parent="checks and text_info"]

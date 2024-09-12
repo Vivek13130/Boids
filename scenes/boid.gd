@@ -5,17 +5,18 @@ var screen_size
 var acceleration = Vector2.ZERO
 
 var margin_on_edges = manager.MARGIN_ON_EDGES
-var repulsion_on_edges = manager.REPULSION_ON_EDGES
 
 var boids_grid = manager.boids_grid
 var current_grid_pos = null
 
 var counter = 0
+var counter_outside_x = 1;
+var counter_outside_y = 1;
 
 var neighbour_boids = []
+@onready var trail: Line2D = $trail
 
 func _ready() -> void:
-	
 	
 	# random vel and pos in start 
 	#position = Vector2(randf_range(0, screen_size.x) , randf_range(0, screen_size.y))
@@ -32,9 +33,16 @@ func _ready() -> void:
 func _process(_delta: float) -> void:
 	counter += 1
 	
+	#var boid_position = global_position
+	#trail.add_point(boid_position)
+	#
+	#if trail.get_point_count() > 50:
+		#trail.remove_point(0)
+		
 #	function call for boids :
 	check_for_edges()
 	update_boid_grid_position()
+	
 	
 	if counter > manager.FLOCKING_UPDATE_LATENCY:
 		counter = 0
@@ -62,14 +70,22 @@ func check_for_edges() -> void :
 	screen_size = get_viewport().size
 	
 	if(curr_pos.x < margin_on_edges):
-		velocity.x += repulsion_on_edges 
+		velocity.x +=  counter_outside_x
+		counter_outside_x += 0.5
 	elif(curr_pos.x > screen_size.x - margin_on_edges):
-		velocity.x -=  repulsion_on_edges 
+		velocity.x -=   counter_outside_x
+		counter_outside_x += 0.5
+	else:
+		counter_outside_x = 0
 	
 	if(curr_pos.y < margin_on_edges):
-		velocity.y += repulsion_on_edges 
+		velocity.y +=  counter_outside_y
+		counter_outside_y += 0.5
 	elif(curr_pos.y > screen_size.y - margin_on_edges):
-		velocity.y -= repulsion_on_edges 
+		velocity.y -=  counter_outside_y
+		counter_outside_y += 0.5
+	else:
+		counter_outside_y += 0
 
 
 func update_boid_grid_position() -> void :
@@ -146,7 +162,4 @@ func apply_alignment() -> void :
 	
 	var avg_velocity = sum_of_velocity / neighbour_boids.size()
 	acceleration += (avg_velocity - velocity) * manager.ALIGNMENT
-	
-#	trying this one : 
-	#acceleration += avg_velocity * manager.ALIGNMENT
 	return

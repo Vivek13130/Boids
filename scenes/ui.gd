@@ -104,18 +104,18 @@ func _on_randomize_button_pressed() -> void:
 	emit_signal_from_all_sliders()
 
 func emit_signal_from_all_sliders()->void :
-	alignment_slider.emit_signal("drag_ended")
-	cohesion_slider.emit_signal("drag_ended")
-	separation_slider.emit_signal("drag_ended")
-	sep_sensitivity_slider.emit_signal("drag_ended")
-	noise_slider.emit_signal("drag_ended")
-	min_speed_slider.emit_signal("drag_ended")
-	max_speed_slider.emit_signal("drag_ended")
-	max_acc_slider.emit_signal("drag_ended")
-	fov_slider.emit_signal("drag_ended")
-	update_latency_slider.emit_signal("drag_ended")
-	detection_radius_slider.emit_signal("drag_ended")
-	trail_length_slider.emit_signal("drag_ended")
+	alignment_slider.emit_signal("drag_ended" , true)
+	cohesion_slider.emit_signal("drag_ended" , true)
+	separation_slider.emit_signal("drag_ended" , true)
+	sep_sensitivity_slider.emit_signal("drag_ended" , true)
+	noise_slider.emit_signal("drag_ended" , true)
+	min_speed_slider.emit_signal("drag_ended" , true)
+	max_speed_slider.emit_signal("drag_ended" , true)
+	max_acc_slider.emit_signal("drag_ended" , true)
+	fov_slider.emit_signal("drag_ended" , true)
+	update_latency_slider.emit_signal("drag_ended" , true)
+	detection_radius_slider.emit_signal("drag_ended" , true)
+	trail_length_slider.emit_signal("drag_ended" , true)
 
 
 func max_min_speed_constraint() -> void : 
@@ -123,16 +123,18 @@ func max_min_speed_constraint() -> void :
 		max_speed_slider.value = min_speed_slider.value
 		manager.MAX_SPEED = max_speed_slider.value
 		print("hello")
-	print(max_speed_slider.value," <- max  min-> ",  min_speed_slider.value)
+	#print(max_speed_slider.value," <- max  min-> ",  min_speed_slider.value)
 	
 
 
 func _on_alignment_slider_drag_ended(value_changed: bool) -> void:
 	if value_changed:
+		print("align value changed")
 		manager.ALIGNMENT = alignment_slider.value
 
 func _on_cohesion_slider_drag_ended(value_changed: bool) -> void:
 	if value_changed:
+		print("coh value changed")
 		manager.COHESION = cohesion_slider.value
 
 func _on_separation_slider_drag_ended(value_changed: bool) -> void:
@@ -172,7 +174,7 @@ func _on_update_latency_slider_drag_ended(value_changed: bool) -> void:
 
 func _on_detection_radius_slider_drag_ended(value_changed: bool) -> void:
 	if value_changed:
-		manager.DETECTION_RADIUS = detection_radius_slider.value
+		manager.DETECTION_RANGE = detection_radius_slider.value
 
 func _on_trail_length_slider_drag_ended(value_changed: bool) -> void:
 	if value_changed:
