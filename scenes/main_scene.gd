@@ -8,7 +8,7 @@ var boid_scene : PackedScene = preload("res://scenes/boid.tscn")
 @onready var total_boids: Label = $ui_manager/text_info/total_boids
 
 
-var boid_count = 1;
+
 
 func _ready() -> void:
 	pass # Replace with function body.
@@ -19,7 +19,7 @@ func _process(delta: float) -> void:
 		spawn_boid()
 
 func spawn_boid() -> void:
-	boid_count += 1
+	manager.boid_count += 1
 	
 	var new_boid = boid_scene.instantiate()
 	new_boid.position = get_global_mouse_position()

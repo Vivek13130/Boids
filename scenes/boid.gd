@@ -15,7 +15,7 @@ var counter = 0
 var neighbour_boids = []
 
 func _ready() -> void:
-	screen_size = get_viewport().size
+	
 	
 	# random vel and pos in start 
 	#position = Vector2(randf_range(0, screen_size.x) , randf_range(0, screen_size.y))
@@ -29,7 +29,7 @@ func _ready() -> void:
 	
 	boids_grid[current_grid_pos].append(self)
 
-func _process(delta: float) -> void:
+func _process(_delta: float) -> void:
 	counter += 1
 	
 #	function call for boids :
@@ -59,16 +59,17 @@ func _process(delta: float) -> void:
 
 func check_for_edges() -> void :
 	var curr_pos = global_position
+	screen_size = get_viewport().size
 	
 	if(curr_pos.x < margin_on_edges):
-		velocity.x += repulsion_on_edges
+		velocity.x += repulsion_on_edges 
 	elif(curr_pos.x > screen_size.x - margin_on_edges):
-		velocity.x -=  repulsion_on_edges
+		velocity.x -=  repulsion_on_edges 
 	
 	if(curr_pos.y < margin_on_edges):
-		velocity.y += repulsion_on_edges
+		velocity.y += repulsion_on_edges 
 	elif(curr_pos.y > screen_size.y - margin_on_edges):
-		velocity.y -= repulsion_on_edges
+		velocity.y -= repulsion_on_edges 
 
 
 func update_boid_grid_position() -> void :

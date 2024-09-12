@@ -11,25 +11,24 @@ grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_u4caq")
 
-[node name="background" type="ColorRect" parent="."]
+[node name="black_bg" type="ColorRect" parent="."]
 layout_mode = 1
 anchors_preset = -1
-anchor_right = 0.248
-anchor_bottom = 1.0
-offset_right = 0.303986
-grow_horizontal = 2
-grow_vertical = 2
-
-[node name="background2" type="ColorRect" parent="."]
-layout_mode = 1
-anchors_preset = -1
-anchor_left = 0.246
 anchor_right = 1.0
 anchor_bottom = 1.0
-offset_left = -0.391998
+offset_left = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 color = Color(0, 0, 0, 1)
+
+[node name="white_bg_for_ui" type="ColorRect" parent="."]
+layout_mode = 1
+anchors_preset = -1
+anchor_right = 0.245
+anchor_bottom = 1.0
+offset_right = -0.23999
+grow_horizontal = 2
+grow_vertical = 2
 
 [node name="sliders" type="Panel" parent="."]
 custom_minimum_size = Vector2(150, 500)
@@ -40,15 +39,15 @@ anchor_bottom = 0.833
 offset_right = -0.391998
 offset_bottom = 0.215942
 
-[node name="sl1" type="Panel" parent="sliders"]
-modulate = Color(0, 0.886275, 0, 1)
+[node name="alignment" type="Panel" parent="sliders"]
+modulate = Color(0, 0.886275, 0.52549, 1)
 layout_mode = 1
 anchors_preset = -1
 anchor_right = 1.0
 anchor_bottom = 0.085
 offset_right = -0.391998
 
-[node name="Label" type="Label" parent="sliders/sl1"]
+[node name="Label" type="Label" parent="sliders/alignment"]
 layout_mode = 1
 anchors_preset = -1
 anchor_top = 0.087
@@ -58,7 +57,7 @@ offset_top = -0.00200033
 grow_horizontal = 2
 text = "  Alignment"
 
-[node name="HSlider" type="HSlider" parent="sliders/sl1"]
+[node name="HSlider" type="HSlider" parent="sliders/alignment"]
 layout_mode = 1
 anchors_preset = -1
 anchor_top = 0.546
@@ -68,8 +67,10 @@ offset_top = 0.00876999
 offset_bottom = 0.0112801
 grow_horizontal = 2
 grow_vertical = 0
+max_value = 1.0
+step = 0.05
 
-[node name="sl2" type="Panel" parent="sliders"]
+[node name="cohesion" type="Panel" parent="sliders"]
 modulate = Color(0, 0.886275, 0.52549, 1)
 layout_mode = 1
 anchors_preset = -1
@@ -80,7 +81,7 @@ offset_top = -0.156021
 offset_right = -0.391998
 offset_bottom = -0.156021
 
-[node name="Label" type="Label" parent="sliders/sl2"]
+[node name="Label" type="Label" parent="sliders/cohesion"]
 layout_mode = 1
 anchors_preset = -1
 anchor_top = 0.087
@@ -91,7 +92,7 @@ grow_horizontal = 2
 text = "  Cohesion
 "
 
-[node name="HSlider" type="HSlider" parent="sliders/sl2"]
+[node name="HSlider" type="HSlider" parent="sliders/cohesion"]
 layout_mode = 1
 anchors_preset = -1
 anchor_top = 0.546
@@ -101,8 +102,10 @@ offset_top = 0.00876999
 offset_bottom = 0.0112801
 grow_horizontal = 2
 grow_vertical = 0
+max_value = 10.0
+step = 0.5
 
-[node name="sl3" type="Panel" parent="sliders"]
+[node name="seperation" type="Panel" parent="sliders"]
 modulate = Color(0, 0.886275, 0.52549, 1)
 layout_mode = 1
 anchors_preset = -1
@@ -115,7 +118,7 @@ offset_bottom = 0.149475
 grow_horizontal = 2
 grow_vertical = 2
 
-[node name="Label" type="Label" parent="sliders/sl3"]
+[node name="Label" type="Label" parent="sliders/seperation"]
 layout_mode = 1
 anchors_preset = -1
 anchor_top = 0.087
@@ -125,7 +128,7 @@ offset_top = -0.00200033
 grow_horizontal = 2
 text = "   Seperation"
 
-[node name="HSlider" type="HSlider" parent="sliders/sl3"]
+[node name="HSlider" type="HSlider" parent="sliders/seperation"]
 layout_mode = 1
 anchors_preset = -1
 anchor_top = 0.546
@@ -135,8 +138,9 @@ offset_top = 0.00876999
 offset_bottom = 0.0112801
 grow_horizontal = 2
 grow_vertical = 0
+max_value = 1000.0
 
-[node name="sl4" type="Panel" parent="sliders"]
+[node name="sep sensitivity" type="Panel" parent="sliders"]
 modulate = Color(0, 0.886275, 0.52549, 1)
 layout_mode = 1
 anchors_preset = -1
@@ -147,7 +151,7 @@ offset_top = -1.16051
 offset_right = -0.108612
 offset_bottom = -1.16051
 
-[node name="Label" type="Label" parent="sliders/sl4"]
+[node name="Label" type="Label" parent="sliders/sep sensitivity"]
 layout_mode = 1
 anchors_preset = -1
 anchor_top = 0.087
@@ -157,7 +161,7 @@ offset_top = -0.00200033
 grow_horizontal = 2
 text = "   Sep. Sensitivity"
 
-[node name="HSlider" type="HSlider" parent="sliders/sl4"]
+[node name="HSlider" type="HSlider" parent="sliders/sep sensitivity"]
 layout_mode = 1
 anchors_preset = -1
 anchor_top = 0.546
@@ -167,8 +171,9 @@ offset_top = 0.00876999
 offset_bottom = 0.0112801
 grow_horizontal = 2
 grow_vertical = 0
+max_value = 200.0
 
-[node name="sl5" type="Panel" parent="sliders"]
+[node name="noise" type="Panel" parent="sliders"]
 modulate = Color(0, 0.886275, 0.52549, 1)
 layout_mode = 1
 anchors_preset = -1
@@ -179,7 +184,7 @@ offset_top = -1.93199
 offset_right = -0.391998
 offset_bottom = -1.93199
 
-[node name="Label" type="Label" parent="sliders/sl5"]
+[node name="Label" type="Label" parent="sliders/noise"]
 layout_mode = 1
 anchors_preset = -1
 anchor_top = 0.087
@@ -189,7 +194,7 @@ offset_top = -0.00200033
 grow_horizontal = 2
 text = "   Noise"
 
-[node name="HSlider" type="HSlider" parent="sliders/sl5"]
+[node name="HSlider" type="HSlider" parent="sliders/noise"]
 layout_mode = 1
 anchors_preset = -1
 anchor_top = 0.546
@@ -199,8 +204,10 @@ offset_top = 0.00876999
 offset_bottom = 0.0112801
 grow_horizontal = 2
 grow_vertical = 0
+max_value = 10.0
+step = 0.5
 
-[node name="sl6" type="Panel" parent="sliders"]
+[node name="min speed" type="Panel" parent="sliders"]
 modulate = Color(0, 0.886275, 0.52549, 1)
 layout_mode = 1
 anchors_preset = -1
@@ -211,7 +218,7 @@ offset_top = -2.16498
 offset_right = -0.958801
 offset_bottom = -2.16498
 
-[node name="Label" type="Label" parent="sliders/sl6"]
+[node name="Label" type="Label" parent="sliders/min speed"]
 layout_mode = 1
 anchors_preset = -1
 anchor_top = 0.087
@@ -221,7 +228,7 @@ offset_top = -0.00200033
 grow_horizontal = 2
 text = "   Min Speed"
 
-[node name="HSlider" type="HSlider" parent="sliders/sl6"]
+[node name="HSlider" type="HSlider" parent="sliders/min speed"]
 layout_mode = 1
 anchors_preset = -1
 anchor_top = 0.546
@@ -231,8 +238,9 @@ offset_top = 0.00876999
 offset_bottom = 0.0112801
 grow_horizontal = 2
 grow_vertical = 0
+max_value = 1000.0
 
-[node name="sl7" type="Panel" parent="sliders"]
+[node name="max speed" type="Panel" parent="sliders"]
 modulate = Color(0, 0.886275, 0.52549, 1)
 layout_mode = 1
 anchors_preset = -1
@@ -243,7 +251,7 @@ offset_top = -0.244019
 offset_right = -0.108612
 offset_bottom = -0.244049
 
-[node name="Label" type="Label" parent="sliders/sl7"]
+[node name="Label" type="Label" parent="sliders/max speed"]
 layout_mode = 1
 anchors_preset = -1
 anchor_top = 0.087
@@ -253,7 +261,7 @@ offset_top = -0.00200033
 grow_horizontal = 2
 text = "   Max Speed"
 
-[node name="HSlider" type="HSlider" parent="sliders/sl7"]
+[node name="HSlider" type="HSlider" parent="sliders/max speed"]
 layout_mode = 1
 anchors_preset = -1
 anchor_top = 0.546
@@ -263,8 +271,9 @@ offset_top = 0.00876999
 offset_bottom = 0.0112801
 grow_horizontal = 2
 grow_vertical = 0
+max_value = 1000.0
 
-[node name="sl8" type="Panel" parent="sliders"]
+[node name="max acc" type="Panel" parent="sliders"]
 modulate = Color(0, 0.886275, 0.52549, 1)
 layout_mode = 1
 anchors_preset = -1
@@ -275,7 +284,7 @@ offset_top = -4.24643
 offset_right = -0.108612
 offset_bottom = -4.24646
 
-[node name="Label" type="Label" parent="sliders/sl8"]
+[node name="Label" type="Label" parent="sliders/max acc"]
 layout_mode = 1
 anchors_preset = -1
 anchor_top = 0.087
@@ -285,7 +294,7 @@ offset_top = -0.00200033
 grow_horizontal = 2
 text = "   Max Acc."
 
-[node name="HSlider" type="HSlider" parent="sliders/sl8"]
+[node name="HSlider" type="HSlider" parent="sliders/max acc"]
 layout_mode = 1
 anchors_preset = -1
 anchor_top = 0.546
@@ -295,8 +304,9 @@ offset_top = 0.00876999
 offset_bottom = 0.0112801
 grow_horizontal = 2
 grow_vertical = 0
+max_value = 2000.0
 
-[node name="sl9" type="Panel" parent="sliders"]
+[node name="fov" type="Panel" parent="sliders"]
 modulate = Color(0, 0.886275, 0.52549, 1)
 layout_mode = 1
 anchors_preset = -1
@@ -307,7 +317,7 @@ offset_top = -0.180023
 offset_right = -0.108612
 offset_bottom = -0.180023
 
-[node name="Label" type="Label" parent="sliders/sl9"]
+[node name="Label" type="Label" parent="sliders/fov"]
 layout_mode = 1
 anchors_preset = -1
 anchor_top = 0.087
@@ -317,7 +327,7 @@ offset_top = -0.00200033
 grow_horizontal = 2
 text = "   FOV"
 
-[node name="HSlider" type="HSlider" parent="sliders/sl9"]
+[node name="HSlider" type="HSlider" parent="sliders/fov"]
 layout_mode = 1
 anchors_preset = -1
 anchor_top = 0.546
@@ -327,8 +337,9 @@ offset_top = 0.00876999
 offset_bottom = 0.0112801
 grow_horizontal = 2
 grow_vertical = 0
+max_value = 360.0
 
-[node name="sl10" type="Panel" parent="sliders"]
+[node name="update latency" type="Panel" parent="sliders"]
 modulate = Color(0, 0.886275, 0.52549, 1)
 layout_mode = 1
 anchors_preset = -1
@@ -339,7 +350,7 @@ offset_top = 0.0569763
 offset_right = -0.108612
 offset_bottom = 0.0569763
 
-[node name="Label" type="Label" parent="sliders/sl10"]
+[node name="Label" type="Label" parent="sliders/update latency"]
 layout_mode = 1
 anchors_preset = -1
 anchor_top = 0.087
@@ -349,7 +360,7 @@ offset_top = -0.00200033
 grow_horizontal = 2
 text = "   Upd. Latency**"
 
-[node name="HSlider" type="HSlider" parent="sliders/sl10"]
+[node name="HSlider" type="HSlider" parent="sliders/update latency"]
 layout_mode = 1
 anchors_preset = -1
 anchor_top = 0.546
@@ -359,8 +370,9 @@ offset_top = 0.00876999
 offset_bottom = 0.0112801
 grow_horizontal = 2
 grow_vertical = 0
+max_value = 30.0
 
-[node name="sl11" type="Panel" parent="sliders"]
+[node name="detection radius" type="Panel" parent="sliders"]
 modulate = Color(0, 0.886275, 0.52549, 1)
 layout_mode = 1
 anchors_preset = -1
@@ -371,7 +383,7 @@ offset_top = -0.176025
 offset_right = -0.108612
 offset_bottom = -0.176025
 
-[node name="Label" type="Label" parent="sliders/sl11"]
+[node name="Label" type="Label" parent="sliders/detection radius"]
 layout_mode = 1
 anchors_preset = -1
 anchor_top = 0.087
@@ -381,7 +393,7 @@ offset_top = -0.00200033
 grow_horizontal = 2
 text = "   Detection Radius**"
 
-[node name="HSlider" type="HSlider" parent="sliders/sl11"]
+[node name="HSlider" type="HSlider" parent="sliders/detection radius"]
 layout_mode = 1
 anchors_preset = -1
 anchor_top = 0.546
@@ -391,19 +403,22 @@ offset_top = 0.00876999
 offset_bottom = 0.0112801
 grow_horizontal = 2
 grow_vertical = 0
+max_value = 500.0
 
-[node name="sl12" type="Panel" parent="sliders"]
+[node name="trail length" type="Panel" parent="sliders"]
 modulate = Color(0, 0.886275, 0.52549, 1)
 layout_mode = 1
 anchors_preset = -1
-anchor_top = 0.921
+anchor_left = 0.004
+anchor_top = 0.919
 anchor_right = 0.999
-anchor_bottom = 1.0
-offset_top = 0.0524902
+anchor_bottom = 1.004
+offset_left = -1.132
+offset_top = -0.26001
 offset_right = -0.108612
-offset_bottom = 3.28345
+offset_bottom = -0.269104
 
-[node name="Label" type="Label" parent="sliders/sl12"]
+[node name="Label" type="Label" parent="sliders/trail length"]
 layout_mode = 1
 anchors_preset = -1
 anchor_top = 0.087
@@ -413,7 +428,7 @@ offset_top = -0.00200033
 grow_horizontal = 2
 text = "   Trail Length"
 
-[node name="HSlider" type="HSlider" parent="sliders/sl12"]
+[node name="HSlider" type="HSlider" parent="sliders/trail length"]
 layout_mode = 1
 anchors_preset = -1
 anchor_top = 0.546
@@ -423,19 +438,31 @@ offset_top = 0.00876999
 offset_bottom = 0.0112801
 grow_horizontal = 2
 grow_vertical = 0
+max_value = 200.0
 
 [node name="checks and text_info" type="Panel" parent="."]
+modulate = Color(0, 0.886275, 0.52549, 1)
 custom_minimum_size = Vector2(150, 100)
 layout_mode = 1
 anchors_preset = -1
-anchor_top = 0.836
+anchor_top = 0.832
 anchor_right = 0.246
 anchor_bottom = 1.002
-offset_top = 0.271973
+offset_top = -0.135986
 offset_right = -0.391998
 offset_bottom = -0.296082
 
-[node name="Label" type="Label" parent="checks and text_info"]
+[node name="Panel" type="Panel" parent="checks and text_info"]
+layout_mode = 1
+anchors_preset = -1
+anchor_top = 0.027
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_top = 0.03
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="fps" type="Label" parent="checks and text_info"]
 layout_mode = 1
 anchors_preset = -1
 anchor_left = 0.435
@@ -448,7 +475,7 @@ offset_right = 0.0319824
 offset_bottom = 0.00699806
 text = "FPS: "
 
-[node name="Label2" type="Label" parent="checks and text_info"]
+[node name="boid_count" type="Label" parent="checks and text_info"]
 layout_mode = 1
 anchors_preset = -1
 anchor_left = 0.428
@@ -461,7 +488,7 @@ offset_right = -0.00500488
 offset_bottom = -0.0270042
 text = "Boids: "
 
-[node name="CheckBox" type="CheckButton" parent="checks and text_info"]
+[node name="trails_check" type="CheckButton" parent="checks and text_info"]
 layout_mode = 1
 anchors_preset = -1
 anchor_left = 0.032
@@ -474,7 +501,7 @@ offset_right = 0.00699615
 offset_bottom = -0.0220032
 text = "Trails"
 
-[node name="CheckBox2" type="CheckButton" parent="checks and text_info"]
+[node name="colors_check" type="CheckButton" parent="checks and text_info"]
 layout_mode = 1
 anchors_preset = -1
 anchor_left = 0.028
@@ -487,7 +514,7 @@ offset_right = 0.00699615
 offset_bottom = 0.0139961
 text = "Colors"
 
-[node name="Button" type="Button" parent="checks and text_info"]
+[node name="reset_button" type="Button" parent="checks and text_info"]
 layout_mode = 1
 anchors_preset = -1
 anchor_left = 0.435
@@ -500,7 +527,7 @@ offset_right = -0.0449982
 offset_bottom = -0.0450058
 text = "Reset"
 
-[node name="Button2" type="Button" parent="checks and text_info"]
+[node name="randomize_button" type="Button" parent="checks and text_info"]
 layout_mode = 1
 anchors_preset = -1
 anchor_left = 0.039
@@ -508,7 +535,62 @@ anchor_top = 0.636
 anchor_right = 0.375
 anchor_bottom = 0.925
 offset_left = -0.0370007
-offset_top = -0.052002
+offset_top = -0.0519867
 offset_right = -0.125008
-offset_bottom = 0.0249939
+offset_bottom = 0.0250092
 text = "Randomize"
+
+[node name="hide_ui" type="CheckButton" parent="."]
+modulate = Color(0.902855, 0.902855, 7.70092e-07, 1)
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.96
+anchor_top = 0.003
+anchor_right = 0.998
+anchor_bottom = 0.051
+offset_left = -27.92
+offset_top = -10.944
+offset_right = -27.696
+offset_bottom = -11.048
+grow_horizontal = 2
+grow_vertical = 2
+scale = Vector2(1.5, 1.5)
+focus_mode = 0
+
+[node name="CPUParticles2D" type="CPUParticles2D" parent="hide_ui"]
+modulate = Color(0.0156863, 1, 0, 0.592157)
+position = Vector2(37, 16)
+amount = 10
+lifetime = 4.0
+preprocess = 10.0
+randomness = 1.0
+lifetime_randomness = 1.0
+emission_shape = 3
+emission_rect_extents = Vector2(16, 10)
+direction = Vector2(0, 0)
+spread = 180.0
+gravity = Vector2(0, 0)
+initial_velocity_min = 10.0
+initial_velocity_max = 20.0
+angular_velocity_min = 100.0
+angular_velocity_max = 100.0
+damping_max = 1.0
+scale_amount_max = 5.0
+
+[connection signal="drag_ended" from="sliders/alignment/HSlider" to="." method="_on_alignment_slider_drag_ended"]
+[connection signal="drag_ended" from="sliders/cohesion/HSlider" to="." method="_on_cohesion_slider_drag_ended"]
+[connection signal="drag_ended" from="sliders/seperation/HSlider" to="." method="_on_separation_slider_drag_ended"]
+[connection signal="drag_ended" from="sliders/sep sensitivity/HSlider" to="." method="_on_sep_sensitivity_slider_drag_ended"]
+[connection signal="drag_ended" from="sliders/noise/HSlider" to="." method="_on_noise_slider_drag_ended"]
+[connection signal="drag_ended" from="sliders/min speed/HSlider" to="." method="_on_min_speed_slider_drag_ended"]
+[connection signal="drag_ended" from="sliders/max speed/HSlider" to="." method="_on_max_speed_slider_drag_ended"]
+[connection signal="drag_ended" from="sliders/max acc/HSlider" to="." method="_on_max_acc_slider_drag_ended"]
+[connection signal="drag_ended" from="sliders/fov/HSlider" to="." method="_on_fov_slider_drag_ended"]
+[connection signal="drag_ended" from="sliders/update latency/HSlider" to="." method="_on_update_latency_slider_drag_ended"]
+[connection signal="drag_ended" from="sliders/detection radius/HSlider" to="." method="_on_detection_radius_slider_drag_ended"]
+[connection signal="drag_ended" from="sliders/trail length/HSlider" to="." method="_on_trail_length_slider_drag_ended"]
+[connection signal="pressed" from="checks and text_info/trails_check" to="." method="_on_trails_check_pressed"]
+[connection signal="pressed" from="checks and text_info/colors_check" to="." method="_on_colors_check_pressed"]
+[connection signal="pressed" from="checks and text_info/reset_button" to="." method="_on_reset_button_pressed"]
+[connection signal="pressed" from="checks and text_info/randomize_button" to="." method="_on_randomize_button_pressed"]
+[connection signal="pressed" from="hide_ui" to="." method="_on_hide_ui_pressed"]
