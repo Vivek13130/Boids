@@ -1,0 +1,514 @@
+[gd_scene load_steps=2 format=3 uid="uid://xkw6a187it4l"]
+
+[ext_resource type="Script" path="res://scenes/ui.gd" id="1_u4caq"]
+
+[node name="ui" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_u4caq")
+
+[node name="background" type="ColorRect" parent="."]
+layout_mode = 1
+anchors_preset = -1
+anchor_right = 0.248
+anchor_bottom = 1.0
+offset_right = 0.303986
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="background2" type="ColorRect" parent="."]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.246
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -0.391998
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0, 0, 0, 1)
+
+[node name="sliders" type="Panel" parent="."]
+custom_minimum_size = Vector2(150, 500)
+layout_mode = 1
+anchors_preset = -1
+anchor_right = 0.246
+anchor_bottom = 0.833
+offset_right = -0.391998
+offset_bottom = 0.215942
+
+[node name="sl1" type="Panel" parent="sliders"]
+modulate = Color(0, 0.886275, 0, 1)
+layout_mode = 1
+anchors_preset = -1
+anchor_right = 1.0
+anchor_bottom = 0.085
+offset_right = -0.391998
+
+[node name="Label" type="Label" parent="sliders/sl1"]
+layout_mode = 1
+anchors_preset = -1
+anchor_top = 0.087
+anchor_right = 1.0
+anchor_bottom = 0.609
+offset_top = -0.00200033
+grow_horizontal = 2
+text = "  Alignment"
+
+[node name="HSlider" type="HSlider" parent="sliders/sl1"]
+layout_mode = 1
+anchors_preset = -1
+anchor_top = 0.546
+anchor_right = 1.0
+anchor_bottom = 0.97
+offset_top = 0.00876999
+offset_bottom = 0.0112801
+grow_horizontal = 2
+grow_vertical = 0
+
+[node name="sl2" type="Panel" parent="sliders"]
+modulate = Color(0, 0.886275, 0.52549, 1)
+layout_mode = 1
+anchors_preset = -1
+anchor_top = 0.082
+anchor_right = 1.0
+anchor_bottom = 0.167
+offset_top = -0.156021
+offset_right = -0.391998
+offset_bottom = -0.156021
+
+[node name="Label" type="Label" parent="sliders/sl2"]
+layout_mode = 1
+anchors_preset = -1
+anchor_top = 0.087
+anchor_right = 1.0
+anchor_bottom = 0.609
+offset_top = -0.00200033
+grow_horizontal = 2
+text = "  Cohesion
+"
+
+[node name="HSlider" type="HSlider" parent="sliders/sl2"]
+layout_mode = 1
+anchors_preset = -1
+anchor_top = 0.546
+anchor_right = 1.0
+anchor_bottom = 0.97
+offset_top = 0.00876999
+offset_bottom = 0.0112801
+grow_horizontal = 2
+grow_vertical = 0
+
+[node name="sl3" type="Panel" parent="sliders"]
+modulate = Color(0, 0.886275, 0.52549, 1)
+layout_mode = 1
+anchors_preset = -1
+anchor_top = 0.165
+anchor_right = 1.0
+anchor_bottom = 0.25
+offset_top = 0.149467
+offset_right = -0.391998
+offset_bottom = 0.149475
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Label" type="Label" parent="sliders/sl3"]
+layout_mode = 1
+anchors_preset = -1
+anchor_top = 0.087
+anchor_right = 1.0
+anchor_bottom = 0.609
+offset_top = -0.00200033
+grow_horizontal = 2
+text = "   Seperation"
+
+[node name="HSlider" type="HSlider" parent="sliders/sl3"]
+layout_mode = 1
+anchors_preset = -1
+anchor_top = 0.546
+anchor_right = 1.0
+anchor_bottom = 0.97
+offset_top = 0.00876999
+offset_bottom = 0.0112801
+grow_horizontal = 2
+grow_vertical = 0
+
+[node name="sl4" type="Panel" parent="sliders"]
+modulate = Color(0, 0.886275, 0.52549, 1)
+layout_mode = 1
+anchors_preset = -1
+anchor_top = 0.251
+anchor_right = 0.999
+anchor_bottom = 0.336
+offset_top = -1.16051
+offset_right = -0.108612
+offset_bottom = -1.16051
+
+[node name="Label" type="Label" parent="sliders/sl4"]
+layout_mode = 1
+anchors_preset = -1
+anchor_top = 0.087
+anchor_right = 1.0
+anchor_bottom = 0.609
+offset_top = -0.00200033
+grow_horizontal = 2
+text = "   Sep. Sensitivity"
+
+[node name="HSlider" type="HSlider" parent="sliders/sl4"]
+layout_mode = 1
+anchors_preset = -1
+anchor_top = 0.546
+anchor_right = 1.0
+anchor_bottom = 0.97
+offset_top = 0.00876999
+offset_bottom = 0.0112801
+grow_horizontal = 2
+grow_vertical = 0
+
+[node name="sl5" type="Panel" parent="sliders"]
+modulate = Color(0, 0.886275, 0.52549, 1)
+layout_mode = 1
+anchors_preset = -1
+anchor_top = 0.336
+anchor_right = 1.0
+anchor_bottom = 0.421
+offset_top = -1.93199
+offset_right = -0.391998
+offset_bottom = -1.93199
+
+[node name="Label" type="Label" parent="sliders/sl5"]
+layout_mode = 1
+anchors_preset = -1
+anchor_top = 0.087
+anchor_right = 1.0
+anchor_bottom = 0.609
+offset_top = -0.00200033
+grow_horizontal = 2
+text = "   Noise"
+
+[node name="HSlider" type="HSlider" parent="sliders/sl5"]
+layout_mode = 1
+anchors_preset = -1
+anchor_top = 0.546
+anchor_right = 1.0
+anchor_bottom = 0.97
+offset_top = 0.00876999
+offset_bottom = 0.0112801
+grow_horizontal = 2
+grow_vertical = 0
+
+[node name="sl6" type="Panel" parent="sliders"]
+modulate = Color(0, 0.886275, 0.52549, 1)
+layout_mode = 1
+anchors_preset = -1
+anchor_top = 0.42
+anchor_right = 1.002
+anchor_bottom = 0.505
+offset_top = -2.16498
+offset_right = -0.958801
+offset_bottom = -2.16498
+
+[node name="Label" type="Label" parent="sliders/sl6"]
+layout_mode = 1
+anchors_preset = -1
+anchor_top = 0.087
+anchor_right = 1.0
+anchor_bottom = 0.609
+offset_top = -0.00200033
+grow_horizontal = 2
+text = "   Min Speed"
+
+[node name="HSlider" type="HSlider" parent="sliders/sl6"]
+layout_mode = 1
+anchors_preset = -1
+anchor_top = 0.546
+anchor_right = 1.0
+anchor_bottom = 0.97
+offset_top = 0.00876999
+offset_bottom = 0.0112801
+grow_horizontal = 2
+grow_vertical = 0
+
+[node name="sl7" type="Panel" parent="sliders"]
+modulate = Color(0, 0.886275, 0.52549, 1)
+layout_mode = 1
+anchors_preset = -1
+anchor_top = 0.5
+anchor_right = 0.999
+anchor_bottom = 0.585
+offset_top = -0.244019
+offset_right = -0.108612
+offset_bottom = -0.244049
+
+[node name="Label" type="Label" parent="sliders/sl7"]
+layout_mode = 1
+anchors_preset = -1
+anchor_top = 0.087
+anchor_right = 1.0
+anchor_bottom = 0.609
+offset_top = -0.00200033
+grow_horizontal = 2
+text = "   Max Speed"
+
+[node name="HSlider" type="HSlider" parent="sliders/sl7"]
+layout_mode = 1
+anchors_preset = -1
+anchor_top = 0.546
+anchor_right = 1.0
+anchor_bottom = 0.97
+offset_top = 0.00876999
+offset_bottom = 0.0112801
+grow_horizontal = 2
+grow_vertical = 0
+
+[node name="sl8" type="Panel" parent="sliders"]
+modulate = Color(0, 0.886275, 0.52549, 1)
+layout_mode = 1
+anchors_preset = -1
+anchor_top = 0.591
+anchor_right = 0.999
+anchor_bottom = 0.676
+offset_top = -4.24643
+offset_right = -0.108612
+offset_bottom = -4.24646
+
+[node name="Label" type="Label" parent="sliders/sl8"]
+layout_mode = 1
+anchors_preset = -1
+anchor_top = 0.087
+anchor_right = 1.0
+anchor_bottom = 0.609
+offset_top = -0.00200033
+grow_horizontal = 2
+text = "   Max Acc."
+
+[node name="HSlider" type="HSlider" parent="sliders/sl8"]
+layout_mode = 1
+anchors_preset = -1
+anchor_top = 0.546
+anchor_right = 1.0
+anchor_bottom = 0.97
+offset_top = 0.00876999
+offset_bottom = 0.0112801
+grow_horizontal = 2
+grow_vertical = 0
+
+[node name="sl9" type="Panel" parent="sliders"]
+modulate = Color(0, 0.886275, 0.52549, 1)
+layout_mode = 1
+anchors_preset = -1
+anchor_top = 0.667
+anchor_right = 0.999
+anchor_bottom = 0.752
+offset_top = -0.180023
+offset_right = -0.108612
+offset_bottom = -0.180023
+
+[node name="Label" type="Label" parent="sliders/sl9"]
+layout_mode = 1
+anchors_preset = -1
+anchor_top = 0.087
+anchor_right = 1.0
+anchor_bottom = 0.609
+offset_top = -0.00200033
+grow_horizontal = 2
+text = "   FOV"
+
+[node name="HSlider" type="HSlider" parent="sliders/sl9"]
+layout_mode = 1
+anchors_preset = -1
+anchor_top = 0.546
+anchor_right = 1.0
+anchor_bottom = 0.97
+offset_top = 0.00876999
+offset_bottom = 0.0112801
+grow_horizontal = 2
+grow_vertical = 0
+
+[node name="sl10" type="Panel" parent="sliders"]
+modulate = Color(0, 0.886275, 0.52549, 1)
+layout_mode = 1
+anchors_preset = -1
+anchor_top = 0.752
+anchor_right = 0.999
+anchor_bottom = 0.837
+offset_top = 0.0569763
+offset_right = -0.108612
+offset_bottom = 0.0569763
+
+[node name="Label" type="Label" parent="sliders/sl10"]
+layout_mode = 1
+anchors_preset = -1
+anchor_top = 0.087
+anchor_right = 1.0
+anchor_bottom = 0.609
+offset_top = -0.00200033
+grow_horizontal = 2
+text = "   Upd. Latency**"
+
+[node name="HSlider" type="HSlider" parent="sliders/sl10"]
+layout_mode = 1
+anchors_preset = -1
+anchor_top = 0.546
+anchor_right = 1.0
+anchor_bottom = 0.97
+offset_top = 0.00876999
+offset_bottom = 0.0112801
+grow_horizontal = 2
+grow_vertical = 0
+
+[node name="sl11" type="Panel" parent="sliders"]
+modulate = Color(0, 0.886275, 0.52549, 1)
+layout_mode = 1
+anchors_preset = -1
+anchor_top = 0.836
+anchor_right = 0.999
+anchor_bottom = 0.921
+offset_top = -0.176025
+offset_right = -0.108612
+offset_bottom = -0.176025
+
+[node name="Label" type="Label" parent="sliders/sl11"]
+layout_mode = 1
+anchors_preset = -1
+anchor_top = 0.087
+anchor_right = 1.0
+anchor_bottom = 0.609
+offset_top = -0.00200033
+grow_horizontal = 2
+text = "   Detection Radius**"
+
+[node name="HSlider" type="HSlider" parent="sliders/sl11"]
+layout_mode = 1
+anchors_preset = -1
+anchor_top = 0.546
+anchor_right = 1.0
+anchor_bottom = 0.97
+offset_top = 0.00876999
+offset_bottom = 0.0112801
+grow_horizontal = 2
+grow_vertical = 0
+
+[node name="sl12" type="Panel" parent="sliders"]
+modulate = Color(0, 0.886275, 0.52549, 1)
+layout_mode = 1
+anchors_preset = -1
+anchor_top = 0.921
+anchor_right = 0.999
+anchor_bottom = 1.0
+offset_top = 0.0524902
+offset_right = -0.108612
+offset_bottom = 3.28345
+
+[node name="Label" type="Label" parent="sliders/sl12"]
+layout_mode = 1
+anchors_preset = -1
+anchor_top = 0.087
+anchor_right = 1.0
+anchor_bottom = 0.609
+offset_top = -0.00200033
+grow_horizontal = 2
+text = "   Trail Length"
+
+[node name="HSlider" type="HSlider" parent="sliders/sl12"]
+layout_mode = 1
+anchors_preset = -1
+anchor_top = 0.546
+anchor_right = 1.0
+anchor_bottom = 0.97
+offset_top = 0.00876999
+offset_bottom = 0.0112801
+grow_horizontal = 2
+grow_vertical = 0
+
+[node name="checks and text_info" type="Panel" parent="."]
+custom_minimum_size = Vector2(150, 100)
+layout_mode = 1
+anchors_preset = -1
+anchor_top = 0.836
+anchor_right = 0.246
+anchor_bottom = 1.002
+offset_top = 0.271973
+offset_right = -0.391998
+offset_bottom = -0.296082
+
+[node name="Label" type="Label" parent="checks and text_info"]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.435
+anchor_top = 0.084
+anchor_right = 0.696
+anchor_bottom = 0.299
+offset_left = -0.105011
+offset_top = 0.0119991
+offset_right = 0.0319824
+offset_bottom = 0.00699806
+text = "FPS: "
+
+[node name="Label2" type="Label" parent="checks and text_info"]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.428
+anchor_top = 0.346
+anchor_right = 0.735
+anchor_bottom = 0.561
+offset_left = -0.124008
+offset_top = -0.0220032
+offset_right = -0.00500488
+offset_bottom = -0.0270042
+text = "Boids: "
+
+[node name="CheckBox" type="CheckButton" parent="checks and text_info"]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.032
+anchor_top = 0.056
+anchor_right = 0.371
+anchor_bottom = 0.346
+offset_left = -0.0560007
+offset_top = 0.0079999
+offset_right = 0.00699615
+offset_bottom = -0.0220032
+text = "Trails"
+
+[node name="CheckBox2" type="CheckButton" parent="checks and text_info"]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.028
+anchor_top = 0.308
+anchor_right = 0.371
+anchor_bottom = 0.598
+offset_left = 0.0759997
+offset_top = 0.0439987
+offset_right = 0.00699615
+offset_bottom = 0.0139961
+text = "Colors"
+
+[node name="Button" type="Button" parent="checks and text_info"]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.435
+anchor_top = 0.654
+anchor_right = 0.615
+anchor_bottom = 0.935
+offset_left = -0.105011
+offset_top = -0.978004
+offset_right = -0.0449982
+offset_bottom = -0.0450058
+text = "Reset"
+
+[node name="Button2" type="Button" parent="checks and text_info"]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.039
+anchor_top = 0.636
+anchor_right = 0.375
+anchor_bottom = 0.925
+offset_left = -0.0370007
+offset_top = -0.052002
+offset_right = -0.125008
+offset_bottom = 0.0249939
+text = "Randomize"

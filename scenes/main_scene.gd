@@ -1,9 +1,12 @@
-extends Node2D
+extends Control
+#extends Node2D
 
 var boid_scene : PackedScene = preload("res://scenes/boid.tscn")
 @onready var boid_manager: Node2D = $boid_manager
-@onready var fps: Label = $debug_nodes/fps
-@onready var total_boids: Label = $debug_nodes/total_boids
+
+@onready var fps: Label = $ui_manager/text_info/fps
+@onready var total_boids: Label = $ui_manager/text_info/total_boids
+
 
 var boid_count = 1;
 
@@ -12,10 +15,6 @@ func _ready() -> void:
 
 
 func _process(delta: float) -> void:
-#	updating debug nodes : 
-	fps.text = "FPS: " + str(Engine.get_frames_per_second())
-	total_boids.text = "Total B: " + str(boid_count)
-	
 	if Input.is_action_pressed("spawn_boid"):
 		spawn_boid()
 

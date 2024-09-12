@@ -8,7 +8,7 @@ radius = 19.0
 height = 169.992
 
 [node name="boid" type="CharacterBody2D"]
-scale = Vector2(0.15, 0.15)
+scale = Vector2(0.1, 0.1)
 script = ExtResource("1_mhefk")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
