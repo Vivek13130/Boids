@@ -9,6 +9,7 @@ func _ready() -> void:
 
 func _process(delta: float) -> void:
 	if manager.TRAIL_ENABLED == false or manager.TRAIL_LENGTH == 0:
+		clear_points()
 		return
 	
 	# Get the boid's global position

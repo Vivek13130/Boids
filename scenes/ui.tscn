@@ -500,6 +500,7 @@ offset_left = -0.0560007
 offset_top = 0.0079999
 offset_right = 0.00699615
 offset_bottom = -0.0220032
+focus_mode = 0
 text = "Trails"
 
 [node name="colors_check" type="CheckButton" parent="checks and text_info"]
@@ -513,6 +514,7 @@ offset_left = 0.0759997
 offset_top = 0.0439987
 offset_right = 0.00699615
 offset_bottom = 0.0139961
+focus_mode = 0
 text = "Colors"
 
 [node name="reset_button" type="Button" parent="checks and text_info"]
@@ -526,6 +528,7 @@ offset_left = 0.0230103
 offset_top = 0.0400772
 offset_right = -0.0280151
 offset_bottom = -0.016922
+focus_mode = 0
 text = "Reset"
 
 [node name="randomize_button" type="Button" parent="checks and text_info"]
@@ -539,6 +542,7 @@ offset_left = -0.0370007
 offset_top = -0.0519867
 offset_right = -0.125008
 offset_bottom = 0.0250092
+focus_mode = 0
 text = "Randomize"
 
 [node name="hide_ui" type="CheckButton" parent="."]

@@ -17,6 +17,12 @@ func _ready() -> void:
 func _process(delta: float) -> void:
 	if Input.is_action_pressed("spawn_boid"):
 		spawn_boid()
+	
+	if Input.is_action_just_pressed("exit"):
+		get_tree().quit()
+	
+	if Input.is_action_just_pressed("restart"):
+		get_tree().reload_current_scene()
 
 func spawn_boid() -> void:
 	manager.boid_count += 1

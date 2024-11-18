@@ -119,6 +119,8 @@ func apply_flocking()->void:
 		apply_cohesion()
 		apply_seperation()
 		apply_alignment()
+		
+		
 
 func get_neighbours()->void :
 	neighbour_boids.clear()
