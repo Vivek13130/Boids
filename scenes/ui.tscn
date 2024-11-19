@@ -204,7 +204,7 @@ offset_top = 0.00876999
 offset_bottom = 0.0112801
 grow_horizontal = 2
 grow_vertical = 0
-max_value = 10.0
+max_value = 50.0
 step = 0.5
 
 [node name="min speed" type="Panel" parent="sliders"]

@@ -167,6 +167,7 @@ func _on_max_acc_slider_drag_ended(value_changed: bool) -> void:
 func _on_fov_slider_drag_ended(value_changed: bool) -> void:
 	if value_changed:
 		manager.FOV = fov_slider.value
+		print(fov_slider.value)
 
 func _on_update_latency_slider_drag_ended(value_changed: bool) -> void:
 	if value_changed:

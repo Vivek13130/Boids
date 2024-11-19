@@ -16,6 +16,10 @@ var counter_outside_y = 1;
 var neighbour_boids = []
 @onready var trail: Line2D = $trail
 
+var simplex_noise = FastNoiseLite.new()
+
+
+
 func _ready() -> void:
 	
 	# random vel and pos in start 
@@ -29,17 +33,11 @@ func _ready() -> void:
 		boids_grid[current_grid_pos] = []
 	
 	boids_grid[current_grid_pos].append(self)
+	
 
 func _process(_delta: float) -> void:
 	counter += 1
 	
-	#var boid_position = to_local(global_position)
-	#trail.add_point(boid_position)
-	#
-	#if trail.get_point_count() > 50:
-		#trail.remove_point(0)
-		#
-#	function call for boids :
 	update_boid_grid_position()
 	
 	
@@ -121,25 +119,68 @@ func apply_flocking()->void:
 		apply_alignment()
 		
 		
+		
 
-func get_neighbours()->void :
+#func get_neighbours()->void :
+	#neighbour_boids.clear()
+	#
+	#var d = ceil(manager.DETECTION_RANGE / manager.GRID_CELL_SIZE)
+	#
+	#for i in range(-d , d + 1):
+		#for j in range(-d , d + 1):
+			#var neighbour_grid_pos = current_grid_pos + Vector2(i,j)
+			#
+			#if boids_grid.has(neighbour_grid_pos):
+				#
+				#for nb in boids_grid[neighbour_grid_pos]: # nb means neighbour_boid
+					#if global_position.distance_to(nb.global_position) <= manager.DETECTION_RANGE:
+						#neighbour_boids.append(nb)
+	#
+	#neighbour_boids.erase(self)
+	#
+	#return 
+	
+var FOV_ANGLE = manager.FOV  # Field of view angle in degrees (adjust as needed)
+var FOV_RADIUS = manager.DETECTION_RANGE  # Radius of detection (same as before)
+
+# getting neighbours with field of view
+func get_neighbours() -> void:
 	neighbour_boids.clear()
 	
+	# Calculate the half FOV angle (for easier comparison)
+	var half_fov = FOV_ANGLE / 2.0
+	
+	# Convert the FOV angle to radians for comparison
+	var fov_radians = deg_to_rad(half_fov)
+	
+	# Calculate the grid cells to check around the current boid's position
 	var d = ceil(manager.DETECTION_RANGE / manager.GRID_CELL_SIZE)
 	
-	for i in range(-d , d + 1):
-		for j in range(-d , d + 1):
-			var neighbour_grid_pos = current_grid_pos + Vector2(i,j)
+	for i in range(-d, d + 1):
+		for j in range(-d, d + 1):
+			var neighbour_grid_pos = current_grid_pos + Vector2(i, j)
 			
 			if boids_grid.has(neighbour_grid_pos):
 				
-				for nb in boids_grid[neighbour_grid_pos]: # nb means neighbour_boid
-					if global_position.distance_to(nb.global_position) <= manager.DETECTION_RANGE:
-						neighbour_boids.append(nb)
+				for nb in boids_grid[neighbour_grid_pos]:  # nb means neighbour_boid
+					# Calculate distance to the potential neighbor boid
+					var distance = global_position.distance_to(nb.global_position)
+					
+					if distance <= FOV_RADIUS:
+						# Calculate the angle between the boid's velocity and the vector to the neighbor
+						var direction_to_neighbour = (nb.global_position - global_position).normalized()
+						var angle_to_neighbour = direction_to_neighbour.angle_to(velocity.normalized())
+						
+						# If the angle is within the FOV, consider it a valid neighbor
+						if abs(angle_to_neighbour) <= fov_radians:
+							neighbour_boids.append(nb)
 	
+	# Remove the current boid from the neighbor list
 	neighbour_boids.erase(self)
 	
-	return 
+	return
+
+
 	
 func apply_cohesion()->void : 
 	var sum_of_positions = Vector2.ZERO
@@ -174,3 +215,25 @@ func apply_alignment() -> void :
 	var avg_velocity = sum_of_velocity / neighbour_boids.size()
 	acceleration += (avg_velocity - velocity) * manager.ALIGNMENT
 	return
+
+
+# Member variables
+var noise_time_x = 0.0
+var noise_time_y = 0.0
+
+func apply_noise():
+	
+	# not working yet 
+	var noise_strength = manager.NOISE_STRENGTH  # Adjustable intensity
+	var noise_speed = manager.NOISE_SPEED       # How fast the noise changes
+	
+	# Increment time for smooth variation
+	noise_time_x += noise_speed
+	noise_time_y += noise_speed
+	
+	# Use Perlin noise for gradual directional changes
+	var noise_x = simplex_noise.get_noise_1d(noise_time_x)
+	var noise_y = simplex_noise.get_noise_1d(noise_time_y)
+	
+	var noise = Vector2(noise_x, noise_y).normalized()
+	acceleration += noise * noise_strength
