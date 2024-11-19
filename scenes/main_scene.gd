@@ -4,8 +4,6 @@ extends Control
 var boid_scene : PackedScene = preload("res://scenes/boid.tscn")
 @onready var boid_manager: Node2D = $boid_manager
 
-@onready var fps: Label = $ui_manager/text_info/fps
-@onready var total_boids: Label = $ui_manager/text_info/total_boids
 
 
 

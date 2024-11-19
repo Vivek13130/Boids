@@ -22,6 +22,8 @@ var simplex_noise = FastNoiseLite.new()
 
 func _ready() -> void:
 	
+	add_to_group("Boids")
+	
 	# random vel and pos in start 
 	#position = Vector2(randf_range(0, screen_size.x) , randf_range(0, screen_size.y))
 	velocity = Vector2(randf_range(-1,1), randf_range(-1, 1))*manager.MAX_SPEED
@@ -215,6 +217,28 @@ func apply_alignment() -> void :
 	var avg_velocity = sum_of_velocity / neighbour_boids.size()
 	acceleration += (avg_velocity - velocity) * manager.ALIGNMENT
 	return
+
+
+func set_color(color: Color) -> void:
+	$Sprite2D.modulate = color  # Update the boid's color
+
+	# Ensure the Line2D has a unique gradient
+	if $trail.gradient == null or $trail.gradient is Gradient:
+		$trail.gradient = Gradient.new()  # Assign a unique Gradient instance
+	
+	# Update the gradient colors
+	var gradient = $trail.gradient
+	gradient.set_offset(0, 0.0)
+	gradient.set_offset(1, 1.0)
+	gradient.set_color(0, Color(0, 0, 0))  # One end black
+	gradient.set_color(1, color)  # Other end the boid's color
+
+
+
+
+
+
+
 
 
 # Member variables

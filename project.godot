@@ -18,6 +18,10 @@ config/features=PackedStringArray("4.3", "Forward Plus")
 
 manager="*res://scenes/manager.gd"
 
+[global_group]
+
+Boids=""
+
 [input]
 
 spawn_boid={

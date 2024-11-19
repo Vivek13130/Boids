@@ -4,7 +4,6 @@ extends Control
 @onready var cohesion_slider: HSlider = $sliders/cohesion/HSlider
 @onready var separation_slider: HSlider = $sliders/seperation/HSlider
 @onready var sep_sensitivity_slider: HSlider = $"sliders/sep sensitivity/HSlider"
-@onready var noise_slider: HSlider = $sliders/noise/HSlider
 @onready var min_speed_slider: HSlider = $"sliders/min speed/HSlider"
 @onready var max_speed_slider: HSlider = $"sliders/max speed/HSlider"
 @onready var max_acc_slider: HSlider = $"sliders/max acc/HSlider"
@@ -58,7 +57,6 @@ func set_defualt_values_in_sliders()-> void :
 	cohesion_slider.value = manager.DEFAULT_COHESION
 	separation_slider.value = manager.DEFAULT_SEPERATION_DISTANCE
 	sep_sensitivity_slider.value = manager.DEFAULT_SEPERATION_SENSITIVITY
-	noise_slider.value = manager.DEFAULT_NOISE
 	min_speed_slider.value = manager.DEFAULT_MIN_SPEED
 	max_speed_slider.value = manager.DEFAULT_MAX_SPEED
 	max_acc_slider.value = manager.DEFAULT_MAX_ACCELERATION
@@ -91,7 +89,6 @@ func _on_randomize_button_pressed() -> void:
 	cohesion_slider.value = randf_range(cohesion_slider.min_value, cohesion_slider.max_value)
 	separation_slider.value = randf_range(separation_slider.min_value, separation_slider.max_value)
 	sep_sensitivity_slider.value = randf_range(sep_sensitivity_slider.min_value, sep_sensitivity_slider.max_value)
-	noise_slider.value = randf_range(noise_slider.min_value, noise_slider.max_value)
 	min_speed_slider.value = randf_range(min_speed_slider.min_value, min_speed_slider.max_value)
 	max_speed_slider.value = randf_range(max_speed_slider.min_value, max_speed_slider.max_value)
 	max_acc_slider.value = randf_range(max_acc_slider.min_value, max_acc_slider.max_value)
@@ -99,6 +96,7 @@ func _on_randomize_button_pressed() -> void:
 	#update_latency_slider.value = randf_range(update_latency_slider.min_value, update_latency_slider.max_value)
 	#detection_radius_slider.value = randf_range(detection_radius_slider.min_value, detection_radius_slider.max_value)
 	trail_length_slider.value = randf_range(trail_length_slider.min_value, trail_length_slider.max_value)
+	
 	
 	max_min_speed_constraint()
 	emit_signal_from_all_sliders()
@@ -108,7 +106,6 @@ func emit_signal_from_all_sliders()->void :
 	cohesion_slider.emit_signal("drag_ended" , true)
 	separation_slider.emit_signal("drag_ended" , true)
 	sep_sensitivity_slider.emit_signal("drag_ended" , true)
-	noise_slider.emit_signal("drag_ended" , true)
 	min_speed_slider.emit_signal("drag_ended" , true)
 	max_speed_slider.emit_signal("drag_ended" , true)
 	max_acc_slider.emit_signal("drag_ended" , true)
@@ -145,9 +142,6 @@ func _on_sep_sensitivity_slider_drag_ended(value_changed: bool) -> void:
 	if value_changed:
 		manager.SEPERATION_SENSITIVITY = sep_sensitivity_slider.value
 
-func _on_noise_slider_drag_ended(value_changed: bool) -> void:
-	if value_changed:
-		manager.NOISE = noise_slider.value
 
 func _on_min_speed_slider_drag_ended(value_changed: bool) -> void:
 	if value_changed:

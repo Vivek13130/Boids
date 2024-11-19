@@ -24,9 +24,12 @@ color = Color(0, 0, 0, 1)
 [node name="white_bg_for_ui" type="ColorRect" parent="."]
 layout_mode = 1
 anchors_preset = -1
-anchor_right = 0.201
-anchor_bottom = 1.0
-offset_right = -0.552002
+anchor_left = 0.001
+anchor_right = 0.2
+anchor_bottom = 1.002
+offset_left = -1.152
+offset_right = 0.599991
+offset_bottom = -1.29608
 grow_horizontal = 2
 grow_vertical = 2
 
@@ -34,9 +37,11 @@ grow_vertical = 2
 custom_minimum_size = Vector2(150, 500)
 layout_mode = 1
 anchors_preset = -1
-anchor_right = 0.201
+anchor_left = 0.001
+anchor_right = 0.2
 anchor_bottom = 0.833
-offset_right = -0.552002
+offset_left = -1.152
+offset_right = 0.599991
 offset_bottom = 0.215942
 
 [node name="alignment" type="Panel" parent="sliders"]
@@ -173,50 +178,19 @@ grow_horizontal = 2
 grow_vertical = 0
 max_value = 200.0
 
-[node name="noise" type="Panel" parent="sliders"]
-modulate = Color(0, 0.886275, 0.52549, 1)
-layout_mode = 1
-anchors_preset = -1
-anchor_top = 0.336
-anchor_right = 1.0
-anchor_bottom = 0.421
-offset_top = -1.93199
-offset_right = -0.391998
-offset_bottom = -1.93199
-
-[node name="Label" type="Label" parent="sliders/noise"]
-layout_mode = 1
-anchors_preset = -1
-anchor_top = 0.087
-anchor_right = 1.0
-anchor_bottom = 0.609
-offset_top = -0.00200033
-grow_horizontal = 2
-text = "   Noise"
-
-[node name="HSlider" type="HSlider" parent="sliders/noise"]
-layout_mode = 1
-anchors_preset = -1
-anchor_top = 0.546
-anchor_right = 1.0
-anchor_bottom = 0.97
-offset_top = 0.00876999
-offset_bottom = 0.0112801
-grow_horizontal = 2
-grow_vertical = 0
-max_value = 50.0
-step = 0.5
-
 [node name="min speed" type="Panel" parent="sliders"]
 modulate = Color(0, 0.886275, 0.52549, 1)
 layout_mode = 1
 anchors_preset = -1
-anchor_top = 0.42
-anchor_right = 1.002
-anchor_bottom = 0.505
-offset_top = -2.16498
-offset_right = -0.958801
-offset_bottom = -2.16498
+anchor_left = -0.001
+anchor_top = 0.334
+anchor_right = 1.0
+anchor_bottom = 0.418
+offset_left = 0.231
+offset_top = -0.359985
+offset_right = -0.496811
+offset_bottom = 0.180023
+metadata/_edit_group_ = true
 
 [node name="Label" type="Label" parent="sliders/min speed"]
 layout_mode = 1
@@ -244,12 +218,13 @@ max_value = 500.0
 modulate = Color(0, 0.886275, 0.52549, 1)
 layout_mode = 1
 anchors_preset = -1
-anchor_top = 0.5
-anchor_right = 0.999
-anchor_bottom = 0.585
-offset_top = -0.244019
-offset_right = -0.108612
-offset_bottom = -0.244049
+anchor_top = 0.417
+anchor_right = 0.998
+anchor_bottom = 0.502
+offset_top = -0.179993
+offset_right = 0.122375
+offset_bottom = -0.180023
+metadata/_edit_group_ = true
 
 [node name="Label" type="Label" parent="sliders/max speed"]
 layout_mode = 1
@@ -277,12 +252,13 @@ max_value = 500.0
 modulate = Color(0, 0.886275, 0.52549, 1)
 layout_mode = 1
 anchors_preset = -1
-anchor_top = 0.591
-anchor_right = 0.999
-anchor_bottom = 0.676
-offset_top = -4.24643
-offset_right = -0.108612
-offset_bottom = -4.24646
+anchor_top = 0.5
+anchor_right = 1.0
+anchor_bottom = 0.587
+offset_top = 1.00003
+offset_right = -0.339615
+offset_bottom = -0.0800476
+metadata/_edit_group_ = true
 
 [node name="Label" type="Label" parent="sliders/max acc"]
 layout_mode = 1
@@ -292,7 +268,8 @@ anchor_right = 1.0
 anchor_bottom = 0.609
 offset_top = -0.00200033
 grow_horizontal = 2
-text = "   Max Acc."
+text = "   Max Acceleration"
+metadata/_edit_group_ = true
 
 [node name="HSlider" type="HSlider" parent="sliders/max acc"]
 layout_mode = 1
@@ -310,12 +287,13 @@ max_value = 1000.0
 modulate = Color(0, 0.886275, 0.52549, 1)
 layout_mode = 1
 anchors_preset = -1
-anchor_top = 0.667
-anchor_right = 0.999
-anchor_bottom = 0.752
-offset_top = -0.180023
-offset_right = -0.108612
-offset_bottom = -0.180023
+anchor_top = 0.584
+anchor_right = 1.0
+anchor_bottom = 0.67
+offset_top = 0.640015
+offset_right = -0.339615
+offset_bottom = 0.100006
+metadata/_edit_group_ = true
 
 [node name="Label" type="Label" parent="sliders/fov"]
 layout_mode = 1
@@ -343,12 +321,13 @@ max_value = 360.0
 modulate = Color(0, 0.886275, 0.52549, 1)
 layout_mode = 1
 anchors_preset = -1
-anchor_top = 0.752
-anchor_right = 0.999
-anchor_bottom = 0.837
-offset_top = 0.0569763
-offset_right = -0.108612
-offset_bottom = 0.0569763
+anchor_top = 0.67
+anchor_right = 1.0
+anchor_bottom = 0.754
+offset_top = -0.799957
+offset_right = -0.339615
+offset_bottom = -0.259949
+metadata/_edit_group_ = true
 
 [node name="Label" type="Label" parent="sliders/update latency"]
 layout_mode = 1
@@ -378,12 +357,13 @@ scrollable = false
 modulate = Color(0, 0.886275, 0.52549, 1)
 layout_mode = 1
 anchors_preset = -1
-anchor_top = 0.836
-anchor_right = 0.999
-anchor_bottom = 0.921
-offset_top = -0.176025
-offset_right = -0.108612
-offset_bottom = -0.176025
+anchor_top = 0.752
+anchor_right = 1.0
+anchor_bottom = 0.837
+offset_top = -0.0799866
+offset_right = -0.339615
+offset_bottom = -0.0799866
+metadata/_edit_group_ = true
 
 [node name="Label" type="Label" parent="sliders/detection radius"]
 layout_mode = 1
@@ -412,13 +392,14 @@ modulate = Color(0, 0.886275, 0.52549, 1)
 layout_mode = 1
 anchors_preset = -1
 anchor_left = 0.004
-anchor_top = 0.919
-anchor_right = 0.999
-anchor_bottom = 1.004
-offset_left = -1.132
-offset_top = -0.26001
-offset_right = -0.108612
-offset_bottom = -0.269104
+anchor_top = 0.835
+anchor_right = 1.0
+anchor_bottom = 0.92
+offset_left = -0.924
+offset_top = 0.100037
+offset_right = -0.131622
+offset_bottom = 0.0909119
+metadata/_edit_group_ = true
 
 [node name="Label" type="Label" parent="sliders/trail length"]
 layout_mode = 1
@@ -446,102 +427,105 @@ modulate = Color(0, 0.886275, 0.52549, 1)
 custom_minimum_size = Vector2(150, 100)
 layout_mode = 1
 anchors_preset = -1
-anchor_top = 0.832
+anchor_top = 0.765
 anchor_right = 0.201
 anchor_bottom = 1.002
-offset_top = -0.135986
+offset_top = 1.28
 offset_right = -0.552002
-offset_bottom = -0.296082
+offset_bottom = -0.295959
 
 [node name="Panel" type="Panel" parent="checks and text_info"]
 layout_mode = 1
 anchors_preset = -1
-anchor_top = 0.027
+anchor_top = 0.283
 anchor_right = 1.0
-anchor_bottom = 1.0
-offset_top = 0.03
+anchor_bottom = 0.974
+offset_top = -0.0160065
+offset_bottom = 1.95198
 grow_horizontal = 2
 grow_vertical = 2
 
 [node name="fps" type="Label" parent="checks and text_info"]
 layout_mode = 1
 anchors_preset = -1
-anchor_left = 0.584
-anchor_top = 0.091
-anchor_right = 0.844
-anchor_bottom = 0.3
-offset_left = 0.095993
-offset_top = -0.0100145
-offset_right = 0.0359955
-offset_bottom = -1.52588e-05
+anchor_left = 0.606
+anchor_top = 0.487
+anchor_right = 0.866
+anchor_bottom = 0.645
+offset_left = 0.0139923
+offset_top = -0.0240173
+offset_right = -0.0460205
+offset_bottom = -0.0400085
 text = "FPS: "
 
 [node name="boid_count" type="Label" parent="checks and text_info"]
 layout_mode = 1
 anchors_preset = -1
-anchor_left = 0.58
-anchor_top = 0.345
-anchor_right = 0.888
-anchor_bottom = 0.56
-offset_left = 0.019989
-offset_top = 0.0499687
-offset_right = -0.0920105
-offset_bottom = 0.0449791
+anchor_left = 0.035
+anchor_top = 0.48
+anchor_right = 0.342
+anchor_bottom = 0.638
+offset_left = -0.085
+offset_top = 1.03999
+offset_right = -0.00201416
+offset_bottom = 0.0240097
 text = "Boids: "
 
 [node name="trails_check" type="CheckButton" parent="checks and text_info"]
 layout_mode = 1
 anchors_preset = -1
-anchor_left = 0.032
-anchor_top = 0.056
-anchor_right = 0.371
-anchor_bottom = 0.346
-offset_left = -0.0560007
-offset_top = 0.0079999
-offset_right = 0.00699615
-offset_bottom = -0.0220032
+anchor_right = 0.004
+anchor_bottom = 0.283
+offset_left = 8.0
+offset_top = 7.0
+offset_right = 97.076
+offset_bottom = -5.016
 focus_mode = 0
 text = "Trails"
+alignment = 1
+icon_alignment = 1
 
 [node name="colors_check" type="CheckButton" parent="checks and text_info"]
 layout_mode = 1
 anchors_preset = -1
-anchor_left = 0.028
-anchor_top = 0.308
-anchor_right = 0.371
-anchor_bottom = 0.598
-offset_left = 0.0759997
-offset_top = 0.0439987
-offset_right = 0.00699615
-offset_bottom = 0.0139961
+anchor_left = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.283
+offset_left = -0.5
+offset_top = 7.0
+offset_right = 110.5
+offset_bottom = -5.016
 focus_mode = 0
-text = "Colors"
+text = "Clusters"
+alignment = 1
+icon_alignment = 1
 
 [node name="reset_button" type="Button" parent="checks and text_info"]
 layout_mode = 1
 anchors_preset = -1
-anchor_left = 0.567
-anchor_top = 0.636
-anchor_right = 0.788
-anchor_bottom = 0.926
-offset_left = 0.0230103
-offset_top = 0.0400772
-offset_right = -0.0280151
-offset_bottom = -0.016922
+anchor_left = 0.606
+anchor_top = 0.717
+anchor_right = 0.827
+anchor_bottom = 0.921
+offset_left = 0.0139923
+offset_top = 0.0159912
+offset_right = -0.0370026
+offset_bottom = 0.00798035
 focus_mode = 0
 text = "Reset"
+metadata/_edit_group_ = true
 
 [node name="randomize_button" type="Button" parent="checks and text_info"]
 layout_mode = 1
 anchors_preset = -1
 anchor_left = 0.039
 anchor_top = 0.636
-anchor_right = 0.375
-anchor_bottom = 0.925
-offset_left = -0.0370007
-offset_top = -0.0519867
-offset_right = -0.125008
-offset_bottom = 0.0250092
+anchor_right = 0.45
+anchor_bottom = 0.829
+offset_left = -1.009
+offset_top = 12.328
+offset_right = -0.949997
+offset_bottom = 13.992
 focus_mode = 0
 text = "Randomize"
 
@@ -585,7 +569,6 @@ scale_amount_max = 5.0
 [connection signal="drag_ended" from="sliders/cohesion/HSlider" to="." method="_on_cohesion_slider_drag_ended"]
 [connection signal="drag_ended" from="sliders/seperation/HSlider" to="." method="_on_separation_slider_drag_ended"]
 [connection signal="drag_ended" from="sliders/sep sensitivity/HSlider" to="." method="_on_sep_sensitivity_slider_drag_ended"]
-[connection signal="drag_ended" from="sliders/noise/HSlider" to="." method="_on_noise_slider_drag_ended"]
 [connection signal="drag_ended" from="sliders/min speed/HSlider" to="." method="_on_min_speed_slider_drag_ended"]
 [connection signal="drag_ended" from="sliders/max speed/HSlider" to="." method="_on_max_speed_slider_drag_ended"]
 [connection signal="drag_ended" from="sliders/max acc/HSlider" to="." method="_on_max_acc_slider_drag_ended"]
