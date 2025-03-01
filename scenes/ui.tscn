@@ -1,6 +1,16 @@
-[gd_scene load_steps=2 format=3 uid="uid://xkw6a187it4l"]
+[gd_scene load_steps=3 format=3 uid="uid://xkw6a187it4l"]
 
 [ext_resource type="Script" path="res://scenes/ui.gd" id="1_u4caq"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_js5fq"]
+bg_color = Color(0, 0.497146, 0.233009, 1)
+border_width_left = 4
+border_width_top = 4
+border_width_right = 4
+border_width_bottom = 4
+border_blend = true
+corner_radius_top_right = 10
+corner_radius_bottom_right = 10
 
 [node name="ui" type="Control"]
 layout_mode = 3
@@ -11,538 +21,17 @@ grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_u4caq")
 
-[node name="black_bg" type="ColorRect" parent="."]
-layout_mode = 1
-anchors_preset = -1
-anchor_right = 1.0
-anchor_bottom = 1.0
-offset_left = 1.0
-grow_horizontal = 2
-grow_vertical = 2
-color = Color(0, 0, 0, 1)
-
-[node name="white_bg_for_ui" type="ColorRect" parent="."]
-layout_mode = 1
-anchors_preset = -1
-anchor_left = 0.001
-anchor_right = 0.2
-anchor_bottom = 1.002
-offset_left = -1.152
-offset_right = 0.599991
-offset_bottom = -1.29608
-grow_horizontal = 2
-grow_vertical = 2
-
-[node name="sliders" type="Panel" parent="."]
-custom_minimum_size = Vector2(150, 500)
-layout_mode = 1
-anchors_preset = -1
-anchor_left = 0.001
-anchor_right = 0.2
-anchor_bottom = 0.833
-offset_left = -1.152
-offset_right = 0.599991
-offset_bottom = 0.215942
-
-[node name="alignment" type="Panel" parent="sliders"]
-modulate = Color(0, 0.886275, 0.52549, 1)
-layout_mode = 1
-anchors_preset = -1
-anchor_right = 1.0
-anchor_bottom = 0.085
-offset_right = -0.391998
-
-[node name="Label" type="Label" parent="sliders/alignment"]
-layout_mode = 1
-anchors_preset = -1
-anchor_top = 0.087
-anchor_right = 1.0
-anchor_bottom = 0.609
-offset_top = -0.00200033
-grow_horizontal = 2
-text = "  Alignment"
-
-[node name="HSlider" type="HSlider" parent="sliders/alignment"]
-layout_mode = 1
-anchors_preset = -1
-anchor_top = 0.546
-anchor_right = 1.0
-anchor_bottom = 0.97
-offset_top = 0.00876999
-offset_bottom = 0.0112801
-grow_horizontal = 2
-grow_vertical = 0
-max_value = 1.0
-step = 0.05
-
-[node name="cohesion" type="Panel" parent="sliders"]
-modulate = Color(0, 0.886275, 0.52549, 1)
-layout_mode = 1
-anchors_preset = -1
-anchor_top = 0.082
-anchor_right = 1.0
-anchor_bottom = 0.167
-offset_top = -0.156021
-offset_right = -0.391998
-offset_bottom = -0.156021
-
-[node name="Label" type="Label" parent="sliders/cohesion"]
-layout_mode = 1
-anchors_preset = -1
-anchor_top = 0.087
-anchor_right = 1.0
-anchor_bottom = 0.609
-offset_top = -0.00200033
-grow_horizontal = 2
-text = "  Cohesion
-"
-
-[node name="HSlider" type="HSlider" parent="sliders/cohesion"]
-layout_mode = 1
-anchors_preset = -1
-anchor_top = 0.546
-anchor_right = 1.0
-anchor_bottom = 0.97
-offset_top = 0.00876999
-offset_bottom = 0.0112801
-grow_horizontal = 2
-grow_vertical = 0
-max_value = 10.0
-step = 0.5
-
-[node name="seperation" type="Panel" parent="sliders"]
-modulate = Color(0, 0.886275, 0.52549, 1)
-layout_mode = 1
-anchors_preset = -1
-anchor_top = 0.165
-anchor_right = 1.0
-anchor_bottom = 0.25
-offset_top = 0.149467
-offset_right = -0.391998
-offset_bottom = 0.149475
-grow_horizontal = 2
-grow_vertical = 2
-
-[node name="Label" type="Label" parent="sliders/seperation"]
-layout_mode = 1
-anchors_preset = -1
-anchor_top = 0.087
-anchor_right = 1.0
-anchor_bottom = 0.609
-offset_top = -0.00200033
-grow_horizontal = 2
-text = "   Seperation"
-
-[node name="HSlider" type="HSlider" parent="sliders/seperation"]
-layout_mode = 1
-anchors_preset = -1
-anchor_top = 0.546
-anchor_right = 1.0
-anchor_bottom = 0.97
-offset_top = 0.00876999
-offset_bottom = 0.0112801
-grow_horizontal = 2
-grow_vertical = 0
-max_value = 1000.0
-
-[node name="sep sensitivity" type="Panel" parent="sliders"]
-modulate = Color(0, 0.886275, 0.52549, 1)
-layout_mode = 1
-anchors_preset = -1
-anchor_top = 0.251
-anchor_right = 0.999
-anchor_bottom = 0.336
-offset_top = -1.16051
-offset_right = -0.108612
-offset_bottom = -1.16051
-
-[node name="Label" type="Label" parent="sliders/sep sensitivity"]
-layout_mode = 1
-anchors_preset = -1
-anchor_top = 0.087
-anchor_right = 1.0
-anchor_bottom = 0.609
-offset_top = -0.00200033
-grow_horizontal = 2
-text = "   Sep. Sensitivity"
-
-[node name="HSlider" type="HSlider" parent="sliders/sep sensitivity"]
-layout_mode = 1
-anchors_preset = -1
-anchor_top = 0.546
-anchor_right = 1.0
-anchor_bottom = 0.97
-offset_top = 0.00876999
-offset_bottom = 0.0112801
-grow_horizontal = 2
-grow_vertical = 0
-max_value = 200.0
-
-[node name="min speed" type="Panel" parent="sliders"]
-modulate = Color(0, 0.886275, 0.52549, 1)
-layout_mode = 1
-anchors_preset = -1
-anchor_left = -0.001
-anchor_top = 0.334
-anchor_right = 1.0
-anchor_bottom = 0.418
-offset_left = 0.231
-offset_top = -0.359985
-offset_right = -0.496811
-offset_bottom = 0.180023
-metadata/_edit_group_ = true
-
-[node name="Label" type="Label" parent="sliders/min speed"]
-layout_mode = 1
-anchors_preset = -1
-anchor_top = 0.087
-anchor_right = 1.0
-anchor_bottom = 0.609
-offset_top = -0.00200033
-grow_horizontal = 2
-text = "   Min Speed"
-
-[node name="HSlider" type="HSlider" parent="sliders/min speed"]
-layout_mode = 1
-anchors_preset = -1
-anchor_top = 0.546
-anchor_right = 1.0
-anchor_bottom = 0.97
-offset_top = 0.00876999
-offset_bottom = 0.0112801
-grow_horizontal = 2
-grow_vertical = 0
-max_value = 500.0
-
-[node name="max speed" type="Panel" parent="sliders"]
-modulate = Color(0, 0.886275, 0.52549, 1)
-layout_mode = 1
-anchors_preset = -1
-anchor_top = 0.417
-anchor_right = 0.998
-anchor_bottom = 0.502
-offset_top = -0.179993
-offset_right = 0.122375
-offset_bottom = -0.180023
-metadata/_edit_group_ = true
-
-[node name="Label" type="Label" parent="sliders/max speed"]
-layout_mode = 1
-anchors_preset = -1
-anchor_top = 0.087
-anchor_right = 1.0
-anchor_bottom = 0.609
-offset_top = -0.00200033
-grow_horizontal = 2
-text = "   Max Speed"
-
-[node name="HSlider" type="HSlider" parent="sliders/max speed"]
-layout_mode = 1
-anchors_preset = -1
-anchor_top = 0.546
-anchor_right = 1.0
-anchor_bottom = 0.97
-offset_top = 0.00876999
-offset_bottom = 0.0112801
-grow_horizontal = 2
-grow_vertical = 0
-max_value = 500.0
-
-[node name="max acc" type="Panel" parent="sliders"]
-modulate = Color(0, 0.886275, 0.52549, 1)
-layout_mode = 1
-anchors_preset = -1
-anchor_top = 0.5
-anchor_right = 1.0
-anchor_bottom = 0.587
-offset_top = 1.00003
-offset_right = -0.339615
-offset_bottom = -0.0800476
-metadata/_edit_group_ = true
-
-[node name="Label" type="Label" parent="sliders/max acc"]
-layout_mode = 1
-anchors_preset = -1
-anchor_top = 0.087
-anchor_right = 1.0
-anchor_bottom = 0.609
-offset_top = -0.00200033
-grow_horizontal = 2
-text = "   Max Acceleration"
-metadata/_edit_group_ = true
-
-[node name="HSlider" type="HSlider" parent="sliders/max acc"]
-layout_mode = 1
-anchors_preset = -1
-anchor_top = 0.546
-anchor_right = 1.0
-anchor_bottom = 0.97
-offset_top = 0.00876999
-offset_bottom = 0.0112801
-grow_horizontal = 2
-grow_vertical = 0
-max_value = 1000.0
-
-[node name="fov" type="Panel" parent="sliders"]
-modulate = Color(0, 0.886275, 0.52549, 1)
-layout_mode = 1
-anchors_preset = -1
-anchor_top = 0.584
-anchor_right = 1.0
-anchor_bottom = 0.67
-offset_top = 0.640015
-offset_right = -0.339615
-offset_bottom = 0.100006
-metadata/_edit_group_ = true
-
-[node name="Label" type="Label" parent="sliders/fov"]
-layout_mode = 1
-anchors_preset = -1
-anchor_top = 0.087
-anchor_right = 1.0
-anchor_bottom = 0.609
-offset_top = -0.00200033
-grow_horizontal = 2
-text = "   FOV"
-
-[node name="HSlider" type="HSlider" parent="sliders/fov"]
-layout_mode = 1
-anchors_preset = -1
-anchor_top = 0.546
-anchor_right = 1.0
-anchor_bottom = 0.97
-offset_top = 0.00876999
-offset_bottom = 0.0112801
-grow_horizontal = 2
-grow_vertical = 0
-max_value = 360.0
-
-[node name="update latency" type="Panel" parent="sliders"]
-modulate = Color(0, 0.886275, 0.52549, 1)
-layout_mode = 1
-anchors_preset = -1
-anchor_top = 0.67
-anchor_right = 1.0
-anchor_bottom = 0.754
-offset_top = -0.799957
-offset_right = -0.339615
-offset_bottom = -0.259949
-metadata/_edit_group_ = true
-
-[node name="Label" type="Label" parent="sliders/update latency"]
-layout_mode = 1
-anchors_preset = -1
-anchor_top = 0.087
-anchor_right = 1.0
-anchor_bottom = 0.609
-offset_top = -0.00200033
-grow_horizontal = 2
-text = "   Upd. Latency**"
-
-[node name="HSlider" type="HSlider" parent="sliders/update latency"]
-layout_mode = 1
-anchors_preset = -1
-anchor_top = 0.546
-anchor_right = 1.0
-anchor_bottom = 0.97
-offset_top = 0.00876999
-offset_bottom = 0.0112801
-grow_horizontal = 2
-grow_vertical = 0
-max_value = 30.0
-editable = false
-scrollable = false
-
-[node name="detection radius" type="Panel" parent="sliders"]
-modulate = Color(0, 0.886275, 0.52549, 1)
-layout_mode = 1
-anchors_preset = -1
-anchor_top = 0.752
-anchor_right = 1.0
-anchor_bottom = 0.837
-offset_top = -0.0799866
-offset_right = -0.339615
-offset_bottom = -0.0799866
-metadata/_edit_group_ = true
-
-[node name="Label" type="Label" parent="sliders/detection radius"]
-layout_mode = 1
-anchors_preset = -1
-anchor_top = 0.087
-anchor_right = 1.0
-anchor_bottom = 0.609
-offset_top = -0.00200033
-grow_horizontal = 2
-text = "   Detection Radius**"
-
-[node name="HSlider" type="HSlider" parent="sliders/detection radius"]
-layout_mode = 1
-anchors_preset = -1
-anchor_top = 0.546
-anchor_right = 1.0
-anchor_bottom = 0.97
-offset_top = 0.00876999
-offset_bottom = 0.0112801
-grow_horizontal = 2
-grow_vertical = 0
-max_value = 500.0
-
-[node name="trail length" type="Panel" parent="sliders"]
-modulate = Color(0, 0.886275, 0.52549, 1)
-layout_mode = 1
-anchors_preset = -1
-anchor_left = 0.004
-anchor_top = 0.835
-anchor_right = 1.0
-anchor_bottom = 0.92
-offset_left = -0.924
-offset_top = 0.100037
-offset_right = -0.131622
-offset_bottom = 0.0909119
-metadata/_edit_group_ = true
-
-[node name="Label" type="Label" parent="sliders/trail length"]
-layout_mode = 1
-anchors_preset = -1
-anchor_top = 0.087
-anchor_right = 1.0
-anchor_bottom = 0.609
-offset_top = -0.00200033
-grow_horizontal = 2
-text = "   Trail Length"
-
-[node name="HSlider" type="HSlider" parent="sliders/trail length"]
-layout_mode = 1
-anchors_preset = -1
-anchor_top = 0.546
-anchor_right = 1.0
-anchor_bottom = 0.97
-offset_top = 0.00876999
-offset_bottom = 0.0112801
-grow_horizontal = 2
-grow_vertical = 0
-
-[node name="checks and text_info" type="Panel" parent="."]
-modulate = Color(0, 0.886275, 0.52549, 1)
-custom_minimum_size = Vector2(150, 100)
-layout_mode = 1
-anchors_preset = -1
-anchor_top = 0.765
-anchor_right = 0.201
-anchor_bottom = 1.002
-offset_top = 1.28
-offset_right = -0.552002
-offset_bottom = -0.295959
-
-[node name="Panel" type="Panel" parent="checks and text_info"]
-layout_mode = 1
-anchors_preset = -1
-anchor_top = 0.283
-anchor_right = 1.0
-anchor_bottom = 0.974
-offset_top = -0.0160065
-offset_bottom = 1.95198
-grow_horizontal = 2
-grow_vertical = 2
-
-[node name="fps" type="Label" parent="checks and text_info"]
-layout_mode = 1
-anchors_preset = -1
-anchor_left = 0.606
-anchor_top = 0.487
-anchor_right = 0.866
-anchor_bottom = 0.645
-offset_left = 0.0139923
-offset_top = -0.0240173
-offset_right = -0.0460205
-offset_bottom = -0.0400085
-text = "FPS: "
-
-[node name="boid_count" type="Label" parent="checks and text_info"]
-layout_mode = 1
-anchors_preset = -1
-anchor_left = 0.035
-anchor_top = 0.48
-anchor_right = 0.342
-anchor_bottom = 0.638
-offset_left = -0.085
-offset_top = 1.03999
-offset_right = -0.00201416
-offset_bottom = 0.0240097
-text = "Boids: "
-
-[node name="trails_check" type="CheckButton" parent="checks and text_info"]
-layout_mode = 1
-anchors_preset = -1
-anchor_right = 0.004
-anchor_bottom = 0.283
-offset_left = 8.0
-offset_top = 7.0
-offset_right = 97.076
-offset_bottom = -5.016
-focus_mode = 0
-text = "Trails"
-alignment = 1
-icon_alignment = 1
-
-[node name="colors_check" type="CheckButton" parent="checks and text_info"]
-layout_mode = 1
-anchors_preset = -1
-anchor_left = 0.5
-anchor_right = 0.5
-anchor_bottom = 0.283
-offset_left = -0.5
-offset_top = 7.0
-offset_right = 110.5
-offset_bottom = -5.016
-focus_mode = 0
-text = "Clusters"
-alignment = 1
-icon_alignment = 1
-
-[node name="reset_button" type="Button" parent="checks and text_info"]
-layout_mode = 1
-anchors_preset = -1
-anchor_left = 0.606
-anchor_top = 0.717
-anchor_right = 0.827
-anchor_bottom = 0.921
-offset_left = 0.0139923
-offset_top = 0.0159912
-offset_right = -0.0370026
-offset_bottom = 0.00798035
-focus_mode = 0
-text = "Reset"
-metadata/_edit_group_ = true
-
-[node name="randomize_button" type="Button" parent="checks and text_info"]
-layout_mode = 1
-anchors_preset = -1
-anchor_left = 0.039
-anchor_top = 0.636
-anchor_right = 0.45
-anchor_bottom = 0.829
-offset_left = -1.009
-offset_top = 12.328
-offset_right = -0.949997
-offset_bottom = 13.992
-focus_mode = 0
-text = "Randomize"
-
 [node name="hide_ui" type="CheckButton" parent="."]
 layout_mode = 1
-anchors_preset = -1
-anchor_left = 0.96
-anchor_top = 0.003
-anchor_right = 0.998
-anchor_bottom = 0.051
-offset_left = -27.92
-offset_top = -10.944
-offset_right = -27.696
-offset_bottom = -11.048
-grow_horizontal = 2
-grow_vertical = 2
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -44.0
+offset_right = 6.0
+offset_bottom = 25.0
+grow_horizontal = 0
 scale = Vector2(1.5, 1.5)
+pivot_offset = Vector2(50, 0)
 focus_mode = 0
 
 [node name="CPUParticles2D" type="CPUParticles2D" parent="hide_ui"]
@@ -565,19 +54,214 @@ angular_velocity_max = 100.0
 damping_max = 1.0
 scale_amount_max = 5.0
 
-[connection signal="drag_ended" from="sliders/alignment/HSlider" to="." method="_on_alignment_slider_drag_ended"]
-[connection signal="drag_ended" from="sliders/cohesion/HSlider" to="." method="_on_cohesion_slider_drag_ended"]
-[connection signal="drag_ended" from="sliders/seperation/HSlider" to="." method="_on_separation_slider_drag_ended"]
-[connection signal="drag_ended" from="sliders/sep sensitivity/HSlider" to="." method="_on_sep_sensitivity_slider_drag_ended"]
-[connection signal="drag_ended" from="sliders/min speed/HSlider" to="." method="_on_min_speed_slider_drag_ended"]
-[connection signal="drag_ended" from="sliders/max speed/HSlider" to="." method="_on_max_speed_slider_drag_ended"]
-[connection signal="drag_ended" from="sliders/max acc/HSlider" to="." method="_on_max_acc_slider_drag_ended"]
-[connection signal="drag_ended" from="sliders/fov/HSlider" to="." method="_on_fov_slider_drag_ended"]
-[connection signal="drag_ended" from="sliders/update latency/HSlider" to="." method="_on_update_latency_slider_drag_ended"]
-[connection signal="drag_ended" from="sliders/detection radius/HSlider" to="." method="_on_detection_radius_slider_drag_ended"]
-[connection signal="drag_ended" from="sliders/trail length/HSlider" to="." method="_on_trail_length_slider_drag_ended"]
-[connection signal="pressed" from="checks and text_info/trails_check" to="." method="_on_trails_check_pressed"]
-[connection signal="pressed" from="checks and text_info/colors_check" to="." method="_on_colors_check_pressed"]
-[connection signal="pressed" from="checks and text_info/reset_button" to="." method="_on_reset_button_pressed"]
-[connection signal="pressed" from="checks and text_info/randomize_button" to="." method="_on_randomize_button_pressed"]
+[node name="BehaviourLeftUI" type="ScrollContainer" parent="."]
+layout_mode = 1
+anchors_preset = -1
+anchor_right = 0.215
+anchor_bottom = 1.0
+offset_right = 8.0
+grow_vertical = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_js5fq")
+
+[node name="MarginContainer" type="MarginContainer" parent="BehaviourLeftUI"]
+layout_mode = 2
+theme_override_constants/margin_left = 10
+theme_override_constants/margin_top = 10
+theme_override_constants/margin_right = 10
+theme_override_constants/margin_bottom = 10
+
+[node name="VBoxContainer" type="VBoxContainer" parent="BehaviourLeftUI/MarginContainer"]
+layout_mode = 2
+size_flags_horizontal = 0
+size_flags_vertical = 0
+theme_override_constants/separation = 15
+
+[node name="RichTextLabel" type="RichTextLabel" parent="BehaviourLeftUI/MarginContainer/VBoxContainer"]
+visible = false
+layout_mode = 2
+text = "Behaviour Parameters
+"
+fit_content = true
+
+[node name="alignment" type="VBoxContainer" parent="BehaviourLeftUI/MarginContainer/VBoxContainer"]
+visible = false
+layout_mode = 2
+
+[node name="Label" type="Label" parent="BehaviourLeftUI/MarginContainer/VBoxContainer/alignment"]
+layout_mode = 2
+text = "  Alignment"
+
+[node name="HSlider" type="HSlider" parent="BehaviourLeftUI/MarginContainer/VBoxContainer/alignment"]
+layout_mode = 2
+max_value = 1.0
+step = 0.05
+
+[node name="cohesion" type="VBoxContainer" parent="BehaviourLeftUI/MarginContainer/VBoxContainer"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="BehaviourLeftUI/MarginContainer/VBoxContainer/cohesion"]
+layout_mode = 2
+text = "  Cohesion
+"
+
+[node name="HSlider" type="HSlider" parent="BehaviourLeftUI/MarginContainer/VBoxContainer/cohesion"]
+layout_mode = 2
+max_value = 10.0
+step = 0.5
+
+[node name="seperation" type="VBoxContainer" parent="BehaviourLeftUI/MarginContainer/VBoxContainer"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="BehaviourLeftUI/MarginContainer/VBoxContainer/seperation"]
+layout_mode = 2
+text = "   Seperation"
+
+[node name="HSlider" type="HSlider" parent="BehaviourLeftUI/MarginContainer/VBoxContainer/seperation"]
+layout_mode = 2
+max_value = 1000.0
+
+[node name="sep sensitivity" type="VBoxContainer" parent="BehaviourLeftUI/MarginContainer/VBoxContainer"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="BehaviourLeftUI/MarginContainer/VBoxContainer/sep sensitivity"]
+layout_mode = 2
+text = "   Sep. Sensitivity"
+
+[node name="HSlider" type="HSlider" parent="BehaviourLeftUI/MarginContainer/VBoxContainer/sep sensitivity"]
+layout_mode = 2
+max_value = 200.0
+
+[node name="min speed" type="VBoxContainer" parent="BehaviourLeftUI/MarginContainer/VBoxContainer"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="BehaviourLeftUI/MarginContainer/VBoxContainer/min speed"]
+layout_mode = 2
+text = "   Min Speed"
+
+[node name="HSlider" type="HSlider" parent="BehaviourLeftUI/MarginContainer/VBoxContainer/min speed"]
+layout_mode = 2
+max_value = 500.0
+
+[node name="max speed" type="VBoxContainer" parent="BehaviourLeftUI/MarginContainer/VBoxContainer"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="BehaviourLeftUI/MarginContainer/VBoxContainer/max speed"]
+layout_mode = 2
+text = "   Max Speed"
+
+[node name="HSlider" type="HSlider" parent="BehaviourLeftUI/MarginContainer/VBoxContainer/max speed"]
+layout_mode = 2
+max_value = 500.0
+
+[node name="max acc" type="VBoxContainer" parent="BehaviourLeftUI/MarginContainer/VBoxContainer"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="BehaviourLeftUI/MarginContainer/VBoxContainer/max acc"]
+layout_mode = 2
+text = "   Max Acceleration"
+metadata/_edit_group_ = true
+
+[node name="HSlider" type="HSlider" parent="BehaviourLeftUI/MarginContainer/VBoxContainer/max acc"]
+layout_mode = 2
+max_value = 1000.0
+
+[node name="fov" type="VBoxContainer" parent="BehaviourLeftUI/MarginContainer/VBoxContainer"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="BehaviourLeftUI/MarginContainer/VBoxContainer/fov"]
+layout_mode = 2
+text = "   FOV"
+
+[node name="HSlider" type="HSlider" parent="BehaviourLeftUI/MarginContainer/VBoxContainer/fov"]
+layout_mode = 2
+max_value = 360.0
+
+[node name="detection radius" type="VBoxContainer" parent="BehaviourLeftUI/MarginContainer/VBoxContainer"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="BehaviourLeftUI/MarginContainer/VBoxContainer/detection radius"]
+layout_mode = 2
+text = "   Detection Radius**"
+
+[node name="HSlider" type="HSlider" parent="BehaviourLeftUI/MarginContainer/VBoxContainer/detection radius"]
+layout_mode = 2
+max_value = 500.0
+
+[node name="trail length" type="VBoxContainer" parent="BehaviourLeftUI/MarginContainer/VBoxContainer"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="BehaviourLeftUI/MarginContainer/VBoxContainer/trail length"]
+layout_mode = 2
+text = "   Trail Length"
+
+[node name="HSlider" type="HSlider" parent="BehaviourLeftUI/MarginContainer/VBoxContainer/trail length"]
+layout_mode = 2
+
+[node name="ButtonTray" type="VBoxContainer" parent="BehaviourLeftUI/MarginContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_constants/separation = 15
+
+[node name="checkBoxes" type="HBoxContainer" parent="BehaviourLeftUI/MarginContainer/VBoxContainer/ButtonTray"]
+layout_mode = 2
+
+[node name="trails_check" type="CheckButton" parent="BehaviourLeftUI/MarginContainer/VBoxContainer/ButtonTray/checkBoxes"]
+layout_mode = 2
+size_flags_horizontal = 3
+focus_mode = 0
+text = "Trails"
+alignment = 1
+icon_alignment = 1
+
+[node name="colors_check" type="CheckButton" parent="BehaviourLeftUI/MarginContainer/VBoxContainer/ButtonTray/checkBoxes"]
+layout_mode = 2
+size_flags_horizontal = 3
+focus_mode = 0
+text = "Clusters"
+
+[node name="info" type="HBoxContainer" parent="BehaviourLeftUI/MarginContainer/VBoxContainer/ButtonTray"]
+layout_mode = 2
+size_flags_vertical = 4
+
+[node name="fps" type="Label" parent="BehaviourLeftUI/MarginContainer/VBoxContainer/ButtonTray/info"]
+layout_mode = 2
+size_flags_horizontal = 3
+text = "FPS: "
+
+[node name="boid_count" type="Label" parent="BehaviourLeftUI/MarginContainer/VBoxContainer/ButtonTray/info"]
+layout_mode = 2
+size_flags_horizontal = 3
+text = "Boids: "
+
+[node name="radomize_reset" type="HBoxContainer" parent="BehaviourLeftUI/MarginContainer/VBoxContainer/ButtonTray"]
+layout_mode = 2
+theme_override_constants/separation = 25
+alignment = 1
+
+[node name="reset_button" type="Button" parent="BehaviourLeftUI/MarginContainer/VBoxContainer/ButtonTray/radomize_reset"]
+layout_mode = 2
+size_flags_horizontal = 3
+focus_mode = 0
+text = "Reset"
+metadata/_edit_group_ = true
+
+[node name="randomize_button" type="Button" parent="BehaviourLeftUI/MarginContainer/VBoxContainer/ButtonTray/radomize_reset"]
+layout_mode = 2
+size_flags_horizontal = 3
+focus_mode = 0
+text = "Randomize"
+
 [connection signal="pressed" from="hide_ui" to="." method="_on_hide_ui_pressed"]
+[connection signal="drag_ended" from="BehaviourLeftUI/MarginContainer/VBoxContainer/alignment/HSlider" to="." method="_on_alignment_slider_drag_ended"]
+[connection signal="drag_ended" from="BehaviourLeftUI/MarginContainer/VBoxContainer/cohesion/HSlider" to="." method="_on_cohesion_slider_drag_ended"]
+[connection signal="drag_ended" from="BehaviourLeftUI/MarginContainer/VBoxContainer/seperation/HSlider" to="." method="_on_separation_slider_drag_ended"]
+[connection signal="drag_ended" from="BehaviourLeftUI/MarginContainer/VBoxContainer/sep sensitivity/HSlider" to="." method="_on_sep_sensitivity_slider_drag_ended"]
+[connection signal="drag_ended" from="BehaviourLeftUI/MarginContainer/VBoxContainer/min speed/HSlider" to="." method="_on_min_speed_slider_drag_ended"]
+[connection signal="drag_ended" from="BehaviourLeftUI/MarginContainer/VBoxContainer/max speed/HSlider" to="." method="_on_max_speed_slider_drag_ended"]
+[connection signal="drag_ended" from="BehaviourLeftUI/MarginContainer/VBoxContainer/max acc/HSlider" to="." method="_on_max_acc_slider_drag_ended"]
+[connection signal="drag_ended" from="BehaviourLeftUI/MarginContainer/VBoxContainer/fov/HSlider" to="." method="_on_fov_slider_drag_ended"]
+[connection signal="drag_ended" from="BehaviourLeftUI/MarginContainer/VBoxContainer/detection radius/HSlider" to="." method="_on_detection_radius_slider_drag_ended"]
+[connection signal="drag_ended" from="BehaviourLeftUI/MarginContainer/VBoxContainer/trail length/HSlider" to="." method="_on_trail_length_slider_drag_ended"]
+[connection signal="pressed" from="BehaviourLeftUI/MarginContainer/VBoxContainer/ButtonTray/checkBoxes/trails_check" to="." method="_on_trails_check_pressed"]
+[connection signal="pressed" from="BehaviourLeftUI/MarginContainer/VBoxContainer/ButtonTray/checkBoxes/colors_check" to="." method="_on_colors_check_pressed"]
+[connection signal="pressed" from="BehaviourLeftUI/MarginContainer/VBoxContainer/ButtonTray/radomize_reset/reset_button" to="." method="_on_reset_button_pressed"]
+[connection signal="pressed" from="BehaviourLeftUI/MarginContainer/VBoxContainer/ButtonTray/radomize_reset/randomize_button" to="." method="_on_randomize_button_pressed"]

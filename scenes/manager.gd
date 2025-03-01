@@ -92,17 +92,15 @@ var flag : bool = false
 	
 	#pass
 
-# Helper function to assign random colors to each boid
 func apply_random_colors_to_boids(all_boids: Array) -> void:
 	print("all boids size : " , all_boids.size())
 	for boid in all_boids:
-		# Assign random color using HSV for bright colors
-		var hue = randf_range(0, 1)  # Random hue value between 0 and 1
-		var saturation = 0.8  # High saturation to ensure brightness
-		var value = 0.9  # High value for brightness
+		var hue = randf_range(0, 1)  
+		var saturation = 0.8 
+		var value = 0.9  
 		var random_color = Color.from_hsv(hue, saturation, value)
 		
-		boid.set_color(random_color)  # Call a method on the boid to change its color
+		boid.set_color(random_color)  
 
 
 
@@ -172,11 +170,8 @@ func assign_colors_to_clusters() -> void:
 	cluster_colors.clear()
 
 	for cluster_id in cluster_data.keys():
-		# Distribute hues evenly, but ensure it's not too similar
 		var hue = float(cluster_id) / MAX_CLUSTERS
-		# Set high saturation (0.8 to 1) for bright colors
 		var saturation = 0.9  # Higher saturation for vivid colors
-		# Set high value (0.8 to 1) for brightness
 		var value = 0.9  # Higher value for brightness
 		
 		# Ensure hue is a random or cyclic color distribution
