@@ -1,18 +1,36 @@
-[gd_scene load_steps=3 format=3 uid="uid://xkw6a187it4l"]
+[gd_scene load_steps=10 format=3 uid="uid://xkw6a187it4l"]
 
 [ext_resource type="Script" path="res://scenes/ui.gd" id="1_u4caq"]
+[ext_resource type="StyleBox" uid="uid://dobnsxrgh0at8" path="res://assets/green_ui.tres" id="2_1q8jw"]
+[ext_resource type="Texture2D" uid="uid://cu1f8hhhumh53" path="res://assets/080.png" id="3_ax8qs"]
+[ext_resource type="Texture2D" uid="uid://d10eka07byqbp" path="res://assets/081.png" id="4_na7wy"]
+[ext_resource type="Texture2D" uid="uid://bmflef66d6fmi" path="res://assets/066.png" id="5_7ouq4"]
+[ext_resource type="Texture2D" uid="uid://jc2rp4f8lkvx" path="res://assets/083.png" id="6_hgdna"]
+[ext_resource type="Texture2D" uid="uid://dgiskv3t8nqbq" path="res://assets/082.png" id="7_0glyu"]
 
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_js5fq"]
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_ayo66"]
+content_margin_left = 5.0
+content_margin_top = 5.0
+content_margin_right = 5.0
+content_margin_bottom = 5.0
+bg_color = Color(5.05373e-06, 0.778592, 0.376647, 1)
+corner_radius_top_left = 5
+corner_radius_top_right = 5
+corner_radius_bottom_right = 5
+corner_radius_bottom_left = 5
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_cnibp"]
 bg_color = Color(0, 0.497146, 0.233009, 1)
 border_width_left = 4
 border_width_top = 4
 border_width_right = 4
 border_width_bottom = 4
+border_color = Color(1, 1, 1, 1)
 border_blend = true
-corner_radius_top_right = 10
 corner_radius_bottom_right = 10
+corner_radius_bottom_left = 10
 
-[node name="ui" type="Control"]
+[node name="mainUI" type="Control"]
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
@@ -23,20 +41,23 @@ script = ExtResource("1_u4caq")
 
 [node name="hide_ui" type="CheckButton" parent="."]
 layout_mode = 1
-anchors_preset = 1
-anchor_left = 1.0
-anchor_right = 1.0
-offset_left = -44.0
-offset_right = 6.0
-offset_bottom = 25.0
-grow_horizontal = 0
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -25.0
+offset_top = -25.0
+offset_right = 25.0
+grow_horizontal = 2
+grow_vertical = 0
 scale = Vector2(1.5, 1.5)
-pivot_offset = Vector2(50, 0)
+pivot_offset = Vector2(0, 25)
 focus_mode = 0
 
 [node name="CPUParticles2D" type="CPUParticles2D" parent="hide_ui"]
 modulate = Color(0.0156863, 1, 0, 0.592157)
-position = Vector2(37, 16)
+position = Vector2(28, 11.4)
 amount = 10
 lifetime = 4.0
 preprocess = 10.0
@@ -54,157 +75,176 @@ angular_velocity_max = 100.0
 damping_max = 1.0
 scale_amount_max = 5.0
 
-[node name="BehaviourLeftUI" type="ScrollContainer" parent="."]
+[node name="BehaviourUILeft" type="ScrollContainer" parent="."]
 layout_mode = 1
 anchors_preset = -1
 anchor_right = 0.215
 anchor_bottom = 1.0
 offset_right = 8.0
 grow_vertical = 2
-theme_override_styles/panel = SubResource("StyleBoxFlat_js5fq")
+theme_override_styles/panel = ExtResource("2_1q8jw")
 
-[node name="MarginContainer" type="MarginContainer" parent="BehaviourLeftUI"]
+[node name="MarginContainer" type="MarginContainer" parent="BehaviourUILeft"]
 layout_mode = 2
 theme_override_constants/margin_left = 10
 theme_override_constants/margin_top = 10
 theme_override_constants/margin_right = 10
 theme_override_constants/margin_bottom = 10
 
-[node name="VBoxContainer" type="VBoxContainer" parent="BehaviourLeftUI/MarginContainer"]
+[node name="VBoxContainer" type="VBoxContainer" parent="BehaviourUILeft/MarginContainer"]
 layout_mode = 2
 size_flags_horizontal = 0
 size_flags_vertical = 0
 theme_override_constants/separation = 15
 
-[node name="RichTextLabel" type="RichTextLabel" parent="BehaviourLeftUI/MarginContainer/VBoxContainer"]
-visible = false
+[node name="RichTextLabel" type="RichTextLabel" parent="BehaviourUILeft/MarginContainer/VBoxContainer"]
 layout_mode = 2
 text = "Behaviour Parameters
 "
 fit_content = true
 
-[node name="alignment" type="VBoxContainer" parent="BehaviourLeftUI/MarginContainer/VBoxContainer"]
-visible = false
+[node name="alignment" type="VBoxContainer" parent="BehaviourUILeft/MarginContainer/VBoxContainer"]
 layout_mode = 2
 
-[node name="Label" type="Label" parent="BehaviourLeftUI/MarginContainer/VBoxContainer/alignment"]
+[node name="Label" type="Label" parent="BehaviourUILeft/MarginContainer/VBoxContainer/alignment"]
 layout_mode = 2
 text = "  Alignment"
 
-[node name="HSlider" type="HSlider" parent="BehaviourLeftUI/MarginContainer/VBoxContainer/alignment"]
+[node name="HSlider" type="HSlider" parent="BehaviourUILeft/MarginContainer/VBoxContainer/alignment"]
 layout_mode = 2
 max_value = 1.0
 step = 0.05
 
-[node name="cohesion" type="VBoxContainer" parent="BehaviourLeftUI/MarginContainer/VBoxContainer"]
+[node name="cohesion" type="VBoxContainer" parent="BehaviourUILeft/MarginContainer/VBoxContainer"]
 layout_mode = 2
 
-[node name="Label" type="Label" parent="BehaviourLeftUI/MarginContainer/VBoxContainer/cohesion"]
+[node name="Label" type="Label" parent="BehaviourUILeft/MarginContainer/VBoxContainer/cohesion"]
 layout_mode = 2
 text = "  Cohesion
 "
 
-[node name="HSlider" type="HSlider" parent="BehaviourLeftUI/MarginContainer/VBoxContainer/cohesion"]
+[node name="HSlider" type="HSlider" parent="BehaviourUILeft/MarginContainer/VBoxContainer/cohesion"]
 layout_mode = 2
 max_value = 10.0
 step = 0.5
 
-[node name="seperation" type="VBoxContainer" parent="BehaviourLeftUI/MarginContainer/VBoxContainer"]
+[node name="seperation" type="VBoxContainer" parent="BehaviourUILeft/MarginContainer/VBoxContainer"]
 layout_mode = 2
 
-[node name="Label" type="Label" parent="BehaviourLeftUI/MarginContainer/VBoxContainer/seperation"]
+[node name="Label" type="Label" parent="BehaviourUILeft/MarginContainer/VBoxContainer/seperation"]
 layout_mode = 2
 text = "   Seperation"
 
-[node name="HSlider" type="HSlider" parent="BehaviourLeftUI/MarginContainer/VBoxContainer/seperation"]
+[node name="HSlider" type="HSlider" parent="BehaviourUILeft/MarginContainer/VBoxContainer/seperation"]
 layout_mode = 2
 max_value = 1000.0
 
-[node name="sep sensitivity" type="VBoxContainer" parent="BehaviourLeftUI/MarginContainer/VBoxContainer"]
+[node name="sep sensitivity" type="VBoxContainer" parent="BehaviourUILeft/MarginContainer/VBoxContainer"]
 layout_mode = 2
 
-[node name="Label" type="Label" parent="BehaviourLeftUI/MarginContainer/VBoxContainer/sep sensitivity"]
+[node name="Label" type="Label" parent="BehaviourUILeft/MarginContainer/VBoxContainer/sep sensitivity"]
 layout_mode = 2
 text = "   Sep. Sensitivity"
 
-[node name="HSlider" type="HSlider" parent="BehaviourLeftUI/MarginContainer/VBoxContainer/sep sensitivity"]
+[node name="HSlider" type="HSlider" parent="BehaviourUILeft/MarginContainer/VBoxContainer/sep sensitivity"]
 layout_mode = 2
 max_value = 200.0
 
-[node name="min speed" type="VBoxContainer" parent="BehaviourLeftUI/MarginContainer/VBoxContainer"]
+[node name="min speed" type="VBoxContainer" parent="BehaviourUILeft/MarginContainer/VBoxContainer"]
 layout_mode = 2
 
-[node name="Label" type="Label" parent="BehaviourLeftUI/MarginContainer/VBoxContainer/min speed"]
+[node name="Label" type="Label" parent="BehaviourUILeft/MarginContainer/VBoxContainer/min speed"]
 layout_mode = 2
 text = "   Min Speed"
 
-[node name="HSlider" type="HSlider" parent="BehaviourLeftUI/MarginContainer/VBoxContainer/min speed"]
+[node name="HSlider" type="HSlider" parent="BehaviourUILeft/MarginContainer/VBoxContainer/min speed"]
 layout_mode = 2
 max_value = 500.0
 
-[node name="max speed" type="VBoxContainer" parent="BehaviourLeftUI/MarginContainer/VBoxContainer"]
+[node name="max speed" type="VBoxContainer" parent="BehaviourUILeft/MarginContainer/VBoxContainer"]
 layout_mode = 2
 
-[node name="Label" type="Label" parent="BehaviourLeftUI/MarginContainer/VBoxContainer/max speed"]
+[node name="Label" type="Label" parent="BehaviourUILeft/MarginContainer/VBoxContainer/max speed"]
 layout_mode = 2
 text = "   Max Speed"
 
-[node name="HSlider" type="HSlider" parent="BehaviourLeftUI/MarginContainer/VBoxContainer/max speed"]
+[node name="HSlider" type="HSlider" parent="BehaviourUILeft/MarginContainer/VBoxContainer/max speed"]
 layout_mode = 2
 max_value = 500.0
 
-[node name="max acc" type="VBoxContainer" parent="BehaviourLeftUI/MarginContainer/VBoxContainer"]
+[node name="max acc" type="VBoxContainer" parent="BehaviourUILeft/MarginContainer/VBoxContainer"]
 layout_mode = 2
 
-[node name="Label" type="Label" parent="BehaviourLeftUI/MarginContainer/VBoxContainer/max acc"]
+[node name="Label" type="Label" parent="BehaviourUILeft/MarginContainer/VBoxContainer/max acc"]
 layout_mode = 2
 text = "   Max Acceleration"
 metadata/_edit_group_ = true
 
-[node name="HSlider" type="HSlider" parent="BehaviourLeftUI/MarginContainer/VBoxContainer/max acc"]
+[node name="HSlider" type="HSlider" parent="BehaviourUILeft/MarginContainer/VBoxContainer/max acc"]
 layout_mode = 2
 max_value = 1000.0
 
-[node name="fov" type="VBoxContainer" parent="BehaviourLeftUI/MarginContainer/VBoxContainer"]
+[node name="fov" type="VBoxContainer" parent="BehaviourUILeft/MarginContainer/VBoxContainer"]
 layout_mode = 2
 
-[node name="Label" type="Label" parent="BehaviourLeftUI/MarginContainer/VBoxContainer/fov"]
+[node name="Label" type="Label" parent="BehaviourUILeft/MarginContainer/VBoxContainer/fov"]
 layout_mode = 2
 text = "   FOV"
 
-[node name="HSlider" type="HSlider" parent="BehaviourLeftUI/MarginContainer/VBoxContainer/fov"]
+[node name="HSlider" type="HSlider" parent="BehaviourUILeft/MarginContainer/VBoxContainer/fov"]
 layout_mode = 2
 max_value = 360.0
 
-[node name="detection radius" type="VBoxContainer" parent="BehaviourLeftUI/MarginContainer/VBoxContainer"]
+[node name="detection radius" type="VBoxContainer" parent="BehaviourUILeft/MarginContainer/VBoxContainer"]
 layout_mode = 2
 
-[node name="Label" type="Label" parent="BehaviourLeftUI/MarginContainer/VBoxContainer/detection radius"]
+[node name="Label" type="Label" parent="BehaviourUILeft/MarginContainer/VBoxContainer/detection radius"]
 layout_mode = 2
 text = "   Detection Radius**"
 
-[node name="HSlider" type="HSlider" parent="BehaviourLeftUI/MarginContainer/VBoxContainer/detection radius"]
+[node name="HSlider" type="HSlider" parent="BehaviourUILeft/MarginContainer/VBoxContainer/detection radius"]
 layout_mode = 2
 max_value = 500.0
 
-[node name="trail length" type="VBoxContainer" parent="BehaviourLeftUI/MarginContainer/VBoxContainer"]
+[node name="trail length" type="VBoxContainer" parent="BehaviourUILeft/MarginContainer/VBoxContainer"]
 layout_mode = 2
 
-[node name="Label" type="Label" parent="BehaviourLeftUI/MarginContainer/VBoxContainer/trail length"]
+[node name="Label" type="Label" parent="BehaviourUILeft/MarginContainer/VBoxContainer/trail length"]
 layout_mode = 2
 text = "   Trail Length"
 
-[node name="HSlider" type="HSlider" parent="BehaviourLeftUI/MarginContainer/VBoxContainer/trail length"]
+[node name="HSlider" type="HSlider" parent="BehaviourUILeft/MarginContainer/VBoxContainer/trail length"]
 layout_mode = 2
 
-[node name="ButtonTray" type="VBoxContainer" parent="BehaviourLeftUI/MarginContainer/VBoxContainer"]
+[node name="trail length2" type="VBoxContainer" parent="BehaviourUILeft/MarginContainer/VBoxContainer"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="BehaviourUILeft/MarginContainer/VBoxContainer/trail length2"]
+layout_mode = 2
+text = "   Trail Noise Addon"
+
+[node name="OptionButton" type="OptionButton" parent="BehaviourUILeft/MarginContainer/VBoxContainer/trail length2"]
+layout_mode = 2
+selected = 4
+item_count = 5
+popup/item_0/text = "Sine Wave"
+popup/item_1/text = "Perlin Noise"
+popup/item_1/id = 1
+popup/item_2/text = "Item 3"
+popup/item_2/id = 2
+popup/item_3/text = "Item 4"
+popup/item_3/id = 3
+popup/item_4/text = "None"
+popup/item_4/id = 4
+
+[node name="ButtonTray" type="VBoxContainer" parent="BehaviourUILeft/MarginContainer/VBoxContainer"]
 layout_mode = 2
 theme_override_constants/separation = 15
 
-[node name="checkBoxes" type="HBoxContainer" parent="BehaviourLeftUI/MarginContainer/VBoxContainer/ButtonTray"]
+[node name="checkBoxes" type="HBoxContainer" parent="BehaviourUILeft/MarginContainer/VBoxContainer/ButtonTray"]
 layout_mode = 2
 
-[node name="trails_check" type="CheckButton" parent="BehaviourLeftUI/MarginContainer/VBoxContainer/ButtonTray/checkBoxes"]
+[node name="trails_check" type="CheckButton" parent="BehaviourUILeft/MarginContainer/VBoxContainer/ButtonTray/checkBoxes"]
 layout_mode = 2
 size_flags_horizontal = 3
 focus_mode = 0
@@ -212,56 +252,327 @@ text = "Trails"
 alignment = 1
 icon_alignment = 1
 
-[node name="colors_check" type="CheckButton" parent="BehaviourLeftUI/MarginContainer/VBoxContainer/ButtonTray/checkBoxes"]
+[node name="colors_check" type="CheckButton" parent="BehaviourUILeft/MarginContainer/VBoxContainer/ButtonTray/checkBoxes"]
 layout_mode = 2
 size_flags_horizontal = 3
 focus_mode = 0
 text = "Clusters"
 
-[node name="info" type="HBoxContainer" parent="BehaviourLeftUI/MarginContainer/VBoxContainer/ButtonTray"]
+[node name="info" type="HBoxContainer" parent="BehaviourUILeft/MarginContainer/VBoxContainer/ButtonTray"]
 layout_mode = 2
 size_flags_vertical = 4
 
-[node name="fps" type="Label" parent="BehaviourLeftUI/MarginContainer/VBoxContainer/ButtonTray/info"]
+[node name="fps" type="Label" parent="BehaviourUILeft/MarginContainer/VBoxContainer/ButtonTray/info"]
 layout_mode = 2
 size_flags_horizontal = 3
 text = "FPS: "
 
-[node name="boid_count" type="Label" parent="BehaviourLeftUI/MarginContainer/VBoxContainer/ButtonTray/info"]
+[node name="boid_count" type="Label" parent="BehaviourUILeft/MarginContainer/VBoxContainer/ButtonTray/info"]
 layout_mode = 2
 size_flags_horizontal = 3
 text = "Boids: "
 
-[node name="radomize_reset" type="HBoxContainer" parent="BehaviourLeftUI/MarginContainer/VBoxContainer/ButtonTray"]
+[node name="radomize_reset" type="HBoxContainer" parent="BehaviourUILeft/MarginContainer/VBoxContainer/ButtonTray"]
 layout_mode = 2
 theme_override_constants/separation = 25
 alignment = 1
 
-[node name="reset_button" type="Button" parent="BehaviourLeftUI/MarginContainer/VBoxContainer/ButtonTray/radomize_reset"]
+[node name="reset_button" type="Button" parent="BehaviourUILeft/MarginContainer/VBoxContainer/ButtonTray/radomize_reset"]
 layout_mode = 2
 size_flags_horizontal = 3
 focus_mode = 0
 text = "Reset"
 metadata/_edit_group_ = true
 
-[node name="randomize_button" type="Button" parent="BehaviourLeftUI/MarginContainer/VBoxContainer/ButtonTray/radomize_reset"]
+[node name="randomize_button" type="Button" parent="BehaviourUILeft/MarginContainer/VBoxContainer/ButtonTray/radomize_reset"]
 layout_mode = 2
 size_flags_horizontal = 3
 focus_mode = 0
 text = "Randomize"
 
+[node name="ElementUIRight" type="ScrollContainer" parent="."]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.785
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 0
+grow_vertical = 2
+theme_override_styles/panel = ExtResource("2_1q8jw")
+
+[node name="MarginContainer" type="MarginContainer" parent="ElementUIRight"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+theme_override_constants/margin_left = 10
+theme_override_constants/margin_top = 10
+theme_override_constants/margin_right = 10
+theme_override_constants/margin_bottom = 10
+
+[node name="VBoxContainer" type="VBoxContainer" parent="ElementUIRight/MarginContainer"]
+layout_mode = 2
+theme_override_constants/separation = 15
+
+[node name="spawn_despawn" type="PanelContainer" parent="ElementUIRight/MarginContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_ayo66")
+
+[node name="SpawnBoids" type="VBoxContainer" parent="ElementUIRight/MarginContainer/VBoxContainer/spawn_despawn"]
+layout_mode = 2
+theme_override_constants/separation = 5
+
+[node name="Label" type="Label" parent="ElementUIRight/MarginContainer/VBoxContainer/spawn_despawn/SpawnBoids"]
+layout_mode = 2
+text = "Spawn Boids : "
+
+[node name="spawn buttons" type="HBoxContainer" parent="ElementUIRight/MarginContainer/VBoxContainer/spawn_despawn/SpawnBoids"]
+layout_mode = 2
+theme_override_constants/separation = 9
+
+[node name="Button" type="Button" parent="ElementUIRight/MarginContainer/VBoxContainer/spawn_despawn/SpawnBoids/spawn buttons"]
+custom_minimum_size = Vector2(45, 0)
+layout_mode = 2
+text = "+10"
+
+[node name="Button2" type="Button" parent="ElementUIRight/MarginContainer/VBoxContainer/spawn_despawn/SpawnBoids/spawn buttons"]
+custom_minimum_size = Vector2(45, 0)
+layout_mode = 2
+text = "+25"
+
+[node name="Button3" type="Button" parent="ElementUIRight/MarginContainer/VBoxContainer/spawn_despawn/SpawnBoids/spawn buttons"]
+custom_minimum_size = Vector2(45, 0)
+layout_mode = 2
+text = "+50"
+
+[node name="Button4" type="Button" parent="ElementUIRight/MarginContainer/VBoxContainer/spawn_despawn/SpawnBoids/spawn buttons"]
+layout_mode = 2
+text = "+100"
+
+[node name="deSpawn buttons" type="HBoxContainer" parent="ElementUIRight/MarginContainer/VBoxContainer/spawn_despawn/SpawnBoids"]
+layout_mode = 2
+theme_override_constants/separation = 9
+
+[node name="Button" type="Button" parent="ElementUIRight/MarginContainer/VBoxContainer/spawn_despawn/SpawnBoids/deSpawn buttons"]
+custom_minimum_size = Vector2(45, 0)
+layout_mode = 2
+text = "-10"
+
+[node name="Button2" type="Button" parent="ElementUIRight/MarginContainer/VBoxContainer/spawn_despawn/SpawnBoids/deSpawn buttons"]
+custom_minimum_size = Vector2(45, 0)
+layout_mode = 2
+text = "-25"
+
+[node name="Button3" type="Button" parent="ElementUIRight/MarginContainer/VBoxContainer/spawn_despawn/SpawnBoids/deSpawn buttons"]
+custom_minimum_size = Vector2(45, 0)
+layout_mode = 2
+text = "-50"
+
+[node name="Button4" type="Button" parent="ElementUIRight/MarginContainer/VBoxContainer/spawn_despawn/SpawnBoids/deSpawn buttons"]
+custom_minimum_size = Vector2(45, 0)
+layout_mode = 2
+text = "-100"
+
+[node name="obstaclePlacement" type="PanelContainer" parent="ElementUIRight/MarginContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_ayo66")
+
+[node name="VBoxContainer" type="VBoxContainer" parent="ElementUIRight/MarginContainer/VBoxContainer/obstaclePlacement"]
+layout_mode = 2
+theme_override_constants/separation = 15
+
+[node name="Label" type="Label" parent="ElementUIRight/MarginContainer/VBoxContainer/obstaclePlacement/VBoxContainer"]
+layout_mode = 2
+text = "Obstacles : "
+
+[node name="HSeparator" type="HSeparator" parent="ElementUIRight/MarginContainer/VBoxContainer/obstaclePlacement/VBoxContainer"]
+visible = false
+layout_mode = 2
+
+[node name="GridContainer" type="GridContainer" parent="ElementUIRight/MarginContainer/VBoxContainer/obstaclePlacement/VBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 4
+theme_override_constants/h_separation = 0
+columns = 3
+
+[node name="TextureRect" type="TextureRect" parent="ElementUIRight/MarginContainer/VBoxContainer/obstaclePlacement/VBoxContainer/GridContainer"]
+custom_minimum_size = Vector2(64, 64)
+layout_mode = 2
+texture = ExtResource("3_ax8qs")
+expand_mode = 1
+stretch_mode = 5
+
+[node name="TextureRect2" type="TextureRect" parent="ElementUIRight/MarginContainer/VBoxContainer/obstaclePlacement/VBoxContainer/GridContainer"]
+layout_mode = 2
+
+[node name="TextureRect3" type="TextureRect" parent="ElementUIRight/MarginContainer/VBoxContainer/obstaclePlacement/VBoxContainer/GridContainer"]
+custom_minimum_size = Vector2(64, 64)
+layout_mode = 2
+texture = ExtResource("4_na7wy")
+expand_mode = 1
+
+[node name="TextureRect4" type="TextureRect" parent="ElementUIRight/MarginContainer/VBoxContainer/obstaclePlacement/VBoxContainer/GridContainer"]
+layout_mode = 2
+
+[node name="TextureRect5" type="TextureRect" parent="ElementUIRight/MarginContainer/VBoxContainer/obstaclePlacement/VBoxContainer/GridContainer"]
+custom_minimum_size = Vector2(64, 64)
+layout_mode = 2
+texture = ExtResource("5_7ouq4")
+expand_mode = 1
+
+[node name="TextureRect6" type="TextureRect" parent="ElementUIRight/MarginContainer/VBoxContainer/obstaclePlacement/VBoxContainer/GridContainer"]
+layout_mode = 2
+
+[node name="TextureRect7" type="TextureRect" parent="ElementUIRight/MarginContainer/VBoxContainer/obstaclePlacement/VBoxContainer/GridContainer"]
+custom_minimum_size = Vector2(64, 64)
+layout_mode = 2
+texture = ExtResource("6_hgdna")
+expand_mode = 1
+
+[node name="TextureRect8" type="TextureRect" parent="ElementUIRight/MarginContainer/VBoxContainer/obstaclePlacement/VBoxContainer/GridContainer"]
+layout_mode = 2
+
+[node name="TextureRect9" type="TextureRect" parent="ElementUIRight/MarginContainer/VBoxContainer/obstaclePlacement/VBoxContainer/GridContainer"]
+custom_minimum_size = Vector2(64, 64)
+layout_mode = 2
+texture = ExtResource("7_0glyu")
+expand_mode = 1
+
+[node name="HSeparator2" type="HSeparator" parent="ElementUIRight/MarginContainer/VBoxContainer/obstaclePlacement/VBoxContainer"]
+visible = false
+layout_mode = 2
+
+[node name="HBoxContainer" type="HBoxContainer" parent="ElementUIRight/MarginContainer/VBoxContainer/obstaclePlacement/VBoxContainer"]
+layout_mode = 2
+alignment = 1
+
+[node name="Label" type="Label" parent="ElementUIRight/MarginContainer/VBoxContainer/obstaclePlacement/VBoxContainer/HBoxContainer"]
+layout_mode = 2
+text = "Place"
+
+[node name="CheckButton" type="CheckButton" parent="ElementUIRight/MarginContainer/VBoxContainer/obstaclePlacement/VBoxContainer/HBoxContainer"]
+layout_mode = 2
+
+[node name="Label2" type="Label" parent="ElementUIRight/MarginContainer/VBoxContainer/obstaclePlacement/VBoxContainer/HBoxContainer"]
+layout_mode = 2
+text = "Delete"
+
+[node name="presetBehaviour" type="PanelContainer" parent="ElementUIRight/MarginContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_ayo66")
+
+[node name="loadPresets" type="VBoxContainer" parent="ElementUIRight/MarginContainer/VBoxContainer/presetBehaviour"]
+layout_mode = 2
+theme_override_constants/separation = 15
+
+[node name="Label" type="Label" parent="ElementUIRight/MarginContainer/VBoxContainer/presetBehaviour/loadPresets"]
+layout_mode = 2
+text = "Pre-saved Config : "
+
+[node name="HBoxContainer" type="HBoxContainer" parent="ElementUIRight/MarginContainer/VBoxContainer/presetBehaviour/loadPresets"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="ElementUIRight/MarginContainer/VBoxContainer/presetBehaviour/loadPresets/HBoxContainer"]
+layout_mode = 2
+text = "Behaviour"
+
+[node name="OptionButton" type="OptionButton" parent="ElementUIRight/MarginContainer/VBoxContainer/presetBehaviour/loadPresets/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+item_count = 3
+popup/item_0/text = "item 1"
+popup/item_1/text = "item 2"
+popup/item_1/id = 1
+popup/item_2/text = "item 3"
+popup/item_2/id = 2
+
+[node name="HBoxContainer2" type="HBoxContainer" parent="ElementUIRight/MarginContainer/VBoxContainer/presetBehaviour/loadPresets"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="ElementUIRight/MarginContainer/VBoxContainer/presetBehaviour/loadPresets/HBoxContainer2"]
+layout_mode = 2
+text = "Obstacles "
+
+[node name="OptionButton" type="OptionButton" parent="ElementUIRight/MarginContainer/VBoxContainer/presetBehaviour/loadPresets/HBoxContainer2"]
+layout_mode = 2
+size_flags_horizontal = 3
+item_count = 3
+popup/item_0/text = "item 1"
+popup/item_1/text = "item 2"
+popup/item_1/id = 1
+popup/item_2/text = "item 3"
+popup/item_2/id = 2
+
+[node name="dataJiggle" type="PanelContainer" parent="ElementUIRight/MarginContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_ayo66")
+
+[node name="VBoxContainer" type="VBoxContainer" parent="ElementUIRight/MarginContainer/VBoxContainer/dataJiggle"]
+layout_mode = 2
+theme_override_constants/separation = 10
+
+[node name="Label" type="Label" parent="ElementUIRight/MarginContainer/VBoxContainer/dataJiggle/VBoxContainer"]
+layout_mode = 2
+text = "Data Handling :"
+
+[node name="importExport" type="VBoxContainer" parent="ElementUIRight/MarginContainer/VBoxContainer/dataJiggle/VBoxContainer"]
+layout_mode = 2
+theme_override_constants/separation = 9
+
+[node name="Button" type="Button" parent="ElementUIRight/MarginContainer/VBoxContainer/dataJiggle/VBoxContainer/importExport"]
+layout_mode = 2
+text = "Save Behaviour"
+
+[node name="Button2" type="Button" parent="ElementUIRight/MarginContainer/VBoxContainer/dataJiggle/VBoxContainer/importExport"]
+layout_mode = 2
+text = "Save Obs. Placement"
+
+[node name="Button3" type="Button" parent="ElementUIRight/MarginContainer/VBoxContainer/dataJiggle/VBoxContainer/importExport"]
+layout_mode = 2
+text = "Import Configuration"
+
+[node name="Button4" type="Button" parent="ElementUIRight/MarginContainer/VBoxContainer/dataJiggle/VBoxContainer/importExport"]
+layout_mode = 2
+text = "Export Configuration"
+
+[node name="DebugUITop" type="ScrollContainer" parent="."]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -20.0
+offset_right = 20.0
+offset_bottom = 40.0
+grow_horizontal = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_cnibp")
+metadata/_edit_use_anchors_ = true
+
+[node name="MarginContainer" type="MarginContainer" parent="DebugUITop"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+theme_override_constants/margin_left = 10
+theme_override_constants/margin_top = 10
+theme_override_constants/margin_right = 10
+theme_override_constants/margin_bottom = 10
+
+[node name="VBoxContainer" type="VBoxContainer" parent="DebugUITop/MarginContainer"]
+layout_mode = 2
+
+[node name="HBoxContainer" type="HBoxContainer" parent="DebugUITop/MarginContainer"]
+layout_mode = 2
+
 [connection signal="pressed" from="hide_ui" to="." method="_on_hide_ui_pressed"]
-[connection signal="drag_ended" from="BehaviourLeftUI/MarginContainer/VBoxContainer/alignment/HSlider" to="." method="_on_alignment_slider_drag_ended"]
-[connection signal="drag_ended" from="BehaviourLeftUI/MarginContainer/VBoxContainer/cohesion/HSlider" to="." method="_on_cohesion_slider_drag_ended"]
-[connection signal="drag_ended" from="BehaviourLeftUI/MarginContainer/VBoxContainer/seperation/HSlider" to="." method="_on_separation_slider_drag_ended"]
-[connection signal="drag_ended" from="BehaviourLeftUI/MarginContainer/VBoxContainer/sep sensitivity/HSlider" to="." method="_on_sep_sensitivity_slider_drag_ended"]
-[connection signal="drag_ended" from="BehaviourLeftUI/MarginContainer/VBoxContainer/min speed/HSlider" to="." method="_on_min_speed_slider_drag_ended"]
-[connection signal="drag_ended" from="BehaviourLeftUI/MarginContainer/VBoxContainer/max speed/HSlider" to="." method="_on_max_speed_slider_drag_ended"]
-[connection signal="drag_ended" from="BehaviourLeftUI/MarginContainer/VBoxContainer/max acc/HSlider" to="." method="_on_max_acc_slider_drag_ended"]
-[connection signal="drag_ended" from="BehaviourLeftUI/MarginContainer/VBoxContainer/fov/HSlider" to="." method="_on_fov_slider_drag_ended"]
-[connection signal="drag_ended" from="BehaviourLeftUI/MarginContainer/VBoxContainer/detection radius/HSlider" to="." method="_on_detection_radius_slider_drag_ended"]
-[connection signal="drag_ended" from="BehaviourLeftUI/MarginContainer/VBoxContainer/trail length/HSlider" to="." method="_on_trail_length_slider_drag_ended"]
-[connection signal="pressed" from="BehaviourLeftUI/MarginContainer/VBoxContainer/ButtonTray/checkBoxes/trails_check" to="." method="_on_trails_check_pressed"]
-[connection signal="pressed" from="BehaviourLeftUI/MarginContainer/VBoxContainer/ButtonTray/checkBoxes/colors_check" to="." method="_on_colors_check_pressed"]
-[connection signal="pressed" from="BehaviourLeftUI/MarginContainer/VBoxContainer/ButtonTray/radomize_reset/reset_button" to="." method="_on_reset_button_pressed"]
-[connection signal="pressed" from="BehaviourLeftUI/MarginContainer/VBoxContainer/ButtonTray/radomize_reset/randomize_button" to="." method="_on_randomize_button_pressed"]
+[connection signal="drag_ended" from="BehaviourUILeft/MarginContainer/VBoxContainer/alignment/HSlider" to="." method="_on_alignment_slider_drag_ended"]
+[connection signal="drag_ended" from="BehaviourUILeft/MarginContainer/VBoxContainer/cohesion/HSlider" to="." method="_on_cohesion_slider_drag_ended"]
+[connection signal="drag_ended" from="BehaviourUILeft/MarginContainer/VBoxContainer/seperation/HSlider" to="." method="_on_separation_slider_drag_ended"]
+[connection signal="drag_ended" from="BehaviourUILeft/MarginContainer/VBoxContainer/sep sensitivity/HSlider" to="." method="_on_sep_sensitivity_slider_drag_ended"]
+[connection signal="drag_ended" from="BehaviourUILeft/MarginContainer/VBoxContainer/min speed/HSlider" to="." method="_on_min_speed_slider_drag_ended"]
+[connection signal="drag_ended" from="BehaviourUILeft/MarginContainer/VBoxContainer/max speed/HSlider" to="." method="_on_max_speed_slider_drag_ended"]
+[connection signal="drag_ended" from="BehaviourUILeft/MarginContainer/VBoxContainer/max acc/HSlider" to="." method="_on_max_acc_slider_drag_ended"]
+[connection signal="drag_ended" from="BehaviourUILeft/MarginContainer/VBoxContainer/fov/HSlider" to="." method="_on_fov_slider_drag_ended"]
+[connection signal="drag_ended" from="BehaviourUILeft/MarginContainer/VBoxContainer/detection radius/HSlider" to="." method="_on_detection_radius_slider_drag_ended"]
+[connection signal="drag_ended" from="BehaviourUILeft/MarginContainer/VBoxContainer/trail length/HSlider" to="." method="_on_trail_length_slider_drag_ended"]
+[connection signal="pressed" from="BehaviourUILeft/MarginContainer/VBoxContainer/ButtonTray/checkBoxes/trails_check" to="." method="_on_trails_check_pressed"]
+[connection signal="pressed" from="BehaviourUILeft/MarginContainer/VBoxContainer/ButtonTray/checkBoxes/colors_check" to="." method="_on_colors_check_pressed"]
+[connection signal="pressed" from="BehaviourUILeft/MarginContainer/VBoxContainer/ButtonTray/radomize_reset/reset_button" to="." method="_on_reset_button_pressed"]
+[connection signal="pressed" from="BehaviourUILeft/MarginContainer/VBoxContainer/ButtonTray/radomize_reset/randomize_button" to="." method="_on_randomize_button_pressed"]
