@@ -1,26 +1,27 @@
-[gd_scene load_steps=10 format=3 uid="uid://xkw6a187it4l"]
+[gd_scene load_steps=11 format=3 uid="uid://xkw6a187it4l"]
 
 [ext_resource type="Script" path="res://scenes/ui.gd" id="1_u4caq"]
 [ext_resource type="StyleBox" uid="uid://dobnsxrgh0at8" path="res://assets/green_ui.tres" id="2_1q8jw"]
 [ext_resource type="Texture2D" uid="uid://cu1f8hhhumh53" path="res://assets/080.png" id="3_ax8qs"]
+[ext_resource type="StyleBox" uid="uid://cyti6r7mqrxvv" path="res://assets/green_panel_container.tres" id="3_yrw33"]
 [ext_resource type="Texture2D" uid="uid://d10eka07byqbp" path="res://assets/081.png" id="4_na7wy"]
 [ext_resource type="Texture2D" uid="uid://bmflef66d6fmi" path="res://assets/066.png" id="5_7ouq4"]
 [ext_resource type="Texture2D" uid="uid://jc2rp4f8lkvx" path="res://assets/083.png" id="6_hgdna"]
 [ext_resource type="Texture2D" uid="uid://dgiskv3t8nqbq" path="res://assets/082.png" id="7_0glyu"]
 
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_ayo66"]
-content_margin_left = 5.0
-content_margin_top = 5.0
-content_margin_right = 5.0
-content_margin_bottom = 5.0
-bg_color = Color(5.05373e-06, 0.778592, 0.376647, 1)
-corner_radius_top_left = 5
-corner_radius_top_right = 5
-corner_radius_bottom_right = 5
-corner_radius_bottom_left = 5
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_o5y1s"]
+bg_color = Color(0, 0.317647, 0.137255, 1)
+border_width_left = 4
+border_width_top = 4
+border_width_right = 4
+border_width_bottom = 4
+border_color = Color(1, 1, 1, 1)
+border_blend = true
+corner_radius_top_left = 10
+corner_radius_bottom_left = 20
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_cnibp"]
-bg_color = Color(0, 0.497146, 0.233009, 1)
+bg_color = Color(2.70735e-07, 0.316476, 0.138768, 1)
 border_width_left = 4
 border_width_top = 4
 border_width_right = 4
@@ -108,7 +109,7 @@ layout_mode = 2
 
 [node name="Label" type="Label" parent="BehaviourUILeft/MarginContainer/VBoxContainer/alignment"]
 layout_mode = 2
-text = "  Alignment"
+text = "Alignment"
 
 [node name="HSlider" type="HSlider" parent="BehaviourUILeft/MarginContainer/VBoxContainer/alignment"]
 layout_mode = 2
@@ -120,7 +121,7 @@ layout_mode = 2
 
 [node name="Label" type="Label" parent="BehaviourUILeft/MarginContainer/VBoxContainer/cohesion"]
 layout_mode = 2
-text = "  Cohesion
+text = "Cohesion
 "
 
 [node name="HSlider" type="HSlider" parent="BehaviourUILeft/MarginContainer/VBoxContainer/cohesion"]
@@ -133,7 +134,7 @@ layout_mode = 2
 
 [node name="Label" type="Label" parent="BehaviourUILeft/MarginContainer/VBoxContainer/seperation"]
 layout_mode = 2
-text = "   Seperation"
+text = "Seperation"
 
 [node name="HSlider" type="HSlider" parent="BehaviourUILeft/MarginContainer/VBoxContainer/seperation"]
 layout_mode = 2
@@ -144,13 +145,14 @@ layout_mode = 2
 
 [node name="Label" type="Label" parent="BehaviourUILeft/MarginContainer/VBoxContainer/sep sensitivity"]
 layout_mode = 2
-text = "   Sep. Sensitivity"
+text = "Sep. Sensitivity"
 
 [node name="HSlider" type="HSlider" parent="BehaviourUILeft/MarginContainer/VBoxContainer/sep sensitivity"]
 layout_mode = 2
 max_value = 200.0
 
 [node name="min speed" type="VBoxContainer" parent="BehaviourUILeft/MarginContainer/VBoxContainer"]
+visible = false
 layout_mode = 2
 
 [node name="Label" type="Label" parent="BehaviourUILeft/MarginContainer/VBoxContainer/min speed"]
@@ -166,7 +168,7 @@ layout_mode = 2
 
 [node name="Label" type="Label" parent="BehaviourUILeft/MarginContainer/VBoxContainer/max speed"]
 layout_mode = 2
-text = "   Max Speed"
+text = "Max Speed"
 
 [node name="HSlider" type="HSlider" parent="BehaviourUILeft/MarginContainer/VBoxContainer/max speed"]
 layout_mode = 2
@@ -177,7 +179,7 @@ layout_mode = 2
 
 [node name="Label" type="Label" parent="BehaviourUILeft/MarginContainer/VBoxContainer/max acc"]
 layout_mode = 2
-text = "   Max Acceleration"
+text = "Max Acceleration"
 metadata/_edit_group_ = true
 
 [node name="HSlider" type="HSlider" parent="BehaviourUILeft/MarginContainer/VBoxContainer/max acc"]
@@ -189,7 +191,7 @@ layout_mode = 2
 
 [node name="Label" type="Label" parent="BehaviourUILeft/MarginContainer/VBoxContainer/fov"]
 layout_mode = 2
-text = "   FOV"
+text = "FOV"
 
 [node name="HSlider" type="HSlider" parent="BehaviourUILeft/MarginContainer/VBoxContainer/fov"]
 layout_mode = 2
@@ -200,7 +202,7 @@ layout_mode = 2
 
 [node name="Label" type="Label" parent="BehaviourUILeft/MarginContainer/VBoxContainer/detection radius"]
 layout_mode = 2
-text = "   Detection Radius**"
+text = "Detection Radius*"
 
 [node name="HSlider" type="HSlider" parent="BehaviourUILeft/MarginContainer/VBoxContainer/detection radius"]
 layout_mode = 2
@@ -211,19 +213,19 @@ layout_mode = 2
 
 [node name="Label" type="Label" parent="BehaviourUILeft/MarginContainer/VBoxContainer/trail length"]
 layout_mode = 2
-text = "   Trail Length"
+text = "Trail Length*"
 
 [node name="HSlider" type="HSlider" parent="BehaviourUILeft/MarginContainer/VBoxContainer/trail length"]
 layout_mode = 2
 
-[node name="trail length2" type="VBoxContainer" parent="BehaviourUILeft/MarginContainer/VBoxContainer"]
+[node name="trail noise" type="VBoxContainer" parent="BehaviourUILeft/MarginContainer/VBoxContainer"]
 layout_mode = 2
 
-[node name="Label" type="Label" parent="BehaviourUILeft/MarginContainer/VBoxContainer/trail length2"]
+[node name="Label" type="Label" parent="BehaviourUILeft/MarginContainer/VBoxContainer/trail noise"]
 layout_mode = 2
-text = "   Trail Noise Addon"
+text = "Trail Noise Addon"
 
-[node name="OptionButton" type="OptionButton" parent="BehaviourUILeft/MarginContainer/VBoxContainer/trail length2"]
+[node name="OptionButton" type="OptionButton" parent="BehaviourUILeft/MarginContainer/VBoxContainer/trail noise"]
 layout_mode = 2
 selected = 4
 item_count = 5
@@ -258,20 +260,6 @@ size_flags_horizontal = 3
 focus_mode = 0
 text = "Clusters"
 
-[node name="info" type="HBoxContainer" parent="BehaviourUILeft/MarginContainer/VBoxContainer/ButtonTray"]
-layout_mode = 2
-size_flags_vertical = 4
-
-[node name="fps" type="Label" parent="BehaviourUILeft/MarginContainer/VBoxContainer/ButtonTray/info"]
-layout_mode = 2
-size_flags_horizontal = 3
-text = "FPS: "
-
-[node name="boid_count" type="Label" parent="BehaviourUILeft/MarginContainer/VBoxContainer/ButtonTray/info"]
-layout_mode = 2
-size_flags_horizontal = 3
-text = "Boids: "
-
 [node name="radomize_reset" type="HBoxContainer" parent="BehaviourUILeft/MarginContainer/VBoxContainer/ButtonTray"]
 layout_mode = 2
 theme_override_constants/separation = 25
@@ -298,7 +286,7 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 0
 grow_vertical = 2
-theme_override_styles/panel = ExtResource("2_1q8jw")
+theme_override_styles/panel = SubResource("StyleBoxFlat_o5y1s")
 
 [node name="MarginContainer" type="MarginContainer" parent="ElementUIRight"]
 layout_mode = 2
@@ -315,7 +303,7 @@ theme_override_constants/separation = 15
 
 [node name="spawn_despawn" type="PanelContainer" parent="ElementUIRight/MarginContainer/VBoxContainer"]
 layout_mode = 2
-theme_override_styles/panel = SubResource("StyleBoxFlat_ayo66")
+theme_override_styles/panel = ExtResource("3_yrw33")
 
 [node name="SpawnBoids" type="VBoxContainer" parent="ElementUIRight/MarginContainer/VBoxContainer/spawn_despawn"]
 layout_mode = 2
@@ -374,7 +362,7 @@ text = "-100"
 
 [node name="obstaclePlacement" type="PanelContainer" parent="ElementUIRight/MarginContainer/VBoxContainer"]
 layout_mode = 2
-theme_override_styles/panel = SubResource("StyleBoxFlat_ayo66")
+theme_override_styles/panel = ExtResource("3_yrw33")
 
 [node name="VBoxContainer" type="VBoxContainer" parent="ElementUIRight/MarginContainer/VBoxContainer/obstaclePlacement"]
 layout_mode = 2
@@ -458,7 +446,7 @@ text = "Delete"
 
 [node name="presetBehaviour" type="PanelContainer" parent="ElementUIRight/MarginContainer/VBoxContainer"]
 layout_mode = 2
-theme_override_styles/panel = SubResource("StyleBoxFlat_ayo66")
+theme_override_styles/panel = ExtResource("3_yrw33")
 
 [node name="loadPresets" type="VBoxContainer" parent="ElementUIRight/MarginContainer/VBoxContainer/presetBehaviour"]
 layout_mode = 2
@@ -504,7 +492,7 @@ popup/item_2/id = 2
 
 [node name="dataJiggle" type="PanelContainer" parent="ElementUIRight/MarginContainer/VBoxContainer"]
 layout_mode = 2
-theme_override_styles/panel = SubResource("StyleBoxFlat_ayo66")
+theme_override_styles/panel = ExtResource("3_yrw33")
 
 [node name="VBoxContainer" type="VBoxContainer" parent="ElementUIRight/MarginContainer/VBoxContainer/dataJiggle"]
 layout_mode = 2
@@ -535,6 +523,7 @@ layout_mode = 2
 text = "Export Configuration"
 
 [node name="DebugUITop" type="ScrollContainer" parent="."]
+custom_minimum_size = Vector2(550, 0)
 layout_mode = 1
 anchors_preset = -1
 anchor_left = 0.5
@@ -544,6 +533,8 @@ offset_right = 20.0
 offset_bottom = 40.0
 grow_horizontal = 2
 theme_override_styles/panel = SubResource("StyleBoxFlat_cnibp")
+horizontal_scroll_mode = 0
+vertical_scroll_mode = 0
 metadata/_edit_use_anchors_ = true
 
 [node name="MarginContainer" type="MarginContainer" parent="DebugUITop"]
@@ -555,11 +546,146 @@ theme_override_constants/margin_top = 10
 theme_override_constants/margin_right = 10
 theme_override_constants/margin_bottom = 10
 
-[node name="VBoxContainer" type="VBoxContainer" parent="DebugUITop/MarginContainer"]
-layout_mode = 2
-
 [node name="HBoxContainer" type="HBoxContainer" parent="DebugUITop/MarginContainer"]
 layout_mode = 2
+theme_override_constants/separation = 10
+
+[node name="boids + beautify" type="VBoxContainer" parent="DebugUITop/MarginContainer/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_constants/separation = 10
+
+[node name="boidContainer" type="PanelContainer" parent="DebugUITop/MarginContainer/HBoxContainer/boids + beautify"]
+layout_mode = 2
+theme_override_styles/panel = ExtResource("3_yrw33")
+
+[node name="boids" type="VBoxContainer" parent="DebugUITop/MarginContainer/HBoxContainer/boids + beautify/boidContainer"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="DebugUITop/MarginContainer/HBoxContainer/boids + beautify/boidContainer/boids"]
+layout_mode = 2
+text = "BOIDS :"
+
+[node name="CheckBox" type="CheckBox" parent="DebugUITop/MarginContainer/HBoxContainer/boids + beautify/boidContainer/boids"]
+layout_mode = 2
+text = "Velocity Vector"
+
+[node name="CheckBox2" type="CheckBox" parent="DebugUITop/MarginContainer/HBoxContainer/boids + beautify/boidContainer/boids"]
+layout_mode = 2
+text = "Acceleration Vector"
+
+[node name="CheckBox3" type="CheckBox" parent="DebugUITop/MarginContainer/HBoxContainer/boids + beautify/boidContainer/boids"]
+layout_mode = 2
+text = "FOV + Perception Radii"
+
+[node name="CheckBox4" type="CheckBox" parent="DebugUITop/MarginContainer/HBoxContainer/boids + beautify/boidContainer/boids"]
+layout_mode = 2
+text = "Agent ID"
+
+[node name="HSeparator" type="HSeparator" parent="DebugUITop/MarginContainer/HBoxContainer/boids + beautify"]
+layout_mode = 2
+
+[node name="beautifyContainer" type="PanelContainer" parent="DebugUITop/MarginContainer/HBoxContainer/boids + beautify"]
+layout_mode = 2
+theme_override_styles/panel = ExtResource("3_yrw33")
+
+[node name="beautify" type="VBoxContainer" parent="DebugUITop/MarginContainer/HBoxContainer/boids + beautify/beautifyContainer"]
+layout_mode = 2
+
+[node name="Label2" type="Label" parent="DebugUITop/MarginContainer/HBoxContainer/boids + beautify/beautifyContainer/beautify"]
+layout_mode = 2
+text = "VISUALS : "
+
+[node name="CheckBox5" type="CheckBox" parent="DebugUITop/MarginContainer/HBoxContainer/boids + beautify/beautifyContainer/beautify"]
+layout_mode = 2
+text = "Light up boids"
+
+[node name="CheckBox6" type="CheckBox" parent="DebugUITop/MarginContainer/HBoxContainer/boids + beautify/beautifyContainer/beautify"]
+layout_mode = 2
+text = "Light up obstacles"
+
+[node name="CheckBox7" type="CheckBox" parent="DebugUITop/MarginContainer/HBoxContainer/boids + beautify/beautifyContainer/beautify"]
+layout_mode = 2
+text = "Occlude Light*"
+
+[node name="CheckBox8" type="CheckBox" parent="DebugUITop/MarginContainer/HBoxContainer/boids + beautify/beautifyContainer/beautify"]
+layout_mode = 2
+text = "Diffuse Shader"
+
+[node name="VSeparator" type="VSeparator" parent="DebugUITop/MarginContainer/HBoxContainer"]
+layout_mode = 2
+
+[node name="interactions + performance" type="VBoxContainer" parent="DebugUITop/MarginContainer/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_constants/separation = 10
+
+[node name="interactionContainer" type="PanelContainer" parent="DebugUITop/MarginContainer/HBoxContainer/interactions + performance"]
+layout_mode = 2
+theme_override_styles/panel = ExtResource("3_yrw33")
+
+[node name="interactions" type="VBoxContainer" parent="DebugUITop/MarginContainer/HBoxContainer/interactions + performance/interactionContainer"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="DebugUITop/MarginContainer/HBoxContainer/interactions + performance/interactionContainer/interactions"]
+layout_mode = 2
+text = "INTERACTIONS : "
+
+[node name="CheckBox" type="CheckBox" parent="DebugUITop/MarginContainer/HBoxContainer/interactions + performance/interactionContainer/interactions"]
+layout_mode = 2
+text = "Show Hit-boxes"
+
+[node name="CheckBox2" type="CheckBox" parent="DebugUITop/MarginContainer/HBoxContainer/interactions + performance/interactionContainer/interactions"]
+layout_mode = 2
+text = "Explosive Clicks"
+
+[node name="CheckBox3" type="CheckBox" parent="DebugUITop/MarginContainer/HBoxContainer/interactions + performance/interactionContainer/interactions"]
+layout_mode = 2
+button_pressed = true
+text = "Obstacle Avoidance"
+
+[node name="CheckBox4" type="CheckBox" parent="DebugUITop/MarginContainer/HBoxContainer/interactions + performance/interactionContainer/interactions"]
+layout_mode = 2
+text = "Calc. perf. matrics
+"
+
+[node name="HSeparator" type="HSeparator" parent="DebugUITop/MarginContainer/HBoxContainer/interactions + performance"]
+layout_mode = 2
+
+[node name="perfMatricsContainer" type="PanelContainer" parent="DebugUITop/MarginContainer/HBoxContainer/interactions + performance"]
+layout_mode = 2
+theme_override_styles/panel = ExtResource("3_yrw33")
+
+[node name="performance matrics" type="VBoxContainer" parent="DebugUITop/MarginContainer/HBoxContainer/interactions + performance/perfMatricsContainer"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="DebugUITop/MarginContainer/HBoxContainer/interactions + performance/perfMatricsContainer/performance matrics"]
+layout_mode = 2
+text = "PERFORMANCE :"
+
+[node name="GridContainer" type="GridContainer" parent="DebugUITop/MarginContainer/HBoxContainer/interactions + performance/perfMatricsContainer/performance matrics"]
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="Label" type="Label" parent="DebugUITop/MarginContainer/HBoxContainer/interactions + performance/perfMatricsContainer/performance matrics/GridContainer"]
+layout_mode = 2
+text = "Boids : "
+
+[node name="Label2" type="Label" parent="DebugUITop/MarginContainer/HBoxContainer/interactions + performance/perfMatricsContainer/performance matrics/GridContainer"]
+layout_mode = 2
+text = "FPS : "
+
+[node name="Label4" type="Label" parent="DebugUITop/MarginContainer/HBoxContainer/interactions + performance/perfMatricsContainer/performance matrics/GridContainer"]
+layout_mode = 2
+text = "CPU Usage : "
+
+[node name="Label5" type="Label" parent="DebugUITop/MarginContainer/HBoxContainer/interactions + performance/perfMatricsContainer/performance matrics/GridContainer"]
+layout_mode = 2
+text = "GPU Usage : "
+
+[node name="Label3" type="Label" parent="DebugUITop/MarginContainer/HBoxContainer/interactions + performance/perfMatricsContainer/performance matrics/GridContainer"]
+layout_mode = 2
+text = "Memory Usage : "
 
 [connection signal="pressed" from="hide_ui" to="." method="_on_hide_ui_pressed"]
 [connection signal="drag_ended" from="BehaviourUILeft/MarginContainer/VBoxContainer/alignment/HSlider" to="." method="_on_alignment_slider_drag_ended"]
