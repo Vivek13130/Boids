@@ -1,9 +1,3 @@
-[gd_resource type="ShaderMaterial" load_steps=2 format=3 uid="uid://b7x13dda4u8c2"]
-
-[ext_resource type="Shader" uid="uid://bwjd5vs26g0nm" path="res://scenes/boid_shader.gdshader" id="1_2dypi"]
+[gd_resource type="ShaderMaterial" format=3 uid="uid://b7x13dda4u8c2"]
 
 [resource]
-shader = ExtResource("1_2dypi")
-shader_parameter/glow_color = Color(0, 0, 0, 1)
-shader_parameter/glow_intensity = 5.0
-shader_parameter/glow_size = 4.758

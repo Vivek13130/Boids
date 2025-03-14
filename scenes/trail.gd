@@ -20,3 +20,7 @@ func _process(delta: float) -> void:
 	# Maintain the trail length
 	while get_point_count() > manager.TRAIL_LENGTH:
 		remove_point(0)
+
+
+
+# implement despawning of boids 

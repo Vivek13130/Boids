@@ -2,12 +2,12 @@
 
 [ext_resource type="Script" uid="uid://djqmby63t0bqa" path="res://scenes/main_ui.gd" id="1_u4caq"]
 [ext_resource type="StyleBox" uid="uid://dobnsxrgh0at8" path="res://assets/green_ui.tres" id="2_1q8jw"]
-[ext_resource type="Texture2D" uid="uid://cu1f8hhhumh53" path="res://assets/080.png" id="3_ax8qs"]
+[ext_resource type="Texture2D" uid="uid://cu1f8hhhumh53" path="res://assets/top-left.png" id="3_ax8qs"]
 [ext_resource type="StyleBox" uid="uid://cyti6r7mqrxvv" path="res://assets/green_panel_container.tres" id="3_yrw33"]
-[ext_resource type="Texture2D" uid="uid://d10eka07byqbp" path="res://assets/081.png" id="4_na7wy"]
-[ext_resource type="Texture2D" uid="uid://bmflef66d6fmi" path="res://assets/066.png" id="5_7ouq4"]
-[ext_resource type="Texture2D" uid="uid://jc2rp4f8lkvx" path="res://assets/083.png" id="6_hgdna"]
-[ext_resource type="Texture2D" uid="uid://dgiskv3t8nqbq" path="res://assets/082.png" id="7_0glyu"]
+[ext_resource type="Texture2D" uid="uid://d10eka07byqbp" path="res://assets/top-right.png" id="4_na7wy"]
+[ext_resource type="Texture2D" uid="uid://bmflef66d6fmi" path="res://assets/center.png" id="5_7ouq4"]
+[ext_resource type="Texture2D" uid="uid://jc2rp4f8lkvx" path="res://assets/bottom-left.png" id="6_hgdna"]
+[ext_resource type="Texture2D" uid="uid://dgiskv3t8nqbq" path="res://assets/bottom-right.png" id="7_0glyu"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_o5y1s"]
 bg_color = Color(0, 0.317647, 0.137255, 1)
@@ -44,26 +44,8 @@ grow_vertical = 0
 scale = Vector2(1.5, 1.5)
 pivot_offset = Vector2(0, 25)
 focus_mode = 0
-
-[node name="CPUParticles2D" type="CPUParticles2D" parent="hide_ui"]
-modulate = Color(0.0156863, 1, 0, 0.592157)
-position = Vector2(28, 11.4)
-amount = 10
-lifetime = 4.0
-preprocess = 10.0
-randomness = 1.0
-lifetime_randomness = 1.0
-emission_shape = 3
-emission_rect_extents = Vector2(16, 10)
-direction = Vector2(0, 0)
-spread = 180.0
-gravity = Vector2(0, 0)
-initial_velocity_min = 10.0
-initial_velocity_max = 20.0
-angular_velocity_min = 100.0
-angular_velocity_max = 100.0
-damping_max = 1.0
-scale_amount_max = 5.0
+button_pressed = true
+action_mode = 0
 
 [node name="Behaviour_UI_Left" type="ScrollContainer" parent="."]
 layout_mode = 1
@@ -138,7 +120,6 @@ layout_mode = 2
 max_value = 200.0
 
 [node name="min speed" type="VBoxContainer" parent="Behaviour_UI_Left/MarginContainer/VBoxContainer"]
-visible = false
 layout_mode = 2
 
 [node name="Label" type="Label" parent="Behaviour_UI_Left/MarginContainer/VBoxContainer/min speed"]
@@ -192,7 +173,7 @@ text = "Detection Radius*"
 
 [node name="HSlider" type="HSlider" parent="Behaviour_UI_Left/MarginContainer/VBoxContainer/detection radius"]
 layout_mode = 2
-max_value = 500.0
+max_value = 200.0
 
 [node name="trail length" type="VBoxContainer" parent="Behaviour_UI_Left/MarginContainer/VBoxContainer"]
 layout_mode = 2
@@ -364,62 +345,43 @@ theme_override_constants/separation = 15
 layout_mode = 2
 text = "Obstacles : "
 
-[node name="HSeparator" type="HSeparator" parent="Elemental_UI_Right/MarginContainer/HBoxContainer/VBoxContainer2/obstaclePlacement/VBoxContainer"]
-visible = false
-layout_mode = 2
-
 [node name="GridContainer" type="GridContainer" parent="Elemental_UI_Right/MarginContainer/HBoxContainer/VBoxContainer2/obstaclePlacement/VBoxContainer"]
 layout_mode = 2
 size_flags_horizontal = 4
 theme_override_constants/h_separation = 0
 columns = 3
 
-[node name="TextureRect" type="TextureRect" parent="Elemental_UI_Right/MarginContainer/HBoxContainer/VBoxContainer2/obstaclePlacement/VBoxContainer/GridContainer"]
-custom_minimum_size = Vector2(64, 64)
+[node name="top-left" type="TextureRect" parent="Elemental_UI_Right/MarginContainer/HBoxContainer/VBoxContainer2/obstaclePlacement/VBoxContainer/GridContainer"]
 layout_mode = 2
 texture = ExtResource("3_ax8qs")
-expand_mode = 1
-stretch_mode = 5
 
 [node name="TextureRect2" type="TextureRect" parent="Elemental_UI_Right/MarginContainer/HBoxContainer/VBoxContainer2/obstaclePlacement/VBoxContainer/GridContainer"]
 layout_mode = 2
 
-[node name="TextureRect3" type="TextureRect" parent="Elemental_UI_Right/MarginContainer/HBoxContainer/VBoxContainer2/obstaclePlacement/VBoxContainer/GridContainer"]
-custom_minimum_size = Vector2(64, 64)
+[node name="top-right" type="TextureRect" parent="Elemental_UI_Right/MarginContainer/HBoxContainer/VBoxContainer2/obstaclePlacement/VBoxContainer/GridContainer"]
 layout_mode = 2
 texture = ExtResource("4_na7wy")
-expand_mode = 1
 
 [node name="TextureRect4" type="TextureRect" parent="Elemental_UI_Right/MarginContainer/HBoxContainer/VBoxContainer2/obstaclePlacement/VBoxContainer/GridContainer"]
 layout_mode = 2
 
-[node name="TextureRect5" type="TextureRect" parent="Elemental_UI_Right/MarginContainer/HBoxContainer/VBoxContainer2/obstaclePlacement/VBoxContainer/GridContainer"]
-custom_minimum_size = Vector2(64, 64)
+[node name="center" type="TextureRect" parent="Elemental_UI_Right/MarginContainer/HBoxContainer/VBoxContainer2/obstaclePlacement/VBoxContainer/GridContainer"]
 layout_mode = 2
 texture = ExtResource("5_7ouq4")
-expand_mode = 1
 
 [node name="TextureRect6" type="TextureRect" parent="Elemental_UI_Right/MarginContainer/HBoxContainer/VBoxContainer2/obstaclePlacement/VBoxContainer/GridContainer"]
 layout_mode = 2
 
-[node name="TextureRect7" type="TextureRect" parent="Elemental_UI_Right/MarginContainer/HBoxContainer/VBoxContainer2/obstaclePlacement/VBoxContainer/GridContainer"]
-custom_minimum_size = Vector2(64, 64)
+[node name="bottom-left" type="TextureRect" parent="Elemental_UI_Right/MarginContainer/HBoxContainer/VBoxContainer2/obstaclePlacement/VBoxContainer/GridContainer"]
 layout_mode = 2
 texture = ExtResource("6_hgdna")
-expand_mode = 1
 
 [node name="TextureRect8" type="TextureRect" parent="Elemental_UI_Right/MarginContainer/HBoxContainer/VBoxContainer2/obstaclePlacement/VBoxContainer/GridContainer"]
 layout_mode = 2
 
-[node name="TextureRect9" type="TextureRect" parent="Elemental_UI_Right/MarginContainer/HBoxContainer/VBoxContainer2/obstaclePlacement/VBoxContainer/GridContainer"]
-custom_minimum_size = Vector2(64, 64)
+[node name="bottom-right" type="TextureRect" parent="Elemental_UI_Right/MarginContainer/HBoxContainer/VBoxContainer2/obstaclePlacement/VBoxContainer/GridContainer"]
 layout_mode = 2
 texture = ExtResource("7_0glyu")
-expand_mode = 1
-
-[node name="HSeparator2" type="HSeparator" parent="Elemental_UI_Right/MarginContainer/HBoxContainer/VBoxContainer2/obstaclePlacement/VBoxContainer"]
-visible = false
-layout_mode = 2
 
 [node name="HBoxContainer" type="HBoxContainer" parent="Elemental_UI_Right/MarginContainer/HBoxContainer/VBoxContainer2/obstaclePlacement/VBoxContainer"]
 layout_mode = 2
@@ -638,6 +600,13 @@ text = "GPU Usage : "
 layout_mode = 2
 text = "Memory Usage : "
 
+[node name="ghost_texture" type="TextureRect" parent="."]
+layout_mode = 1
+offset_right = 40.0
+offset_bottom = 40.0
+mouse_filter = 2
+
+[connection signal="gui_input" from="." to="." method="_on_main_ui_gui_input"]
 [connection signal="pressed" from="hide_ui" to="." method="_on_hide_ui_pressed"]
 [connection signal="drag_ended" from="Behaviour_UI_Left/MarginContainer/VBoxContainer/alignment/HSlider" to="." method="_on_alignment_slider_drag_ended"]
 [connection signal="drag_ended" from="Behaviour_UI_Left/MarginContainer/VBoxContainer/cohesion/HSlider" to="." method="_on_cohesion_slider_drag_ended"]
@@ -653,11 +622,8 @@ text = "Memory Usage : "
 [connection signal="pressed" from="Behaviour_UI_Left/MarginContainer/VBoxContainer/ButtonTray/checkBoxes/cluster_check" to="." method="_on_colors_check_pressed"]
 [connection signal="pressed" from="Behaviour_UI_Left/MarginContainer/VBoxContainer/ButtonTray/radomize_reset/reset_button" to="." method="_on_reset_button_pressed"]
 [connection signal="pressed" from="Behaviour_UI_Left/MarginContainer/VBoxContainer/ButtonTray/radomize_reset/randomize_button" to="." method="_on_randomize_button_pressed"]
-[connection signal="pressed" from="Elemental_UI_Right/MarginContainer/HBoxContainer/VBoxContainer2/spawn_despawn/SpawnBoids/spawn buttons/Button" to="." method="_on_spawn_x_boids_button_pressed" binds= [10]]
-[connection signal="pressed" from="Elemental_UI_Right/MarginContainer/HBoxContainer/VBoxContainer2/spawn_despawn/SpawnBoids/spawn buttons/Button2" to="." method="_on_spawn_x_boids_button_pressed" binds= [25]]
-[connection signal="pressed" from="Elemental_UI_Right/MarginContainer/HBoxContainer/VBoxContainer2/spawn_despawn/SpawnBoids/spawn buttons/Button3" to="." method="_on_spawn_x_boids_button_pressed" binds= [50]]
-[connection signal="pressed" from="Elemental_UI_Right/MarginContainer/HBoxContainer/VBoxContainer2/spawn_despawn/SpawnBoids/spawn buttons/Button4" to="." method="_on_spawn_x_boids_button_pressed" binds= [100]]
-[connection signal="pressed" from="Elemental_UI_Right/MarginContainer/HBoxContainer/VBoxContainer2/spawn_despawn/SpawnBoids/deSpawn buttons/Button" to="." method="_on_spawn_x_boids_button_pressed" binds= [-10]]
-[connection signal="pressed" from="Elemental_UI_Right/MarginContainer/HBoxContainer/VBoxContainer2/spawn_despawn/SpawnBoids/deSpawn buttons/Button2" to="." method="_on_spawn_x_boids_button_pressed" binds= [-25]]
-[connection signal="pressed" from="Elemental_UI_Right/MarginContainer/HBoxContainer/VBoxContainer2/spawn_despawn/SpawnBoids/deSpawn buttons/Button3" to="." method="_on_spawn_x_boids_button_pressed" binds= [-50]]
-[connection signal="pressed" from="Elemental_UI_Right/MarginContainer/HBoxContainer/VBoxContainer2/spawn_despawn/SpawnBoids/deSpawn buttons/Button4" to="." method="_on_spawn_x_boids_button_pressed" binds= [-100]]
+[connection signal="gui_input" from="Elemental_UI_Right/MarginContainer/HBoxContainer/VBoxContainer2/obstaclePlacement/VBoxContainer/GridContainer/top-left" to="." method="_on_obstacle_grid_gui_input" binds= ["top-left"]]
+[connection signal="gui_input" from="Elemental_UI_Right/MarginContainer/HBoxContainer/VBoxContainer2/obstaclePlacement/VBoxContainer/GridContainer/top-right" to="." method="_on_obstacle_grid_gui_input" binds= ["top-right"]]
+[connection signal="gui_input" from="Elemental_UI_Right/MarginContainer/HBoxContainer/VBoxContainer2/obstaclePlacement/VBoxContainer/GridContainer/center" to="." method="_on_obstacle_grid_gui_input" binds= ["center"]]
+[connection signal="gui_input" from="Elemental_UI_Right/MarginContainer/HBoxContainer/VBoxContainer2/obstaclePlacement/VBoxContainer/GridContainer/bottom-left" to="." method="_on_obstacle_grid_gui_input" binds= ["bottom-left"]]
+[connection signal="gui_input" from="Elemental_UI_Right/MarginContainer/HBoxContainer/VBoxContainer2/obstaclePlacement/VBoxContainer/GridContainer/bottom-right" to="." method="_on_obstacle_grid_gui_input" binds= ["bottom-right"]]

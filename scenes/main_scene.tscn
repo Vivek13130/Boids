@@ -17,3 +17,5 @@ z_index = 999
 
 [node name="boid" parent="CanvasLayer/boid_manager" instance=ExtResource("2_n4n0a")]
 position = Vector2(516, 579)
+
+[node name="obstacle_manager" type="Node2D" parent="CanvasLayer"]

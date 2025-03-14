@@ -1,0 +1,31 @@
+[gd_scene load_steps=7 format=3 uid="uid://hsdjjlj0iikq"]
+
+[ext_resource type="Script" uid="uid://dt8heeqcygyea" path="res://scenes/obstacle_node.gd" id="1_7k7f2"]
+[ext_resource type="Texture2D" uid="uid://bmflef66d6fmi" path="res://assets/center.png" id="1_m24bh"]
+[ext_resource type="Texture2D" uid="uid://cu1f8hhhumh53" path="res://assets/top-left.png" id="2_f60ag"]
+[ext_resource type="Texture2D" uid="uid://d10eka07byqbp" path="res://assets/top-right.png" id="3_7k7f2"]
+[ext_resource type="Texture2D" uid="uid://dgiskv3t8nqbq" path="res://assets/bottom-right.png" id="4_8q36o"]
+[ext_resource type="Texture2D" uid="uid://jc2rp4f8lkvx" path="res://assets/bottom-left.png" id="5_kjlqu"]
+
+[node name="center_obs" type="Node2D"]
+script = ExtResource("1_7k7f2")
+
+[node name="center" type="Sprite2D" parent="."]
+visible = false
+texture = ExtResource("1_m24bh")
+
+[node name="top-left" type="Sprite2D" parent="."]
+visible = false
+texture = ExtResource("2_f60ag")
+
+[node name="top-right" type="Sprite2D" parent="."]
+visible = false
+texture = ExtResource("3_7k7f2")
+
+[node name="bottom-right" type="Sprite2D" parent="."]
+visible = false
+texture = ExtResource("4_8q36o")
+
+[node name="bottom-left" type="Sprite2D" parent="."]
+visible = false
+texture = ExtResource("5_kjlqu")

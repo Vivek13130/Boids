@@ -1,5 +1,6 @@
 extends Control
 
+# sliders : 
 @onready var alignment_slider: HSlider = $Behaviour_UI_Left/MarginContainer/VBoxContainer/alignment/HSlider
 @onready var cohesion_slider: HSlider = $Behaviour_UI_Left/MarginContainer/VBoxContainer/cohesion/HSlider
 @onready var separation_slider: HSlider = $Behaviour_UI_Left/MarginContainer/VBoxContainer/seperation/HSlider
@@ -11,7 +12,8 @@ extends Control
 @onready var detection_radius_slider: HSlider = $"Behaviour_UI_Left/MarginContainer/VBoxContainer/detection radius/HSlider"
 @onready var trail_length_slider: HSlider = $"Behaviour_UI_Left/MarginContainer/VBoxContainer/trail length/HSlider"
 
-#--
+@onready var trail_addon_option_button: OptionButton = $"Behaviour_UI_Left/MarginContainer/VBoxContainer/trail noise/OptionButton"
+
 @onready var trails_check: CheckButton = $Behaviour_UI_Left/MarginContainer/VBoxContainer/ButtonTray/checkBoxes/trails_check
 @onready var cluster_check: CheckButton = $Behaviour_UI_Left/MarginContainer/VBoxContainer/ButtonTray/checkBoxes/cluster_check
 
@@ -21,22 +23,28 @@ extends Control
 
 @onready var hide_ui: CheckButton = $hide_ui
 @onready var main_root: = $".".get_parent().get_parent()
+@onready var main_ui: Control = $"."
+
+@onready var elemental_ui_right: ScrollContainer = $Elemental_UI_Right
+@onready var behaviour_ui_left: ScrollContainer = $Behaviour_UI_Left
 
 
 func _ready() -> void:
-	set_defualt_values_in_sliders()
+	set_default_values_in_sliders()
+	if(! hide_ui.button_pressed):
+		change_ui_visibility()
+
+# behaviour UI : sliders and all : upto line 160
+
+func _on_hide_ui_pressed() -> void:
 	change_ui_visibility()
 
-
-
-func update_fps_boids()->void :
-	pass 
-	
 func change_ui_visibility() -> void:
-	hide_ui.button_pressed = !hide_ui.button_pressed
+	elemental_ui_right.visible = !elemental_ui_right.visible
+	behaviour_ui_left.visible = !behaviour_ui_left.visible
 	
 	
-func set_defualt_values_in_sliders()-> void :
+func set_default_values_in_sliders()-> void :
 	alignment_slider.value = manager.DEFAULT_ALIGNMENT
 	cohesion_slider.value = manager.DEFAULT_COHESION
 	separation_slider.value = manager.DEFAULT_SEPERATION_DISTANCE
@@ -46,13 +54,11 @@ func set_defualt_values_in_sliders()-> void :
 	max_acc_slider.value = manager.DEFAULT_MAX_ACCELERATION
 	fov_slider.value = manager.DEFAULT_FOV
 	detection_radius_slider.value = manager.DEFAULT_DETECTION_RANGE
+	detection_radius_slider.step = manager.GRID_CELL_SIZE
 	trail_length_slider.value = manager.DEFAULT_TRAIL_LENGTH
 	
 	max_min_speed_constraint()
 	emit_signal_from_all_sliders()
-
-func _on_hide_ui_pressed() -> void:
-	change_ui_visibility()
 
 
 func _on_trails_check_pressed() -> void:
@@ -64,7 +70,7 @@ func _on_colors_check_pressed() -> void:
 
 
 func _on_reset_button_pressed() -> void:
-	set_defualt_values_in_sliders()
+	set_default_values_in_sliders()
 
 
 func _on_randomize_button_pressed() -> void:
@@ -104,12 +110,10 @@ func max_min_speed_constraint() -> void :
 
 func _on_alignment_slider_drag_ended(value_changed: bool) -> void:
 	if value_changed:
-		print("align value changed")
 		manager.ALIGNMENT = alignment_slider.value
 
 func _on_cohesion_slider_drag_ended(value_changed: bool) -> void:
 	if value_changed:
-		print("coh value changed")
 		manager.COHESION = cohesion_slider.value
 
 func _on_separation_slider_drag_ended(value_changed: bool) -> void:
@@ -151,9 +155,86 @@ func _on_trail_length_slider_drag_ended(value_changed: bool) -> void:
 		manager.TRAIL_LENGTH = trail_length_slider.value
 
 
+
+
+# elemental UI : right 
+
+# spawn-despawn : full grid control 
 func _on_spawn_x_boids_button_pressed(x: int) -> void:
 	
 	if(x > 0):
 		main_root.spawn_boid(x)
 	else:
 		main_root.despawn_boid(-x)
+
+
+
+
+# obstacles selection and deselection : 
+var selected_obstacle := "NONE"
+@onready var ghost_texture: TextureRect = $ghost_texture
+
+@onready var ui_buttons := {
+	"center": $Elemental_UI_Right/MarginContainer/HBoxContainer/VBoxContainer2/obstaclePlacement/VBoxContainer/GridContainer/center,
+	"top-left": $"Elemental_UI_Right/MarginContainer/HBoxContainer/VBoxContainer2/obstaclePlacement/VBoxContainer/GridContainer/top-left",
+	"top-right": $"Elemental_UI_Right/MarginContainer/HBoxContainer/VBoxContainer2/obstaclePlacement/VBoxContainer/GridContainer/top-right",
+	"bottom-right": $"Elemental_UI_Right/MarginContainer/HBoxContainer/VBoxContainer2/obstaclePlacement/VBoxContainer/GridContainer/bottom-right",
+	"bottom-left": $"Elemental_UI_Right/MarginContainer/HBoxContainer/VBoxContainer2/obstaclePlacement/VBoxContainer/GridContainer/bottom-left"
+}
+
+var obstacle_texture_paths := {
+	"center": "res://assets/center.png",
+	"top-left": "res://assets/top-left.png",
+	"top-right": "res://assets/top-right.png",
+	"bottom-right": "res://assets/bottom-right.png",
+	"bottom-left": "res://assets/bottom-left.png"
+}
+
+
+func _on_obstacle_grid_gui_input(event: InputEvent, obstacle_name: String) -> void:
+	if event is InputEventMouseButton and event.pressed:
+		print(obstacle_name)
+		# another obstacle is selected and we recieved a click : 
+		if selected_obstacle != "NONE":
+			# place it in main scene
+			reset_obstacle_selection()
+		else : 
+			select_obstacle(obstacle_name)
+		
+		print("selected obs : " , selected_obstacle)
+
+
+func reset_obstacle_selection():
+	for button in ui_buttons.values():
+		button.modulate = Color(1, 1, 1, 1)  # Fully visible
+	print("reset obstacle")
+	
+	# Reset selection
+	selected_obstacle = "NONE"
+	ghost_texture.visible = false 
+	ghost_texture.texture = null
+
+func select_obstacle(obstacle_name : String):
+	selected_obstacle = obstacle_name
+	ghost_texture.visible = true
+	ghost_texture.texture = load(obstacle_texture_paths[selected_obstacle])
+
+	print("select obstacle")
+	# Darken the UI button to indicate selection
+	if ui_buttons.has(obstacle_name):
+		ui_buttons[obstacle_name].modulate = Color(0.5, 0.5, 0.5, 1)  # Darken effect
+	else:
+		print("ui button not found")
+
+
+func _process(delta: float) -> void:
+	if(ghost_texture.texture):
+		ghost_texture.position = get_global_mouse_position().snapped(Vector2(manager.GRID_CELL_SIZE , manager.GRID_CELL_SIZE))
+
+
+
+func _on_main_ui_gui_input(event: InputEvent) -> void:
+	if event is InputEventMouseButton and event.pressed and selected_obstacle != "NONE":
+		main_root.place_obstacle(selected_obstacle ,ghost_texture.global_position)
+		#reset_obstacle_selection()
+	

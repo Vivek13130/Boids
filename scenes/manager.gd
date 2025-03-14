@@ -1,7 +1,7 @@
 extends Node
 
 #other const : 
-const GRID_CELL_SIZE = 100
+const GRID_CELL_SIZE = 64
 const MARGIN_ON_EDGES = 100
 const EDGE_FORCE_STRENGTH = 0.25
 
@@ -26,8 +26,8 @@ const DEFAULT_FOV = 360
 const DEFAULT_DETECTION_RANGE = 50 
 const DEFAULT_TRAIL_LENGTH = 50
 
-var boids_grid = {}
-
+var boids_grid := {}
+var obstacle_grid := {}
 
 #some VARIABLES connected to sliders for the boids 
 var COHESION = 3 # ranges between 0 to n
@@ -73,6 +73,17 @@ var BRIGHT_COLORS = [
 ]
 
 
+# obstacle placement and deletion system : 
+var selected_obstacle : String = "NONE"
+
+
+
+
+
+
+
+#-------------------------------------------
+
 
 func world_to_grid_position(position : Vector2) -> Vector2:
 	return Vector2(floor(position.x / GRID_CELL_SIZE), floor(position.y / GRID_CELL_SIZE))
@@ -80,17 +91,6 @@ func world_to_grid_position(position : Vector2) -> Vector2:
 
 var flag : bool = false
 
-
-#func _process(delta: float) -> void:
-	## If color mode is enabled, assign random bright colors to all boids
-	#if COLOR_MODE_ENABLED and !flag:
-		#print("applying colors ")
-		#flag = ! flag
-		#apply_random_colors_to_boids(get_tree().get_nodes_in_group("Boids"))
-	#else:
-		#flag = false
-	
-	#pass
 
 func apply_random_colors_to_boids(all_boids: Array) -> void:
 	print("all boids size : " , all_boids.size())
@@ -112,6 +112,8 @@ var cluster_data = {}
 var cluster_colors = {}
 var cluster_counter = 0
 const MAX_CLUSTERS = 10
+
+
 
 
 var counter : int = 0 
@@ -152,20 +154,9 @@ func explore_cluster(boid, cluster, visited) -> void:
 		if not visited.has(neighbor) and boid.global_position.distance_to(neighbor.global_position) <= DETECTION_RANGE:
 			explore_cluster(neighbor, cluster, visited)
 
-# Assign colors to clusters
-#func assign_colors_to_clusters() -> void:
-	#cluster_colors.clear()
-#
-	#for cluster_id in cluster_data.keys():
-		#var hue = float(cluster_id) / MAX_CLUSTERS
-		#cluster_colors[cluster_id] = Color.from_hsv(hue, 0.8, 0.9)
-#
-	#for cluster_id in cluster_data.keys():
-		#for boid in cluster_data[cluster_id]:
-			#boid.set_color(cluster_colors[cluster_id])  # Ensure boid has this function
-			
-			
-			
+
+
+
 func assign_colors_to_clusters() -> void:
 	cluster_colors.clear()
 
