@@ -1,21 +1,19 @@
 [gd_scene load_steps=4 format=3 uid="uid://d4ch7ty1lvk03"]
 
-[ext_resource type="Script" path="res://scenes/main_scene.gd" id="1_mc70k"]
+[ext_resource type="Script" uid="uid://c1c81oixtmsuy" path="res://scenes/main_scene.gd" id="1_mc70k"]
 [ext_resource type="PackedScene" uid="uid://c1n37ogucnlfn" path="res://scenes/boid.tscn" id="2_n4n0a"]
 [ext_resource type="PackedScene" uid="uid://xkw6a187it4l" path="res://scenes/ui.tscn" id="3_2r7ee"]
 
-[node name="mainscene" type="Control"]
-layout_mode = 3
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
+[node name="mainscene" type="Node2D"]
 script = ExtResource("1_mc70k")
 
-[node name="ui" parent="." instance=ExtResource("3_2r7ee")]
-layout_mode = 1
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+layer = 0
 
-[node name="boid_manager" type="Node2D" parent="."]
+[node name="ui" parent="CanvasLayer" instance=ExtResource("3_2r7ee")]
 
-[node name="boid" parent="boid_manager" instance=ExtResource("2_n4n0a")]
+[node name="boid_manager" type="Node2D" parent="CanvasLayer"]
+z_index = 999
+
+[node name="boid" parent="CanvasLayer/boid_manager" instance=ExtResource("2_n4n0a")]
+position = Vector2(516, 579)
