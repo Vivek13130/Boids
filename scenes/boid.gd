@@ -5,7 +5,7 @@ var screen_size
 var acceleration = Vector2.ZERO
 
 var margin_on_edges = manager.MARGIN_ON_EDGES
-
+var grid_cell_size = manager.GRID_CELL_SIZE
 var boids_grid = manager.boids_grid
 var current_grid_pos = null
 
@@ -15,7 +15,9 @@ var counter_outside_y = 1;
 
 var neighbour_boids = []
 @onready var trail: Line2D = $trail
-
+@onready var avoidance_center: Marker2D = $avoidance_center
+@onready var avoidance_right: Marker2D = $avoidance_right
+@onready var avoidance_left: Marker2D = $avoidance_left
 
 func _ready() -> void:
 	
@@ -28,6 +30,8 @@ func _ready() -> void:
 		boids_grid[current_grid_pos] = []
 	
 	boids_grid[current_grid_pos].append(self)
+	
+	
 
 
 func _process(_delta: float) -> void:
@@ -37,15 +41,83 @@ func _process(_delta: float) -> void:
 	if acceleration.length() > manager.MAX_ACCELERATION :
 		acceleration = acceleration.normalized() * manager.MAX_ACCELERATION
 	
-	
+	# check it after acceleration capping to make sure it has dominating effect
 	check_for_edges()
+	
 	velocity += acceleration 
 	acceleration = Vector2.ZERO
 	
+	avoid_obstacles()
 	cap_velocity()
 	
 	rotation = velocity.angle()
 	move_and_slide()
+
+
+
+func world_to_grid(position : Vector2) -> Vector2:
+	return Vector2(floor(position.x / grid_cell_size), floor(position.y / grid_cell_size))
+
+#func avoid_obstacles() -> void:
+	## Initialize avoidance force and parameters
+	#var avoidance_velocity := Vector2.ZERO
+	#var avoidance_weight = manager.AVOIDANCE_STRENGTH  # Tune this for stronger/weaker repulsion
+	#var detection_range = manager.DETECTION_RANGE  # Use as a base for scaling repulsion
+	#var d = ceil(detection_range / manager.GRID_CELL_SIZE)
+	#
+	## Loop through nearby grid cells to detect obstacles
+	#for i in range(-d, d + 1):
+		#for j in range(-d, d + 1):
+			#var grid_cell = current_grid_pos + Vector2(i, j)
+			## If an obstacle exists in this cell, calculate a repulsion force
+			#if manager.obstacle_grid.has(grid_cell):
+				#var obstacle_pos = manager.grid_to_world_position(grid_cell)  # Center of the cell
+				#var distance = global_position.distance_to(obstacle_pos)
+				#
+				## Only consider obstacles within the detection range
+				#if distance > 0 and distance < detection_range:
+					## Calculate a weight that decreases as distance increases
+					#var weight = 1.0 - (distance / detection_range)
+					## Compute repulsion vector (normalized so it only gives direction)
+					#var repulsion_vector = (global_position - obstacle_pos).normalized()
+					#avoidance_velocity += repulsion_vector * avoidance_weight * weight
+	#
+	## Introduce a forward bias so that boids continue moving into open space
+	## This helps prevent boids from jiggling in confined areas
+	#var forward_bias = velocity.normalized() * manager.FORWARD_BIAS  # FORWARD_BIAS is a tunable constant
+	#
+	## Blend avoidance with the forward bias
+	#var steering_force = avoidance_velocity + forward_bias
+	#
+	## Optionally, smooth the steering force (using delta time for consistent behavior)
+	#velocity += steering_force * get_process_delta_time()
+
+
+
+func avoid_obstacles():
+	# we will look on obstacles nearby refering to obstacle grid
+	# based on the distance between boid and obstacle we will add a repulsive acceleration to boid . 
+	var avoidance_velocity := Vector2.ZERO
+	var avoidance_weight = manager.AVOIDANCE_STRENGTH# Tune this for smooth avoidance
+
+	# Define search range in grid (same logic as boid neighbors)
+	var d = ceil(manager.DETECTION_RANGE / manager.GRID_CELL_SIZE)
+
+	for i in range(-d, d + 1):
+		for j in range(-d, d + 1):
+			var obstacle_grid_pos = current_grid_pos + Vector2(i, j)
+
+			# If an obstacle exists in this cell, calculate repulsion
+			if manager.obstacle_grid.has(obstacle_grid_pos):
+				var obstacle_pos = manager.grid_to_world_position(obstacle_grid_pos)
+				var distance = global_position.distance_to(obstacle_pos)
+
+				if distance > 0 and distance < manager.DETECTION_RANGE * 3:
+					var repulsion_vector = (global_position - obstacle_pos).normalized() / distance
+					avoidance_velocity += repulsion_vector * avoidance_weight
+
+	# Apply avoidance force
+	velocity += avoidance_velocity 
 
 
 func cap_velocity() -> void : 
@@ -78,8 +150,6 @@ func check_for_edges() -> void:
 	elif curr_pos.y > screen_size.y - edge_threshold:
 		var dist = curr_pos.y - (screen_size.y - edge_threshold)
 		acceleration.y -= dist * edge_force_strength
-
-
 
 
 func update_boid_grid_position() -> void :

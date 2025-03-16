@@ -75,9 +75,9 @@ var BRIGHT_COLORS = [
 
 # obstacle placement and deletion system : 
 var selected_obstacle : String = "NONE"
+var AVOIDANCE_STRENGTH : int = 3000
 
-
-
+const FORWARD_BIAS : int = 1000
 
 
 
@@ -86,7 +86,12 @@ var selected_obstacle : String = "NONE"
 
 
 func world_to_grid_position(position : Vector2) -> Vector2:
+	# return the cell number (x,y)
 	return Vector2(floor(position.x / GRID_CELL_SIZE), floor(position.y / GRID_CELL_SIZE))
+
+func grid_to_world_position(grid_pos: Vector2) -> Vector2:
+	# return the center of the grid cell 
+	return Vector2(grid_pos.x * GRID_CELL_SIZE, grid_pos.y * GRID_CELL_SIZE) + Vector2(GRID_CELL_SIZE / 2, GRID_CELL_SIZE / 2)
 
 
 var flag : bool = false

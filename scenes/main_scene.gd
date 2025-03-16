@@ -8,8 +8,7 @@ const boid_scene : PackedScene = preload("res://scenes/boid.tscn")
 
 
 func _ready() -> void:
-	pass # Replace with function body.
-
+	queue_redraw()
 
 func _process(delta: float) -> void:
 	if Input.is_action_pressed("spawn_boid"):
@@ -17,6 +16,17 @@ func _process(delta: float) -> void:
 	
 	if Input.is_action_just_pressed("restart"):
 		reset_boids()
+	
+	if Input.is_action_just_pressed("pause"):
+		toggle_pause()
+	
+
+func toggle_pause():
+	if Engine.time_scale == 1.0:
+		Engine.time_scale = 0.0  # Pause the game
+	else:
+		Engine.time_scale = 1.0  # Unpause the game
+
 
 func reset_boids() -> void:
 	for boid in boid_manager.get_children():
@@ -33,6 +43,7 @@ func spawn_boid(x : int) -> void:
 
 
 func despawn_boid(x: int) -> void:
+	# not working -----------------------XXXXXXXXXXXXXXXXXXX
 	var all_boids = boid_manager.get_children()
 	var remove_count = min(x, all_boids.size())
 
@@ -47,22 +58,61 @@ var obstacle_texture_paths := {
 	"bottom-right": "res://assets/bottom-right.png",
 	"bottom-left": "res://assets/bottom-left.png"
 }
+#
+#func place_obstacle(obstacle_name : String , mouse_pos : Vector2) -> void : 
+	#var grid_cell = mouse_pos.snapped(Vector2(manager.GRID_CELL_SIZE, manager.GRID_CELL_SIZE))  
+	## Adjust grid size if needed
+	#
+	## Prevent placing multiple obstacles on the same grid cell
+	#if manager.obstacle_grid.has(grid_cell):
+		#return
+	#
+	#var grid_pos = grid_cell + Vector2(manager.GRID_CELL_SIZE/2, manager.GRID_CELL_SIZE/2)
+	#print("placed here : " , mouse_pos)
+	## Create a new obstacle sprite
+	#var obstacle = Sprite2D.new()
+	#obstacle.texture = load(obstacle_texture_paths[obstacle_name])
+	#obstacle.global_position = grid_pos
+	#obstacle_manager.add_child(obstacle)
+	#
+	## Store in the obstacle grid
+	#manager.obstacle_grid[grid_cell] = 1 # no point of storing it's name 
+	#print("added : " , grid_cell)
+	#print(manager.obstacle_grid.size())
+	## just store the presence as 1 and absence as 0.
 
-func place_obstacle(obstacle_name : String , mouse_pos : Vector2) -> void : 
-	var grid_pos = mouse_pos.snapped(Vector2(manager.GRID_CELL_SIZE, manager.GRID_CELL_SIZE))  # Adjust grid size if needed
-	
+func place_obstacle(obstacle_name: String, mouse_pos: Vector2) -> void:
+	var grid_cell = manager.world_to_grid_position(mouse_pos) # Use the same grid function
+
 	# Prevent placing multiple obstacles on the same grid cell
-	if manager.obstacle_grid.has(grid_pos):
+	if manager.obstacle_grid.has(grid_cell):
 		return
 	
-	grid_pos += Vector2(manager.GRID_CELL_SIZE/2, manager.GRID_CELL_SIZE/2)
-	print("placed here : " , mouse_pos)
+	var grid_pos = Vector2(grid_cell.x * manager.GRID_CELL_SIZE, grid_cell.y * manager.GRID_CELL_SIZE) + Vector2(manager.GRID_CELL_SIZE / 2, manager.GRID_CELL_SIZE / 2)
+	print("placed here:", grid_pos)
+
 	# Create a new obstacle sprite
 	var obstacle = Sprite2D.new()
 	obstacle.texture = load(obstacle_texture_paths[obstacle_name])
 	obstacle.global_position = grid_pos
 	obstacle_manager.add_child(obstacle)
-	
-	# Store in the obstacle grid
-	manager.obstacle_grid[grid_pos] = 1 # no point of storing it's name 
-	# just store the presence as 1 and absence as 0.
+
+	# Store obstacle in grid using consistent integer-based keys
+	manager.obstacle_grid[grid_cell] = 1
+	print("added:", grid_cell)
+
+
+@export var grid_size: int = manager.GRID_CELL_SIZE  # Adjust to match manager.GRID_CELL_SIZE
+@export var grid_color: Color = Color(0.2, 0.2, 0.2, 0.5)  # Semi-transparent grid
+
+func _draw() -> void:
+	# Get screen size
+	var screen_size = get_viewport_rect().size
+
+	# Draw vertical lines
+	for x in range(0, screen_size.x, grid_size):
+		draw_line(Vector2(x, 0), Vector2(x, screen_size.y), grid_color)
+
+	# Draw horizontal lines
+	for y in range(0, screen_size.y, grid_size):
+		draw_line(Vector2(0, y), Vector2(screen_size.x, y), grid_color)

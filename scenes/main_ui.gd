@@ -218,7 +218,8 @@ func select_obstacle(obstacle_name : String):
 	selected_obstacle = obstacle_name
 	ghost_texture.visible = true
 	ghost_texture.texture = load(obstacle_texture_paths[selected_obstacle])
-
+	ghost_texture.modulate = Color(1,0,0,1)
+	
 	print("select obstacle")
 	# Darken the UI button to indicate selection
 	if ui_buttons.has(obstacle_name):
@@ -227,14 +228,29 @@ func select_obstacle(obstacle_name : String):
 		print("ui button not found")
 
 
+var counter := 0 
+var counter_limit_placing_obstacles = 10
+
 func _process(delta: float) -> void:
-	if(ghost_texture.texture):
-		ghost_texture.position = get_global_mouse_position().snapped(Vector2(manager.GRID_CELL_SIZE , manager.GRID_CELL_SIZE))
+	counter += 1
+	
+	if ghost_texture.texture:
+		var mouse_pos = get_global_mouse_position()
+		var grid_x = floor(mouse_pos.x / manager.GRID_CELL_SIZE) * manager.GRID_CELL_SIZE
+		var grid_y = floor(mouse_pos.y / manager.GRID_CELL_SIZE) * manager.GRID_CELL_SIZE
+		ghost_texture.position = Vector2(grid_x, grid_y) 
+
+	if is_placing_obstacles and selected_obstacle != "NONE" and counter > counter_limit_placing_obstacles:
+		counter = 0
+		main_root.place_obstacle(selected_obstacle, ghost_texture.global_position)
 
 
+
+var is_placing_obstacles := false  # Track if the button is held
 
 func _on_main_ui_gui_input(event: InputEvent) -> void:
-	if event is InputEventMouseButton and event.pressed and selected_obstacle != "NONE":
-		main_root.place_obstacle(selected_obstacle ,ghost_texture.global_position)
-		#reset_obstacle_selection()
-	
+	if event is InputEventMouseButton:
+		if event.pressed and selected_obstacle != "NONE":
+			is_placing_obstacles = true  # Start placing
+		elif not event.pressed:
+			is_placing_obstacles = false  # Stop placing
