@@ -1,14 +1,44 @@
-[gd_scene load_steps=4 format=3 uid="uid://d4ch7ty1lvk03"]
+[gd_scene load_steps=6 format=3 uid="uid://d4ch7ty1lvk03"]
 
 [ext_resource type="Script" path="res://scenes/main_scene.gd" id="1_mc70k"]
 [ext_resource type="PackedScene" uid="uid://c1n37ogucnlfn" path="res://scenes/boid.tscn" id="2_n4n0a"]
+[ext_resource type="Script" path="res://scenes/bg_particles.gd" id="2_veel7"]
 [ext_resource type="PackedScene" uid="uid://xkw6a187it4l" path="res://scenes/ui.tscn" id="3_2r7ee"]
+
+[sub_resource type="Gradient" id="Gradient_gjl23"]
+offsets = PackedFloat32Array(0, 0.309028, 0.666667, 1)
+colors = PackedColorArray(0, 1, 0, 1, 1, 1, 0, 1, 0, 1, 1, 1, 1, 0, 0, 1)
 
 [node name="mainscene" type="Node2D"]
 script = ExtResource("1_mc70k")
+grid_color = Color(0.227652, 0.203552, 9.62615e-08, 0.5)
 
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
 layer = 0
+
+[node name="ColorRect" type="ColorRect" parent="CanvasLayer"]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0, 0, 0, 1)
+
+[node name="CPUParticles2D" type="CPUParticles2D" parent="CanvasLayer"]
+emitting = false
+amount = 100
+lifetime = 10.0
+lifetime_randomness = 0.2
+emission_shape = 3
+emission_rect_extents = Vector2(1, 1)
+direction = Vector2(0, 0)
+spread = 180.0
+gravity = Vector2(0, 0)
+initial_velocity_max = 50.0
+angular_velocity_max = 100.0
+scale_amount_max = 2.0
+color_ramp = SubResource("Gradient_gjl23")
+script = ExtResource("2_veel7")
 
 [node name="ui" parent="CanvasLayer" instance=ExtResource("3_2r7ee")]
 
@@ -16,6 +46,6 @@ layer = 0
 z_index = 999
 
 [node name="boid" parent="CanvasLayer/boid_manager" instance=ExtResource("2_n4n0a")]
-position = Vector2(516, 579)
+position = Vector2(516, 581)
 
 [node name="obstacle_manager" type="Node2D" parent="CanvasLayer"]

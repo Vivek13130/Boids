@@ -17,7 +17,8 @@ border_width_right = 4
 border_width_bottom = 4
 border_color = Color(1, 1, 1, 1)
 border_blend = true
-corner_radius_top_left = 10
+corner_radius_top_left = 20
+corner_radius_bottom_right = 20
 corner_radius_bottom_left = 20
 
 [node name="mainUI" type="Control"]
@@ -246,13 +247,12 @@ text = "Randomize"
 
 [node name="Elemental_UI_Right" type="ScrollContainer" parent="."]
 layout_mode = 1
-anchors_preset = 11
+anchors_preset = 1
 anchor_left = 1.0
 anchor_right = 1.0
-anchor_bottom = 1.0
-offset_left = -483.0
+offset_left = -468.0
+offset_bottom = 586.0
 grow_horizontal = 0
-grow_vertical = 2
 theme_override_styles/panel = SubResource("StyleBoxFlat_o5y1s")
 horizontal_scroll_mode = 0
 
@@ -443,43 +443,12 @@ popup/item_1/id = 1
 popup/item_2/text = "item 3"
 popup/item_2/id = 2
 
-[node name="dataJiggle" type="PanelContainer" parent="Elemental_UI_Right/MarginContainer/HBoxContainer/VBoxContainer2"]
-layout_mode = 2
-theme_override_styles/panel = ExtResource("3_yrw33")
-
-[node name="VBoxContainer" type="VBoxContainer" parent="Elemental_UI_Right/MarginContainer/HBoxContainer/VBoxContainer2/dataJiggle"]
-layout_mode = 2
-theme_override_constants/separation = 10
-
-[node name="Label" type="Label" parent="Elemental_UI_Right/MarginContainer/HBoxContainer/VBoxContainer2/dataJiggle/VBoxContainer"]
-layout_mode = 2
-text = "Data Handling :"
-
-[node name="importExport" type="VBoxContainer" parent="Elemental_UI_Right/MarginContainer/HBoxContainer/VBoxContainer2/dataJiggle/VBoxContainer"]
-layout_mode = 2
-theme_override_constants/separation = 9
-
-[node name="Button" type="Button" parent="Elemental_UI_Right/MarginContainer/HBoxContainer/VBoxContainer2/dataJiggle/VBoxContainer/importExport"]
-layout_mode = 2
-text = "Save Behaviour"
-
-[node name="Button2" type="Button" parent="Elemental_UI_Right/MarginContainer/HBoxContainer/VBoxContainer2/dataJiggle/VBoxContainer/importExport"]
-layout_mode = 2
-text = "Save Obs. Placement"
-
-[node name="Button3" type="Button" parent="Elemental_UI_Right/MarginContainer/HBoxContainer/VBoxContainer2/dataJiggle/VBoxContainer/importExport"]
-layout_mode = 2
-text = "Import Configuration"
-
-[node name="Button4" type="Button" parent="Elemental_UI_Right/MarginContainer/HBoxContainer/VBoxContainer2/dataJiggle/VBoxContainer/importExport"]
-layout_mode = 2
-text = "Export Configuration"
-
 [node name="VBoxContainer" type="VBoxContainer" parent="Elemental_UI_Right/MarginContainer/HBoxContainer"]
 layout_mode = 2
 theme_override_constants/separation = 15
 
 [node name="boidContainer" type="PanelContainer" parent="Elemental_UI_Right/MarginContainer/HBoxContainer/VBoxContainer"]
+visible = false
 layout_mode = 2
 theme_override_styles/panel = ExtResource("3_yrw33")
 
@@ -507,6 +476,7 @@ layout_mode = 2
 text = "Agent ID"
 
 [node name="beautifyContainer" type="PanelContainer" parent="Elemental_UI_Right/MarginContainer/HBoxContainer/VBoxContainer"]
+visible = false
 layout_mode = 2
 theme_override_styles/panel = ExtResource("3_yrw33")
 
@@ -519,7 +489,7 @@ text = "VISUALS : "
 
 [node name="CheckBox5" type="CheckBox" parent="Elemental_UI_Right/MarginContainer/HBoxContainer/VBoxContainer/beautifyContainer/beautify"]
 layout_mode = 2
-text = "Light up boids"
+text = "Starfield Shader"
 
 [node name="CheckBox6" type="CheckBox" parent="Elemental_UI_Right/MarginContainer/HBoxContainer/VBoxContainer/beautifyContainer/beautify"]
 layout_mode = 2
@@ -545,6 +515,7 @@ layout_mode = 2
 text = "INTERACTIONS : "
 
 [node name="CheckBox" type="CheckBox" parent="Elemental_UI_Right/MarginContainer/HBoxContainer/VBoxContainer/interactionContainer/interactions"]
+visible = false
 layout_mode = 2
 text = "Show Hit-boxes"
 
@@ -576,6 +547,7 @@ text = "PERFORMANCE :"
 [node name="GridContainer" type="GridContainer" parent="Elemental_UI_Right/MarginContainer/HBoxContainer/VBoxContainer/perfMatricsContainer/performance matrics"]
 layout_mode = 2
 size_flags_vertical = 3
+theme_override_constants/v_separation = 8
 
 [node name="Label" type="Label" parent="Elemental_UI_Right/MarginContainer/HBoxContainer/VBoxContainer/perfMatricsContainer/performance matrics/GridContainer"]
 layout_mode = 2
@@ -596,6 +568,38 @@ text = "GPU Usage : "
 [node name="Label3" type="Label" parent="Elemental_UI_Right/MarginContainer/HBoxContainer/VBoxContainer/perfMatricsContainer/performance matrics/GridContainer"]
 layout_mode = 2
 text = "Memory Usage : "
+
+[node name="dataJiggle" type="PanelContainer" parent="Elemental_UI_Right/MarginContainer/HBoxContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_styles/panel = ExtResource("3_yrw33")
+
+[node name="VBoxContainer" type="VBoxContainer" parent="Elemental_UI_Right/MarginContainer/HBoxContainer/VBoxContainer/dataJiggle"]
+layout_mode = 2
+theme_override_constants/separation = 10
+
+[node name="Label" type="Label" parent="Elemental_UI_Right/MarginContainer/HBoxContainer/VBoxContainer/dataJiggle/VBoxContainer"]
+layout_mode = 2
+text = "Data Handling :"
+
+[node name="importExport" type="VBoxContainer" parent="Elemental_UI_Right/MarginContainer/HBoxContainer/VBoxContainer/dataJiggle/VBoxContainer"]
+layout_mode = 2
+theme_override_constants/separation = 9
+
+[node name="Button" type="Button" parent="Elemental_UI_Right/MarginContainer/HBoxContainer/VBoxContainer/dataJiggle/VBoxContainer/importExport"]
+layout_mode = 2
+text = "Save Behaviour"
+
+[node name="Button2" type="Button" parent="Elemental_UI_Right/MarginContainer/HBoxContainer/VBoxContainer/dataJiggle/VBoxContainer/importExport"]
+layout_mode = 2
+text = "Save Obs. Placement"
+
+[node name="Button3" type="Button" parent="Elemental_UI_Right/MarginContainer/HBoxContainer/VBoxContainer/dataJiggle/VBoxContainer/importExport"]
+layout_mode = 2
+text = "Import Configuration"
+
+[node name="Button4" type="Button" parent="Elemental_UI_Right/MarginContainer/HBoxContainer/VBoxContainer/dataJiggle/VBoxContainer/importExport"]
+layout_mode = 2
+text = "Export Configuration"
 
 [node name="ghost_texture" type="TextureRect" parent="."]
 layout_mode = 1

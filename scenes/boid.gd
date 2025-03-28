@@ -14,12 +14,14 @@ var counter_outside_x = 1;
 var counter_outside_y = 1;
 
 var neighbour_boids = []
-@onready var trail: Line2D = $trail
-@onready var avoidance_center: Marker2D = $avoidance_center
-@onready var avoidance_right: Marker2D = $avoidance_right
-@onready var avoidance_left: Marker2D = $avoidance_left
+
+var boid_id : int 
+var default_font = ThemeDB.fallback_font
+var default_font_size = 15
+
 
 func _ready() -> void:
+	boid_id = manager.boid_count
 	
 	add_to_group("Boids")
 	
@@ -30,8 +32,7 @@ func _ready() -> void:
 		boids_grid[current_grid_pos] = []
 	
 	boids_grid[current_grid_pos].append(self)
-	
-	
+
 
 
 func _process(_delta: float) -> void:
@@ -43,8 +44,8 @@ func _process(_delta: float) -> void:
 	
 	# check it after acceleration capping to make sure it has dominating effect
 	check_for_edges()
-	
 	velocity += acceleration 
+	
 	acceleration = Vector2.ZERO
 	
 	avoid_obstacles()
@@ -52,46 +53,12 @@ func _process(_delta: float) -> void:
 	
 	rotation = velocity.angle()
 	move_and_slide()
+	
 
 
 
 func world_to_grid(position : Vector2) -> Vector2:
 	return Vector2(floor(position.x / grid_cell_size), floor(position.y / grid_cell_size))
-
-#func avoid_obstacles() -> void:
-	## Initialize avoidance force and parameters
-	#var avoidance_velocity := Vector2.ZERO
-	#var avoidance_weight = manager.AVOIDANCE_STRENGTH  # Tune this for stronger/weaker repulsion
-	#var detection_range = manager.DETECTION_RANGE  # Use as a base for scaling repulsion
-	#var d = ceil(detection_range / manager.GRID_CELL_SIZE)
-	#
-	## Loop through nearby grid cells to detect obstacles
-	#for i in range(-d, d + 1):
-		#for j in range(-d, d + 1):
-			#var grid_cell = current_grid_pos + Vector2(i, j)
-			## If an obstacle exists in this cell, calculate a repulsion force
-			#if manager.obstacle_grid.has(grid_cell):
-				#var obstacle_pos = manager.grid_to_world_position(grid_cell)  # Center of the cell
-				#var distance = global_position.distance_to(obstacle_pos)
-				#
-				## Only consider obstacles within the detection range
-				#if distance > 0 and distance < detection_range:
-					## Calculate a weight that decreases as distance increases
-					#var weight = 1.0 - (distance / detection_range)
-					## Compute repulsion vector (normalized so it only gives direction)
-					#var repulsion_vector = (global_position - obstacle_pos).normalized()
-					#avoidance_velocity += repulsion_vector * avoidance_weight * weight
-	#
-	## Introduce a forward bias so that boids continue moving into open space
-	## This helps prevent boids from jiggling in confined areas
-	#var forward_bias = velocity.normalized() * manager.FORWARD_BIAS  # FORWARD_BIAS is a tunable constant
-	#
-	## Blend avoidance with the forward bias
-	#var steering_force = avoidance_velocity + forward_bias
-	#
-	## Optionally, smooth the steering force (using delta time for consistent behavior)
-	#velocity += steering_force * get_process_delta_time()
-
 
 
 func avoid_obstacles():
@@ -100,14 +67,12 @@ func avoid_obstacles():
 	var avoidance_velocity := Vector2.ZERO
 	var avoidance_weight = manager.AVOIDANCE_STRENGTH# Tune this for smooth avoidance
 
-	# Define search range in grid (same logic as boid neighbors)
 	var d = ceil(manager.DETECTION_RANGE / manager.GRID_CELL_SIZE)
 
 	for i in range(-d, d + 1):
 		for j in range(-d, d + 1):
 			var obstacle_grid_pos = current_grid_pos + Vector2(i, j)
 
-			# If an obstacle exists in this cell, calculate repulsion
 			if manager.obstacle_grid.has(obstacle_grid_pos):
 				var obstacle_pos = manager.grid_to_world_position(obstacle_grid_pos)
 				var distance = global_position.distance_to(obstacle_pos)
@@ -116,8 +81,7 @@ func avoid_obstacles():
 					var repulsion_vector = (global_position - obstacle_pos).normalized() / distance
 					avoidance_velocity += repulsion_vector * avoidance_weight
 
-	# Apply avoidance force
-	velocity += avoidance_velocity 
+	velocity += avoidance_velocity * 2
 
 
 func cap_velocity() -> void : 
@@ -217,7 +181,6 @@ func get_neighbours() -> void:
 
 
 
-	
 func apply_cohesion()->void : 
 	var sum_of_positions = Vector2.ZERO
 	
@@ -227,6 +190,7 @@ func apply_cohesion()->void :
 	var avg_position = sum_of_positions / neighbour_boids.size()
 	acceleration += (avg_position - global_position)* manager.COHESION
 	return 
+
 
 func apply_seperation() -> void :
 	var stable_seperation = manager.SEPERATION_DISTANCE
@@ -251,21 +215,6 @@ func apply_alignment() -> void :
 	var avg_velocity = sum_of_velocity / neighbour_boids.size()
 	acceleration += (avg_velocity - velocity) * manager.ALIGNMENT
 	return
-
-
-func set_color(color: Color) -> void:
-	$Sprite2D.modulate = color  # Update the boid's color
-
-	# Ensure the Line2D has a unique gradient
-	if $trail.gradient == null or $trail.gradient is Gradient:
-		$trail.gradient = Gradient.new()  # Assign a unique Gradient instance
-	
-	# Update the gradient colors
-	var gradient = $trail.gradient
-	gradient.set_offset(0, 0.0)
-	gradient.set_offset(1, 1.0)
-	gradient.set_color(0, Color(0, 0, 0))  # One end black
-	gradient.set_color(1, color)  # Other end the boid's color
 
 
 

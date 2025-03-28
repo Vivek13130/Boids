@@ -1,4 +1,4 @@
-[gd_scene load_steps=8 format=3 uid="uid://c1n37ogucnlfn"]
+[gd_scene load_steps=10 format=3 uid="uid://c1n37ogucnlfn"]
 
 [ext_resource type="Script" path="res://scenes/boid.gd" id="1_mhefk"]
 [ext_resource type="Texture2D" uid="uid://w4xstsi3su37" path="res://assets/body.png" id="1_s24eb"]
@@ -8,6 +8,33 @@
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_rmxfv"]
 radius = 3.0
 height = 20.0
+
+[sub_resource type="Shader" id="Shader_hr8ga"]
+code = "shader_type canvas_item;
+
+uniform float trail_strength = 0.98; // Lower = longer-lasting trails
+uniform float blur_amount = 0.02;    // Controls diffusion
+
+void fragment() {
+    vec4 old_trail = texture(TEXTURE, UV);
+    
+    // Diffuse the trail slightly
+    vec4 blurred = (texture(TEXTURE, UV + vec2(blur_amount, 0.0)) +
+                    texture(TEXTURE, UV + vec2(-blur_amount, 0.0)) +
+                    texture(TEXTURE, UV + vec2(0.0, blur_amount)) +
+                    texture(TEXTURE, UV + vec2(0.0, -blur_amount))) * 0.25;
+    
+    // Fade trails over time
+    vec4 faded_trail = mix(old_trail, blurred, 0.5) * trail_strength;
+    
+    COLOR = faded_trail;
+}
+"
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_4vmx1"]
+shader = SubResource("Shader_hr8ga")
+shader_parameter/trail_strength = 0.98
+shader_parameter/blur_amount = 0.02
 
 [sub_resource type="Curve" id="Curve_ok1fj"]
 _data = [Vector2(0, 0), 0.0, 0.0, 0, 0, Vector2(1, 1.25), 0.0, 0.0, 0, 0]
@@ -32,6 +59,7 @@ disabled = true
 
 [node name="trail" type="Line2D" parent="."]
 top_level = true
+material = SubResource("ShaderMaterial_4vmx1")
 position = Vector2(-8, 0)
 width = 4.0
 width_curve = SubResource("Curve_ok1fj")

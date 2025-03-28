@@ -28,6 +28,8 @@ extends Control
 @onready var elemental_ui_right: ScrollContainer = $Elemental_UI_Right
 @onready var behaviour_ui_left: ScrollContainer = $Behaviour_UI_Left
 
+@onready var ripple_rect: ColorRect = $"../RippleRect"
+
 
 func _ready() -> void:
 	set_default_values_in_sliders()
