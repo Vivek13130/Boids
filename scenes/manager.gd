@@ -72,7 +72,7 @@ var AVOIDANCE_STRENGTH : int = 3000
 
 const FORWARD_BIAS : int = 1000
 
-
+var trail_effect : int = 4 # index of which trail effect is applied
 
 
 #-------------------------------------------

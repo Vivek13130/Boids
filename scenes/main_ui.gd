@@ -83,8 +83,7 @@ func _on_randomize_button_pressed() -> void:
 	min_speed_slider.value = randf_range(min_speed_slider.min_value, min_speed_slider.max_value)
 	max_speed_slider.value = randf_range(max_speed_slider.min_value, max_speed_slider.max_value)
 	max_acc_slider.value = randf_range(max_acc_slider.min_value, max_acc_slider.max_value)
-	fov_slider.value = randf_range(fov_slider.min_value, fov_slider.max_value)
-	#update_latency_slider.value = randf_range(update_latency_slider.min_value, update_latency_slider.max_value)
+	#fov_slider.value = randf_range(fov_slider.min_value, fov_slider.max_value)
 	#detection_radius_slider.value = randf_range(detection_radius_slider.min_value, detection_radius_slider.max_value)
 	trail_length_slider.value = randf_range(trail_length_slider.min_value, trail_length_slider.max_value)
 	
@@ -256,3 +255,7 @@ func _on_main_ui_gui_input(event: InputEvent) -> void:
 			is_placing_obstacles = true  # Start placing
 		elif not event.pressed:
 			is_placing_obstacles = false  # Stop placing
+
+
+func _on_trail_noise_addon_item_selected(index: int) -> void:
+	manager.trail_effect = index

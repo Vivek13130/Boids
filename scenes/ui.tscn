@@ -75,6 +75,7 @@ text = "Behaviour Parameters
 fit_content = true
 
 [node name="alignment" type="VBoxContainer" parent="Behaviour_UI_Left/MarginContainer/VBoxContainer"]
+visible = false
 layout_mode = 2
 
 [node name="Label" type="Label" parent="Behaviour_UI_Left/MarginContainer/VBoxContainer/alignment"]
@@ -197,12 +198,12 @@ text = "Trail Noise Addon"
 layout_mode = 2
 selected = 4
 item_count = 5
-popup/item_0/text = "Sine Wave"
-popup/item_1/text = "Perlin Noise"
+popup/item_0/text = "Perlin Noise"
+popup/item_1/text = "Flicker"
 popup/item_1/id = 1
-popup/item_2/text = "Item 3"
+popup/item_2/text = "Spiral"
 popup/item_2/id = 2
-popup/item_3/text = "Item 4"
+popup/item_3/text = "Dist. Spiral"
 popup/item_3/id = 3
 popup/item_4/text = "None"
 popup/item_4/id = 4
@@ -619,6 +620,7 @@ mouse_filter = 2
 [connection signal="drag_ended" from="Behaviour_UI_Left/MarginContainer/VBoxContainer/fov/HSlider" to="." method="_on_fov_slider_drag_ended"]
 [connection signal="drag_ended" from="Behaviour_UI_Left/MarginContainer/VBoxContainer/detection radius/HSlider" to="." method="_on_detection_radius_slider_drag_ended"]
 [connection signal="drag_ended" from="Behaviour_UI_Left/MarginContainer/VBoxContainer/trail length/HSlider" to="." method="_on_trail_length_slider_drag_ended"]
+[connection signal="item_selected" from="Behaviour_UI_Left/MarginContainer/VBoxContainer/trail noise/OptionButton" to="." method="_on_trail_noise_addon_item_selected"]
 [connection signal="pressed" from="Behaviour_UI_Left/MarginContainer/VBoxContainer/ButtonTray/checkBoxes/trails_check" to="." method="_on_trails_check_pressed"]
 [connection signal="pressed" from="Behaviour_UI_Left/MarginContainer/VBoxContainer/ButtonTray/checkBoxes/cluster_check" to="." method="_on_colors_check_pressed"]
 [connection signal="pressed" from="Behaviour_UI_Left/MarginContainer/VBoxContainer/ButtonTray/radomize_reset/reset_button" to="." method="_on_reset_button_pressed"]

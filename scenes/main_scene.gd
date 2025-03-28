@@ -3,7 +3,6 @@ extends Node2D
 const boid_scene : PackedScene = preload("res://scenes/boid.tscn")
 @onready var boid_manager: Node2D = $CanvasLayer/boid_manager
 @onready var obstacle_manager: Node2D = $CanvasLayer/obstacle_manager
-@onready var trail_viewport: SubViewport = $TrailContainer/TrailViewport
 
 
 
