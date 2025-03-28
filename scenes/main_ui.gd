@@ -28,13 +28,30 @@ extends Control
 @onready var elemental_ui_right: ScrollContainer = $Elemental_UI_Right
 @onready var behaviour_ui_left: ScrollContainer = $Behaviour_UI_Left
 
-@onready var ripple_rect: ColorRect = $"../RippleRect"
+
+@onready var explosive_clicks_check: CheckBox = $Elemental_UI_Right/MarginContainer/HBoxContainer/VBoxContainer/interactionContainer/interactions/explosive_clicks_check
+@onready var obs_avoidance_check: CheckBox = $Elemental_UI_Right/MarginContainer/HBoxContainer/VBoxContainer/interactionContainer/interactions/obs_avoidance_check
+@onready var perf_matrics_check: CheckBox = $Elemental_UI_Right/MarginContainer/HBoxContainer/VBoxContainer/interactionContainer/interactions/perf_matrics_check
+
+@onready var boid_count: Label = $"Elemental_UI_Right/MarginContainer/HBoxContainer/VBoxContainer/perfMatricsContainer/performance matrics/GridContainer/boidCount"
+@onready var fps: Label = $"Elemental_UI_Right/MarginContainer/HBoxContainer/VBoxContainer/perfMatricsContainer/performance matrics/GridContainer/fps"
+@onready var cpu_usage: Label = $"Elemental_UI_Right/MarginContainer/HBoxContainer/VBoxContainer/perfMatricsContainer/performance matrics/GridContainer/cpuUsage"
+@onready var gpu_usage: Label = $"Elemental_UI_Right/MarginContainer/HBoxContainer/VBoxContainer/perfMatricsContainer/performance matrics/GridContainer/gpuUsage"
+@onready var memory_usage: Label = $"Elemental_UI_Right/MarginContainer/HBoxContainer/VBoxContainer/perfMatricsContainer/performance matrics/GridContainer/MemoryUsage"
 
 
 func _ready() -> void:
 	set_default_values_in_sliders()
 	if(! hide_ui.button_pressed):
 		change_ui_visibility()
+
+	
+
+
+func update_performance_matrics() -> void : 
+	boid_count.text = str(manager.boid_count)
+	fps.text = str(Engine.get_frames_per_second())
+	
 
 # behaviour UI : sliders and all : upto line 160
 
@@ -154,7 +171,7 @@ func _on_detection_radius_slider_drag_ended(value_changed: bool) -> void:
 func _on_trail_length_slider_drag_ended(value_changed: bool) -> void:
 	if value_changed:
 		manager.TRAIL_LENGTH = trail_length_slider.value
-
+		
 
 
 
@@ -235,6 +252,9 @@ var counter_limit_placing_obstacles = 10
 func _process(delta: float) -> void:
 	counter += 1
 	
+	if(manager.performance_matrics):
+		update_performance_matrics()
+	
 	if ghost_texture.texture:
 		var mouse_pos = get_global_mouse_position()
 		var grid_x = floor(mouse_pos.x / manager.GRID_CELL_SIZE) * manager.GRID_CELL_SIZE
@@ -259,3 +279,28 @@ func _on_main_ui_gui_input(event: InputEvent) -> void:
 
 func _on_trail_noise_addon_item_selected(index: int) -> void:
 	manager.trail_effect = index
+	if(!manager.TRAIL_ENABLED):
+		_on_trails_check_pressed()
+		trails_check.button_pressed = true
+
+
+func _on_explosive_clicks_check_pressed() -> void:
+	manager.explosive_clicks = !manager.explosive_clicks
+
+
+
+func _on_obs_avoidance_check_pressed() -> void:
+	manager.obstacle_avoidance = !manager.obstacle_avoidance
+
+
+
+func _on_perf_matrics_check_pressed() -> void:
+	manager.performance_matrics = !manager.performance_matrics
+	if(manager.performance_matrics):
+		DebugMenu.style = DebugMenu.Style.VISIBLE_DETAILED
+	else:
+		DebugMenu.style = DebugMenu.Style.HIDDEN
+
+
+func _on_mt_check_pressed() -> void:
+	manager.multithreading = true

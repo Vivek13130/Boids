@@ -72,9 +72,12 @@ var AVOIDANCE_STRENGTH : int = 3000
 
 const FORWARD_BIAS : int = 1000
 
-var trail_effect : int = 4 # index of which trail effect is applied
+var trail_effect : int = 5 # index of which trail effect is applied
 
-
+var obstacle_avoidance : bool = true 
+var explosive_clicks : bool = false 
+var performance_matrics : bool = false 
+var multithreading : bool = false 
 #-------------------------------------------
 
 

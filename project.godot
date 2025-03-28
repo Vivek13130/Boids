@@ -17,6 +17,11 @@ config/features=PackedStringArray("4.3", "Forward Plus")
 [autoload]
 
 manager="*res://scenes/manager.gd"
+DebugMenu="*res://addons/debug_menu/debug_menu.tscn"
+
+[editor_plugins]
+
+enabled=PackedStringArray("res://addons/debug_menu/plugin.cfg")
 
 [global_group]
 

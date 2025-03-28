@@ -10,7 +10,7 @@
 [ext_resource type="Texture2D" uid="uid://dgiskv3t8nqbq" path="res://assets/bottom-right.png" id="7_0glyu"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_o5y1s"]
-bg_color = Color(0, 0, 0, 0)
+bg_color = Color(0, 0.317647, 0.137255, 1)
 border_width_left = 4
 border_width_top = 4
 border_width_right = 4
@@ -75,6 +75,7 @@ text = "Behaviour Parameters
 fit_content = true
 
 [node name="alignment" type="VBoxContainer" parent="Behaviour_UI_Left/MarginContainer/VBoxContainer"]
+visible = false
 layout_mode = 2
 
 [node name="Label" type="Label" parent="Behaviour_UI_Left/MarginContainer/VBoxContainer/alignment"]
@@ -527,16 +528,10 @@ text = "Obstacle Avoidance"
 
 [node name="perf_matrics_check" type="CheckBox" parent="Elemental_UI_Right/MarginContainer/HBoxContainer/VBoxContainer/interactionContainer/interactions"]
 layout_mode = 2
-text = "Show Perf. Matrics
-"
-
-[node name="MT check" type="CheckBox" parent="Elemental_UI_Right/MarginContainer/HBoxContainer/VBoxContainer/interactionContainer/interactions"]
-layout_mode = 2
-text = "Multi-threading 
+text = "Calc. perf. matrics
 "
 
 [node name="perfMatricsContainer" type="PanelContainer" parent="Elemental_UI_Right/MarginContainer/HBoxContainer/VBoxContainer"]
-visible = false
 layout_mode = 2
 theme_override_styles/panel = ExtResource("3_yrw33")
 
@@ -635,4 +630,3 @@ mouse_filter = 2
 [connection signal="pressed" from="Elemental_UI_Right/MarginContainer/HBoxContainer/VBoxContainer/interactionContainer/interactions/explosive_clicks_check" to="." method="_on_explosive_clicks_check_pressed"]
 [connection signal="pressed" from="Elemental_UI_Right/MarginContainer/HBoxContainer/VBoxContainer/interactionContainer/interactions/obs_avoidance_check" to="." method="_on_obs_avoidance_check_pressed"]
 [connection signal="pressed" from="Elemental_UI_Right/MarginContainer/HBoxContainer/VBoxContainer/interactionContainer/interactions/perf_matrics_check" to="." method="_on_perf_matrics_check_pressed"]
-[connection signal="pressed" from="Elemental_UI_Right/MarginContainer/HBoxContainer/VBoxContainer/interactionContainer/interactions/MT check" to="." method="_on_mt_check_pressed"]

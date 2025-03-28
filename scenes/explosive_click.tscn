@@ -1,0 +1,47 @@
+[gd_scene load_steps=6 format=3 uid="uid://c7on4edicwhyo"]
+
+[sub_resource type="Curve" id="Curve_02s0n"]
+_data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(1, 0), 0.0, 0.0, 0, 0]
+point_count = 2
+
+[sub_resource type="CurveTexture" id="CurveTexture_kmt88"]
+curve = SubResource("Curve_02s0n")
+
+[sub_resource type="Gradient" id="Gradient_715ug"]
+offsets = PackedFloat32Array(0, 0.30137, 1)
+colors = PackedColorArray(1, 0.976471, 1, 1, 1, 1, 0, 1, 1, 0, 0, 1)
+
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_hm3tv"]
+gradient = SubResource("Gradient_715ug")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_16rw8"]
+particle_flag_disable_z = true
+direction = Vector3(0, 0, 0)
+spread = 180.0
+initial_velocity_min = 300.0
+initial_velocity_max = 800.0
+gravity = Vector3(0, 0, 0)
+linear_accel_min = -2.23517e-06
+linear_accel_max = -2.23517e-06
+scale_max = 4.0
+color_ramp = SubResource("GradientTexture1D_hm3tv")
+alpha_curve = SubResource("CurveTexture_kmt88")
+turbulence_enabled = true
+turbulence_noise_speed_random = 1.0
+turbulence_influence_max = 0.3
+turbulence_initial_displacement_min = 1.49012e-06
+turbulence_initial_displacement_max = 50.0
+
+[node name="ExplosiveClick" type="GPUParticles2D"]
+emitting = false
+amount = 80
+process_material = SubResource("ParticleProcessMaterial_16rw8")
+lifetime = 0.8
+one_shot = true
+explosiveness = 1.0
+trail_enabled = true
+trail_lifetime = 0.1
+trail_sections = 2
+trail_section_subdivisions = 1
+
+[connection signal="finished" from="." to="." method="_on_finished"]

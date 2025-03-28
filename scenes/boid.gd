@@ -48,7 +48,9 @@ func _process(_delta: float) -> void:
 	
 	acceleration = Vector2.ZERO
 	
-	avoid_obstacles()
+	if(manager.obstacle_avoidance):
+		avoid_obstacles()
+	
 	cap_velocity()
 	
 	rotation = velocity.angle()
@@ -65,7 +67,7 @@ func avoid_obstacles():
 	# we will look on obstacles nearby refering to obstacle grid
 	# based on the distance between boid and obstacle we will add a repulsive acceleration to boid . 
 	var avoidance_velocity := Vector2.ZERO
-	var avoidance_weight = manager.AVOIDANCE_STRENGTH# Tune this for smooth avoidance
+	var avoidance_weight = manager.AVOIDANCE_STRENGTH
 
 	var d = ceil(manager.DETECTION_RANGE / manager.GRID_CELL_SIZE)
 

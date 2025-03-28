@@ -1,7 +1,6 @@
-[gd_scene load_steps=7 format=3 uid="uid://d4ch7ty1lvk03"]
+[gd_scene load_steps=6 format=3 uid="uid://d4ch7ty1lvk03"]
 
 [ext_resource type="Script" path="res://scenes/main_scene.gd" id="1_mc70k"]
-[ext_resource type="PackedScene" uid="uid://c7on4edicwhyo" path="res://scenes/explosive_click.tscn" id="2_h3rwp"]
 [ext_resource type="PackedScene" uid="uid://c1n37ogucnlfn" path="res://scenes/boid.tscn" id="2_n4n0a"]
 [ext_resource type="Script" path="res://scenes/bg_particles.gd" id="2_veel7"]
 [ext_resource type="PackedScene" uid="uid://xkw6a187it4l" path="res://scenes/ui.tscn" id="3_2r7ee"]
@@ -12,7 +11,6 @@ colors = PackedColorArray(0, 1, 0, 1, 1, 1, 0, 1, 0, 1, 1, 1, 1, 0, 0, 1)
 
 [node name="mainscene" type="Node2D"]
 script = ExtResource("1_mc70k")
-explosive_click = ExtResource("2_h3rwp")
 grid_color = Color(0.227652, 0.203552, 9.62615e-08, 0.5)
 
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
@@ -26,9 +24,9 @@ grow_horizontal = 2
 grow_vertical = 2
 color = Color(0, 0, 0, 1)
 
-[node name="background particles" type="CPUParticles2D" parent="CanvasLayer"]
+[node name="CPUParticles2D" type="CPUParticles2D" parent="CanvasLayer"]
 emitting = false
-amount = 200
+amount = 100
 lifetime = 10.0
 lifetime_randomness = 0.2
 emission_shape = 3
@@ -38,7 +36,7 @@ spread = 180.0
 gravity = Vector2(0, 0)
 initial_velocity_max = 50.0
 angular_velocity_max = 100.0
-scale_amount_max = 3.0
+scale_amount_max = 2.0
 color_ramp = SubResource("Gradient_gjl23")
 script = ExtResource("2_veel7")
 

@@ -8,10 +8,12 @@ extends Line2D
 
 var noise := FastNoiseLite.new()
 
+
 func _ready() -> void:
 	position = Vector2.ZERO  
 	rotation = 0 
 	noise.seed = randi()  # Randomize noise
+
 
 func _process(delta: float) -> void:
 	if manager.TRAIL_ENABLED == false or manager.TRAIL_LENGTH == 0:
@@ -19,12 +21,14 @@ func _process(delta: float) -> void:
 		return
 	
 	var boid_position = to_local(get_parent().global_position)
-	add_point(boid_position)
+
+	# Ensure a minimum distance between consecutive points
+	if get_point_count() == 0 or boid_position.distance_to(get_point_position(get_point_count() - 1)) > 5.0:
+		add_point(boid_position)
 
 	while get_point_count() > manager.TRAIL_LENGTH:
 		remove_point(0)
 
-	
 	match manager.trail_effect :
 		0 : 
 			apply_perlin_noise()
@@ -35,8 +39,36 @@ func _process(delta: float) -> void:
 		3 : 
 			apply_spiral_distorted()
 		4 : 
-			pass # no effect
+			apply_pixel_shatter()
 
+
+func apply_pixel_shatter():
+	var points = get_points()
+	
+	for i in range(0, points.size(), 5):  # Process every 5th point
+		var pixel = ColorRect.new()
+		var pixel1 = ColorRect.new()
+		
+		pixel.color = Color(randf(), randf(), randf())
+		pixel.size = Vector2(4, 4)
+		pixel.position = points[i] - Vector2(2, 2)
+		add_child(pixel)
+		
+		pixel1.color = Color(randf(), randf(), randf())
+		pixel1.size = Vector2(4, 4)
+		pixel1.position = points[i] - Vector2(2, 2)
+		add_child(pixel1)
+		
+		# Animate
+		var tween = create_tween()
+		tween.tween_property(pixel, "position:y", pixel.position.y - 30, 0.5)
+		tween.parallel().tween_property(pixel, "modulate:a", 0.0, 0.5)
+		tween.finished.connect(pixel.queue_free)
+		
+		var tween1 = create_tween()
+		tween1.tween_property(pixel1, "position:y", pixel1.position.y + 30, 0.5)
+		tween1.parallel().tween_property(pixel1, "modulate:a", 0.0, 0.5)
+		tween1.finished.connect(pixel1.queue_free)
 
 
 func apply_spiral_effect(strength: float = 0.3, rotation_speed: float = 35.0) -> void:
@@ -51,15 +83,12 @@ func apply_spiral_effect(strength: float = 0.3, rotation_speed: float = 35.0) ->
 		set_point_position(i, point + offset)
 
 
-
 func apply_perlin_noise():
 	for i in range(get_point_count()):
 		var point = get_point_position(i)
 		var noise_offset = noise.get_noise_2d(point.x, point.y) * noise_intensity
 		point.x += noise_offset  # Add slight noise to x for randomness
 		set_point_position(i, point)
-		
-		
 
 
 func apply_spiral_distorted():
@@ -87,8 +116,6 @@ func apply_spiral_distorted():
 
 		point += spiral_offset  
 		set_point_position(i, point)
-
-
 
 
 func apply_flicker(): # works perfect

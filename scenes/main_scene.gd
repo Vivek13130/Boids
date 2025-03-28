@@ -3,8 +3,10 @@ extends Node2D
 const boid_scene : PackedScene = preload("res://scenes/boid.tscn")
 @onready var boid_manager: Node2D = $CanvasLayer/boid_manager
 @onready var obstacle_manager: Node2D = $CanvasLayer/obstacle_manager
+@export var explosive_click: PackedScene
 
-
+var cell_size = manager.GRID_CELL_SIZE
+var grid = manager.boids_grid
 
 func _ready():
 	queue_redraw()
@@ -19,7 +21,44 @@ func _process(delta: float) -> void:
 	
 	if Input.is_action_just_pressed("pause"):
 		toggle_pause()
+
+func _input(event):
+	if event is InputEventMouseButton and event.pressed and manager.explosive_clicks:
+		apply_explosive_force(event.position, 2 , 500.0)
+
+
+func apply_explosive_force(mouse_position: Vector2, explosion_grid_radius : int ,max_force: float) -> void:
+	var affected_boids = get_boids_in_radius(mouse_position, explosion_grid_radius)
 	
+	print("applied on : ", affected_boids.size())
+	
+	var explosion_particles = explosive_click.instantiate()
+	explosion_particles.global_position = mouse_position 
+	$CanvasLayer.add_child(explosion_particles)
+	explosion_particles.emitting = true 
+	explosion_particles.finished.connect(explosion_particles.queue_free)
+	
+	for boid in affected_boids:
+		var direction = (boid.global_position - mouse_position).normalized()
+		var force_magnitude = max_force * 10
+		boid.velocity += direction * force_magnitude  # Apply impulse
+
+
+func get_boids_in_radius(center: Vector2 , grid_radius : int) -> Array:
+	var nearby_boids = []
+	
+	var current_cell = manager.world_to_grid_position(center)
+	
+	for x in range(-grid_radius, grid_radius + 1):
+		for y in range(-grid_radius, grid_radius + 1):
+			var cell_key = current_cell + Vector2(x,y)
+			if grid.has(cell_key):  
+				for boid in grid[cell_key]:
+					nearby_boids.append(boid)
+	
+	return nearby_boids
+
+
 
 func toggle_pause():
 	if Engine.time_scale == 1.0:
