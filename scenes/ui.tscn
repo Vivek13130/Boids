@@ -228,7 +228,7 @@ icon_alignment = 1
 layout_mode = 2
 size_flags_horizontal = 3
 focus_mode = 0
-text = "Clusters"
+text = "Clusters*"
 
 [node name="radomize_reset" type="HBoxContainer" parent="Behaviour_UI_Left/MarginContainer/VBoxContainer/ButtonTray"]
 layout_mode = 2
@@ -252,8 +252,8 @@ layout_mode = 1
 anchors_preset = 1
 anchor_left = 1.0
 anchor_right = 1.0
-offset_left = -468.0
-offset_bottom = 586.0
+offset_left = -263.0
+offset_bottom = 543.0
 grow_horizontal = 0
 theme_override_styles/panel = SubResource("StyleBoxFlat_o5y1s")
 horizontal_scroll_mode = 0
@@ -276,6 +276,7 @@ layout_mode = 2
 theme_override_constants/separation = 15
 
 [node name="spawn_despawn" type="PanelContainer" parent="Elemental_UI_Right/MarginContainer/HBoxContainer/VBoxContainer2"]
+visible = false
 layout_mode = 2
 theme_override_styles/panel = ExtResource("3_yrw33")
 
@@ -400,6 +401,7 @@ layout_mode = 2
 text = "Delete"
 
 [node name="presetBehaviour" type="PanelContainer" parent="Elemental_UI_Right/MarginContainer/HBoxContainer/VBoxContainer2"]
+visible = false
 layout_mode = 2
 theme_override_styles/panel = ExtResource("3_yrw33")
 
@@ -444,6 +446,45 @@ popup/item_1/text = "item 2"
 popup/item_1/id = 1
 popup/item_2/text = "item 3"
 popup/item_2/id = 2
+
+[node name="interactionContainer" type="PanelContainer" parent="Elemental_UI_Right/MarginContainer/HBoxContainer/VBoxContainer2"]
+layout_mode = 2
+theme_override_styles/panel = ExtResource("3_yrw33")
+
+[node name="interactions" type="VBoxContainer" parent="Elemental_UI_Right/MarginContainer/HBoxContainer/VBoxContainer2/interactionContainer"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="Elemental_UI_Right/MarginContainer/HBoxContainer/VBoxContainer2/interactionContainer/interactions"]
+layout_mode = 2
+text = "INTERACTIONS : "
+
+[node name="explosive_clicks_check" type="CheckBox" parent="Elemental_UI_Right/MarginContainer/HBoxContainer/VBoxContainer2/interactionContainer/interactions"]
+layout_mode = 2
+focus_mode = 0
+text = "Explosive Clicks"
+
+[node name="bg_particles" type="CheckBox" parent="Elemental_UI_Right/MarginContainer/HBoxContainer/VBoxContainer2/interactionContainer/interactions"]
+layout_mode = 2
+focus_mode = 0
+button_pressed = true
+text = "Dynamic BG."
+
+[node name="obs_avoidance_check" type="CheckBox" parent="Elemental_UI_Right/MarginContainer/HBoxContainer/VBoxContainer2/interactionContainer/interactions"]
+layout_mode = 2
+focus_mode = 0
+button_pressed = true
+text = "Obstacle Avoidance"
+
+[node name="perf_matrics_check" type="CheckBox" parent="Elemental_UI_Right/MarginContainer/HBoxContainer/VBoxContainer2/interactionContainer/interactions"]
+layout_mode = 2
+focus_mode = 0
+text = "Show Perf. Matrics
+"
+
+[node name="boid_count" type="Label" parent="Elemental_UI_Right/MarginContainer/HBoxContainer/VBoxContainer2/interactionContainer/interactions"]
+layout_mode = 2
+text = "Boids : 
+"
 
 [node name="VBoxContainer" type="VBoxContainer" parent="Elemental_UI_Right/MarginContainer/HBoxContainer"]
 layout_mode = 2
@@ -505,36 +546,6 @@ text = "Shadows*"
 layout_mode = 2
 text = "Diffuse Shader"
 
-[node name="interactionContainer" type="PanelContainer" parent="Elemental_UI_Right/MarginContainer/HBoxContainer/VBoxContainer"]
-layout_mode = 2
-theme_override_styles/panel = ExtResource("3_yrw33")
-
-[node name="interactions" type="VBoxContainer" parent="Elemental_UI_Right/MarginContainer/HBoxContainer/VBoxContainer/interactionContainer"]
-layout_mode = 2
-
-[node name="Label" type="Label" parent="Elemental_UI_Right/MarginContainer/HBoxContainer/VBoxContainer/interactionContainer/interactions"]
-layout_mode = 2
-text = "INTERACTIONS : "
-
-[node name="explosive_clicks_check" type="CheckBox" parent="Elemental_UI_Right/MarginContainer/HBoxContainer/VBoxContainer/interactionContainer/interactions"]
-layout_mode = 2
-text = "Explosive Clicks"
-
-[node name="obs_avoidance_check" type="CheckBox" parent="Elemental_UI_Right/MarginContainer/HBoxContainer/VBoxContainer/interactionContainer/interactions"]
-layout_mode = 2
-button_pressed = true
-text = "Obstacle Avoidance"
-
-[node name="perf_matrics_check" type="CheckBox" parent="Elemental_UI_Right/MarginContainer/HBoxContainer/VBoxContainer/interactionContainer/interactions"]
-layout_mode = 2
-text = "Show Perf. Matrics
-"
-
-[node name="MT check" type="CheckBox" parent="Elemental_UI_Right/MarginContainer/HBoxContainer/VBoxContainer/interactionContainer/interactions"]
-layout_mode = 2
-text = "Multi-threading 
-"
-
 [node name="perfMatricsContainer" type="PanelContainer" parent="Elemental_UI_Right/MarginContainer/HBoxContainer/VBoxContainer"]
 visible = false
 layout_mode = 2
@@ -573,6 +584,7 @@ layout_mode = 2
 text = "Memory Usage : "
 
 [node name="dataJiggle" type="PanelContainer" parent="Elemental_UI_Right/MarginContainer/HBoxContainer/VBoxContainer"]
+visible = false
 layout_mode = 2
 theme_override_styles/panel = ExtResource("3_yrw33")
 
@@ -632,7 +644,7 @@ mouse_filter = 2
 [connection signal="gui_input" from="Elemental_UI_Right/MarginContainer/HBoxContainer/VBoxContainer2/obstaclePlacement/VBoxContainer/GridContainer/center" to="." method="_on_obstacle_grid_gui_input" binds= ["center"]]
 [connection signal="gui_input" from="Elemental_UI_Right/MarginContainer/HBoxContainer/VBoxContainer2/obstaclePlacement/VBoxContainer/GridContainer/bottom-left" to="." method="_on_obstacle_grid_gui_input" binds= ["bottom-left"]]
 [connection signal="gui_input" from="Elemental_UI_Right/MarginContainer/HBoxContainer/VBoxContainer2/obstaclePlacement/VBoxContainer/GridContainer/bottom-right" to="." method="_on_obstacle_grid_gui_input" binds= ["bottom-right"]]
-[connection signal="pressed" from="Elemental_UI_Right/MarginContainer/HBoxContainer/VBoxContainer/interactionContainer/interactions/explosive_clicks_check" to="." method="_on_explosive_clicks_check_pressed"]
-[connection signal="pressed" from="Elemental_UI_Right/MarginContainer/HBoxContainer/VBoxContainer/interactionContainer/interactions/obs_avoidance_check" to="." method="_on_obs_avoidance_check_pressed"]
-[connection signal="pressed" from="Elemental_UI_Right/MarginContainer/HBoxContainer/VBoxContainer/interactionContainer/interactions/perf_matrics_check" to="." method="_on_perf_matrics_check_pressed"]
-[connection signal="pressed" from="Elemental_UI_Right/MarginContainer/HBoxContainer/VBoxContainer/interactionContainer/interactions/MT check" to="." method="_on_mt_check_pressed"]
+[connection signal="pressed" from="Elemental_UI_Right/MarginContainer/HBoxContainer/VBoxContainer2/interactionContainer/interactions/explosive_clicks_check" to="." method="_on_explosive_clicks_check_pressed"]
+[connection signal="pressed" from="Elemental_UI_Right/MarginContainer/HBoxContainer/VBoxContainer2/interactionContainer/interactions/bg_particles" to="." method="_on_bg_particles_pressed"]
+[connection signal="pressed" from="Elemental_UI_Right/MarginContainer/HBoxContainer/VBoxContainer2/interactionContainer/interactions/obs_avoidance_check" to="." method="_on_obs_avoidance_check_pressed"]
+[connection signal="pressed" from="Elemental_UI_Right/MarginContainer/HBoxContainer/VBoxContainer2/interactionContainer/interactions/perf_matrics_check" to="." method="_on_perf_matrics_check_pressed"]

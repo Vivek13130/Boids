@@ -42,10 +42,12 @@ var MAX_ACCELERATION = 500
 var FOV = 360
 var DETECTION_RANGE = 100
 var TRAIL_LENGTH = 500
-var boid_count = 0
+var boid_count : int = 1
 
 var TRAIL_ENABLED : bool = false
-var COLOR_MODE_ENABLED : bool = false
+var detect_clusters : bool = false
+
+var dynamic_background : bool = true
 
 var BRIGHT_COLORS = [
 	Color(1, 0, 0),     # Red
@@ -88,3 +90,21 @@ func world_to_grid_position(position : Vector2) -> Vector2:
 func grid_to_world_position(grid_pos: Vector2) -> Vector2:
 	# return the center of the grid cell 
 	return Vector2(grid_pos.x * GRID_CELL_SIZE, grid_pos.y * GRID_CELL_SIZE) + Vector2(GRID_CELL_SIZE / 2, GRID_CELL_SIZE / 2)
+
+
+func get_boids_in_radius(position: Vector2, radius: float) -> Array:
+	var nearby_boids = []
+	var grid_x = int(position.x / GRID_CELL_SIZE)
+	var grid_y = int(position.y / GRID_CELL_SIZE)
+	var radius_cells = ceil(radius / GRID_CELL_SIZE)  # How many cells to check
+
+	# Iterate over neighboring grid cells
+	for x in range(grid_x - radius_cells, grid_x + radius_cells + 1):
+		for y in range(grid_y - radius_cells, grid_y + radius_cells + 1):
+			var cell_key = Vector2(x, y)
+			if cell_key in boids_grid:
+				for boid in boids_grid[cell_key]:
+					if boid.global_position.distance_to(position) <= radius:
+						nearby_boids.append(boid)
+
+	return nearby_boids

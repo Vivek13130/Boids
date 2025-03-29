@@ -33,12 +33,12 @@ extends Control
 @onready var obs_avoidance_check: CheckBox = $Elemental_UI_Right/MarginContainer/HBoxContainer/VBoxContainer/interactionContainer/interactions/obs_avoidance_check
 @onready var perf_matrics_check: CheckBox = $Elemental_UI_Right/MarginContainer/HBoxContainer/VBoxContainer/interactionContainer/interactions/perf_matrics_check
 
-@onready var boid_count: Label = $"Elemental_UI_Right/MarginContainer/HBoxContainer/VBoxContainer/perfMatricsContainer/performance matrics/GridContainer/boidCount"
 @onready var fps: Label = $"Elemental_UI_Right/MarginContainer/HBoxContainer/VBoxContainer/perfMatricsContainer/performance matrics/GridContainer/fps"
 @onready var cpu_usage: Label = $"Elemental_UI_Right/MarginContainer/HBoxContainer/VBoxContainer/perfMatricsContainer/performance matrics/GridContainer/cpuUsage"
 @onready var gpu_usage: Label = $"Elemental_UI_Right/MarginContainer/HBoxContainer/VBoxContainer/perfMatricsContainer/performance matrics/GridContainer/gpuUsage"
 @onready var memory_usage: Label = $"Elemental_UI_Right/MarginContainer/HBoxContainer/VBoxContainer/perfMatricsContainer/performance matrics/GridContainer/MemoryUsage"
 
+@onready var boid_count: Label = $Elemental_UI_Right/MarginContainer/HBoxContainer/VBoxContainer2/interactionContainer/interactions/boid_count
 
 func _ready() -> void:
 	set_default_values_in_sliders()
@@ -47,10 +47,6 @@ func _ready() -> void:
 
 	
 
-
-func update_performance_matrics() -> void : 
-	boid_count.text = str(manager.boid_count)
-	fps.text = str(Engine.get_frames_per_second())
 	
 
 # behaviour UI : sliders and all : upto line 160
@@ -85,7 +81,7 @@ func _on_trails_check_pressed() -> void:
 
 
 func _on_colors_check_pressed() -> void:
-	manager.COLOR_MODE_ENABLED = !manager.COLOR_MODE_ENABLED
+	manager.detect_clusters = !manager.detect_clusters
 
 
 func _on_reset_button_pressed() -> void:
@@ -252,8 +248,8 @@ var counter_limit_placing_obstacles = 10
 func _process(delta: float) -> void:
 	counter += 1
 	
-	if(manager.performance_matrics):
-		update_performance_matrics()
+	boid_count.text = "Boids : " + str(manager.boid_count)
+
 	
 	if ghost_texture.texture:
 		var mouse_pos = get_global_mouse_position()
@@ -304,3 +300,7 @@ func _on_perf_matrics_check_pressed() -> void:
 
 func _on_mt_check_pressed() -> void:
 	manager.multithreading = true
+
+
+func _on_bg_particles_pressed() -> void:
+	manager.dynamic_background = !manager.dynamic_background

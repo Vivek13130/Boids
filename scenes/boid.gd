@@ -219,6 +219,6 @@ func apply_alignment() -> void :
 	return
 
 
-
-func apply_noise():
-	pass
+func set_color(color: Color) -> void:
+	if $Sprite2D:  # Ensure the Boid has a Sprite2D node
+		$Sprite2D.modulate = color

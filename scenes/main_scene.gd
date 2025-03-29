@@ -7,12 +7,13 @@ const boid_scene : PackedScene = preload("res://scenes/boid.tscn")
 
 var cell_size = manager.GRID_CELL_SIZE
 var grid = manager.boids_grid
-
-func _ready():
-	queue_redraw()
+@onready var background_particles: CPUParticles2D = $"CanvasLayer/background particles"
 
 
 func _process(delta: float) -> void:
+	if(manager.dynamic_background != background_particles.emitting):
+		background_particles.emitting = manager.dynamic_background
+	
 	if Input.is_action_pressed("spawn_boid"):
 		spawn_boid(1)
 	
